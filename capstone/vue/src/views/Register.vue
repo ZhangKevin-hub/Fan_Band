@@ -5,7 +5,8 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <div>
+      <label for="username" class="sr-only">Username:</label>
       <input
         type="text"
         id="username"
@@ -15,7 +16,9 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      </div>
+      <div>
+      <label for="password" class="sr-only">Password:</label>
       <input
         type="password"
         id="password"
@@ -24,6 +27,10 @@
         v-model="user.password"
         required
       />
+      <p v-if="!checkPassword">Password must be strong</p>
+      </div>
+      <div>
+      <label for="confirmPassword" class="sr-only">Confirm Password:</label>
       <input
         type="password"
         id="confirmPassword"
@@ -32,6 +39,10 @@
         v-model="user.confirmPassword"
         required
       />
+      
+      </div>
+      <label for="isManager">Are you a band manager? </label>
+      <input type="checkbox" id="isManager" v-on:checked="changeRole()">
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -54,8 +65,16 @@ export default {
         role: 'user',
       },
       registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.',
+      registrationErrorMsg: 'There were problems registering this user.'
     };
+  },
+  computed: {
+    checkPassword(){
+      if (this.user.password.length >= 8){
+        return true;
+      }
+      return false;
+    }
   },
   methods: {
     register() {
@@ -86,8 +105,36 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
+    changeRole(){
+      if (this.user.role === 'user'){
+        this.user.role = 'manager';
+        console.log(this.user.role)
+      } else {
+        this.user.role = 'user';
+      }
+    }
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+#register {
+  text-align: center;
+  border: 5px solid;
+  border-radius: 25%;
+  width:33%;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.form-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.form-register * {
+  padding: 10px;
+}
+</style>
