@@ -52,7 +52,8 @@ CREATE TABLE notification(
 	message text NOT NULL,
 	message_date DATE,
 	CONSTRAINT PK_notification PRIMARY KEY(notif_id),
-	CONSTRAINT FK_notification_band FOREIGN KEY (band_id) REFERENCES band(band_id)
+	CONSTRAINT FK_notification_band FOREIGN KEY (band_id) REFERENCES band(band_id),
+    CONSTRAINT fk_notification_follower FOREIGN KEY (band_id) REFERENCES follower(band_id)
 );
 CREATE TABLE inbox(
 	notif_id int,

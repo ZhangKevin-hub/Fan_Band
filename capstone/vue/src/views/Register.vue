@@ -26,8 +26,10 @@
         placeholder="Password"
         v-model="user.password"
         required
+         v-on:blur="unBlurCheck()"
       />
-      <p v-if="!checkPassword">Password must be strong</p>
+      <p v-if="this.unBlur">Password must contain{{ checkPassword }}.</p>
+      <!-- blur - move away -->
       </div>
       <div>
       <label for="confirmPassword" class="sr-only">Confirm Password:</label>
@@ -65,16 +67,29 @@ export default {
         role: 'user',
       },
       registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.'
+      registrationErrorMsg: 'There were problems registering this user.',
+      unBlur: false
     };
   },
   computed: {
     checkPassword(){
+      let passwordMessage = "";
       //const passwordValidator = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
-      if (this.user.password.match(/[a-z]/) && this.user.password.match(/[A-Z]/) && this.user.password.match(/\d/) && this.user.password.length >= 8){
-        return true;
+      // separate statements ("you need a lowercase") multiple messages
+      if (!this.user.password.match(/[a-z]/)){
+        passwordMessage += " a lowercase letter"
       }
-      return false;
+      
+      if (!this.user.password.match(/[A-Z]/)){
+        passwordMessage += " an uppercase letter"
+      } 
+      if (!this.user.password.match(/\d/)){
+        passwordMessage += " a number"
+      } 
+      if (!this.user.password.length >= 8){
+        passwordMessage += " 8 or more characters long"
+      }
+      return passwordMessage;
     }
   },
   methods: {
@@ -113,6 +128,9 @@ export default {
       } else {
         this.user.role = 'user';
       }
+    },
+    unBlurCheck(){
+      this.unBlur = true;
     }
   },
 };

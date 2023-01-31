@@ -20,7 +20,8 @@ public class JdbcBandDao  implements BandDao{
     public List<Band> findAll() {
         List<Band> bands = new ArrayList<>();
         String sql = "SELECT * " +
-                "FROM band;";
+                "FROM band " +
+                "ORDER BY band_name;";
         SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql);
         while (results.next()){
             Band band = mapRowToBand(results);
