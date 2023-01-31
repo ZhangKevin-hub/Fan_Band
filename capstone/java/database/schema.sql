@@ -34,7 +34,7 @@ CREATE TABLE photo (
 );
 CREATE TABLE genre(
 	genre_id SERIAL,
-	genre_name varchar NOT NULL,
+	genre_name varchar NOT NULL UNIQUE,
 	CONSTRAINT PK_genre PRIMARY KEY(genre_id)
 );
 CREATE TABLE genre_band(
