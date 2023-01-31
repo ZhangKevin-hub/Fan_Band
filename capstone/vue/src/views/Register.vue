@@ -29,7 +29,7 @@
          v-on:blur="unBlurCheck()"
       />
       <p v-if="this.unBlur">Password must contain{{ checkPassword }}.</p>
-      <!-- blur - move away -->
+     
       </div>
       <div>
       <label for="confirmPassword" class="sr-only">Confirm Password:</label>
@@ -43,8 +43,7 @@
       />
       
       </div>
-      <label for="isManager">Are you a band manager? </label>
-      <input type="checkbox" id="isManager" v-on:checked="changeRole()">
+      
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -75,7 +74,7 @@ export default {
     checkPassword(){
       let passwordMessage = "";
       //const passwordValidator = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
-      // separate statements ("you need a lowercase") multiple messages
+      
       if (!this.user.password.match(/[a-z]/)){
         passwordMessage += " a lowercase letter"
       }
@@ -120,14 +119,6 @@ export default {
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
-    },
-    changeRole(){
-      if (this.user.role === 'user'){
-        this.user.role = 'manager';
-        console.log(this.user.role)
-      } else {
-        this.user.role = 'user';
-      }
     },
     unBlurCheck(){
       this.unBlur = true;

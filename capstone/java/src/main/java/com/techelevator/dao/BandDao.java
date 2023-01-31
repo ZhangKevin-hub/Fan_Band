@@ -16,5 +16,7 @@ public interface BandDao {
 
     String findGenreForBand(Band band);
 
+    void addBandToUser(int userId, int bandId);
+
     int create(Band band);
 }

@@ -85,6 +85,14 @@ public class JdbcBandDao  implements BandDao{
     }
 
     @Override
+    public void addBandToUser(int userId, int bandID) {
+        String sql = "INSERT INTO follower " +
+                "(user_id, band_id) " +
+                "VALUES (?, ?);";
+         jdbcTemplate.update(sql, userId, bandID);
+    }
+
+    @Override
     public int create(Band band) {
         String sql = "INSERT INTO band " +
                 "(band_name, description, image, band_manager) " +
