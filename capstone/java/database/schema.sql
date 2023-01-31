@@ -15,7 +15,7 @@ CREATE TABLE band(
 	image varchar(260),
 	band_manager int NOT NULL,
 	CONSTRAINT PK_band PRIMARY KEY(band_id),
-	CONSTRAINT FK_band_users FOREIGN KEY(Band_manager) REFERENCES users(user_id)
+	CONSTRAINT FK_band_users FOREIGN KEY(band_manager) REFERENCES users(user_id)
 	);
 CREATE TABLE follower(
 	user_id int,
@@ -61,3 +61,7 @@ CREATE TABLE inbox(
 	CONSTRAINT FK_inbox_notification FOREIGN KEY (notif_id) REFERENCES  notification(notif_id)
 );
 COMMIT TRANSACTION;
+INSERT INTO users (user_id, username, password_hash, role) VALUES (1, 'user', 'pass', 'user');
+INSERT INTO band (band_name, description, image, band_manager) VALUES ('band', 'desc', 'image', 1);
+INSERT INTO band (band_name, description, image, band_manager) VALUES ('aaa', 'bb', 'ccc', 1);
+SELECT * FROM band;

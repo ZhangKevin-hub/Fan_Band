@@ -15,7 +15,7 @@
       </div>
       <div class="form-element">
         <label for="genres">Genres: </label>
-        <p v-for="(genre, index) in band.genres" v-bind:key="index"> {{ index }}: {{ genre }}
+        <p v-for="(genre, index) in genres" v-bind:key="index"> {{ index }}: {{ genre }}
         </p>
         <ul>
             <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
@@ -41,21 +41,21 @@ export default {
           bandName: "", 
           description: "",
           image: "",
-          genres: [],
           managerId: -1
-      }
+      },
+      genres: [],
     };
   },
   methods: {
       editSelectedGenres(genre){
           console.log(genre)
-          const filteredList = this.band.genres.filter( (eachGenre)=> {
+          const filteredList = this.genres.filter( (eachGenre)=> {
               return eachGenre === genre;
           })
           if (filteredList.length === 0){
-              this.band.genres.push(genre);
+              this.genres.push(genre);
           } else {
-              this.band.genres = this.band.genres.filter( (eachGenre) => {
+              this.genres = this.genres.filter( (eachGenre) => {
                   return eachGenre !== genre;
               } )
           }
@@ -71,10 +71,11 @@ export default {
             })
           .catch((error)=> {
               console.log("failed to create band");
-              console.log(error.response);
+              console.log(error.response.request.response);
               console.log(this.band);
             
-          })
+          });
+          // assign genres method
       }
   }
 };
