@@ -10,9 +10,9 @@ CREATE TABLE users (
 );
 CREATE TABLE band(
 	band_id SERIAL,
-	Name text NOT NULL,
-	Description text,
-	Image varchar(260),
+	band_name text NOT NULL,
+	description text,
+	image varchar(260),
 	band_manager int NOT NULL,
 	CONSTRAINT PK_band PRIMARY KEY(band_id),
 	CONSTRAINT FK_band_users FOREIGN KEY(Band_manager) REFERENCES users(user_id)
