@@ -70,7 +70,8 @@ export default {
   },
   computed: {
     checkPassword(){
-      if (this.user.password.length >= 8){
+      //const passwordValidator = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
+      if (this.user.password.match(/[a-z]/) && this.user.password.match(/[A-Z]/) && this.user.password.match(/\d/) && this.user.password.length >= 8){
         return true;
       }
       return false;
