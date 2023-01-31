@@ -8,6 +8,10 @@ export default {
 
   register(user) {
     return axios.post('/register', user)
+  },
+
+  createBand(band) {
+    return axios.post('/band', band)
   }
 
 }

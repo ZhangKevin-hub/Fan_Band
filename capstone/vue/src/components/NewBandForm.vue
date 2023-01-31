@@ -1,0 +1,97 @@
+<template>
+  <div>
+    <form id="newBandForm">
+      <div class="form-element">
+        <label for="bandName">Band Name: </label>
+        <input type="text" id="bandName" v-model="band.bandName" />
+      </div>
+      <div class="form-element">
+        <label for="description">Description: </label>
+        <input type="text" id="description"  v-model="band.description"/>
+      </div>
+      <div class="form-element">
+        <label for="coverImage">Cover Image Link: </label>
+        <input type="text" id="coverImage" v-model="band.image" />
+      </div>
+      <div class="form-element">
+        <label for="genres">Genres: </label>
+        <p v-for="(genre, index) in band.genres" v-bind:key="index"> {{ index }}: {{ genre }}
+        </p>
+        <ul>
+            <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
+                <input type="checkbox" :id="index" :value="genre" v-on:change="editSelectedGenres(genre)">
+                <label :for="index">{{ genre }}</label>
+            </li>
+        </ul>
+      </div>
+      <button type="submit" v-on:click.prevent="submitForm()">Create Band</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import authService from '../services/AuthService';
+export default {
+  data() {
+    return {
+      possibleGenres: [
+          'Rock', 'Pop', 'R&B', 'Indie'
+      ],
+      band: {
+          bandName: "", 
+          description: "",
+          image: "",
+          genres: [],
+          managerId: -1
+      }
+    };
+  },
+  methods: {
+      editSelectedGenres(genre){
+          console.log(genre)
+          const filteredList = this.band.genres.filter( (eachGenre)=> {
+              return eachGenre === genre;
+          })
+          if (filteredList.length === 0){
+              this.band.genres.push(genre);
+          } else {
+              this.band.genres = this.band.genres.filter( (eachGenre) => {
+                  return eachGenre !== genre;
+              } )
+          }
+      },
+      submitForm(){
+          this.band.managerId = this.$store.state.user.id;
+          authService.createBand(this.band)
+            .then( response => {
+                if (response.status == 200){
+                    // reroute to band page
+                    console.log(this.band);
+                }
+            })
+          .catch((error)=> {
+              console.log("failed to create band");
+              console.log(error.response);
+              console.log(this.band);
+            
+          })
+      }
+  }
+};
+</script>
+
+<style>
+#newBandForm {
+    text-align: center;
+}
+ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+li {
+    list-style: none;
+}
+</style>

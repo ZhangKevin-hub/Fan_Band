@@ -45,15 +45,13 @@ CREATE TABLE genre_band(
 	CONSTRAINT FK_genre_band_band FOREIGN KEY (band_id) REFERENCES band(band_id)
 );
 
-<<<<<<< HEAD
 CREATE TABLE notification(
 	notif_id SERIAL,
 	band_id int,
 	message text NOT NULL,
 	message_date DATE,
 	CONSTRAINT PK_notification PRIMARY KEY(notif_id),
-	CONSTRAINT FK_notification_band FOREIGN KEY (band_id) REFERENCES band(band_id),
-    CONSTRAINT fk_notification_follower FOREIGN KEY (band_id) REFERENCES follower(band_id)
+	CONSTRAINT FK_notification_band FOREIGN KEY (band_id) REFERENCES band(band_id)
 );
 CREATE TABLE inbox(
 	notif_id int,
@@ -63,6 +61,3 @@ CREATE TABLE inbox(
 	CONSTRAINT FK_inbox_notification FOREIGN KEY (notif_id) REFERENCES  notification(notif_id)
 );
 COMMIT TRANSACTION;
-=======
-COMMIT TRANSACTION;
->>>>>>> b7ed35ac7ce5103b4b64bb1dcc68fe420ac4ae05

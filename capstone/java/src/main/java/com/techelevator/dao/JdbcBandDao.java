@@ -4,11 +4,13 @@ import com.techelevator.model.Band;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcBandDao  implements BandDao{
+@Component
+public class JdbcBandDao implements BandDao{
 
     private final JdbcTemplate jdbcTemplate;
 

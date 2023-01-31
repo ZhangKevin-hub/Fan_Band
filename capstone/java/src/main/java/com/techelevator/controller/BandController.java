@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.BandDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Band;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,9 @@ import java.util.List;
 @CrossOrigin
 @PreAuthorize("isAuthenticated()")
 public class BandController {
-
+    @Autowired
     private BandDao bandDao;
+    @Autowired
     private UserDao userDao;
 
     public BandController(BandDao bandDao, UserDao userDao) {
