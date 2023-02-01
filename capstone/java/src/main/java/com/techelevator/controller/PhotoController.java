@@ -7,6 +7,7 @@ import com.techelevator.model.Photo;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/photo")
 public class PhotoController {
     private PhotoDao photoDao;

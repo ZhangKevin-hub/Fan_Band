@@ -7,6 +7,7 @@ import com.techelevator.model.Notification;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/notifications")
 public class NotificationController {
     private NotificationDao notificationDao;

@@ -7,6 +7,7 @@ import com.techelevator.model.Inbox;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/inbox")
 public class InboxController {
     private InboxDao inboxDao;
