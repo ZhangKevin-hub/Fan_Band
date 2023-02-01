@@ -19,9 +19,17 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    band: {},
+    notifications: []
   },
   mutations: {
+    SET_CURRENT_NOTIFICATIONS(state, notifications) {
+      state.notifications = notifications;
+    },
+    SET_CURRENT_BAND(state, band) {
+      state.band= band;
+    } ,
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);

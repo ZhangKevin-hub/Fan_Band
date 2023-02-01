@@ -12,6 +12,14 @@ export default {
 
   createBand(band) {
     return axios.post('/band', band)
+  },
+
+  getBand(bandId) {
+    return axios.get(`/band/${bandId}`)
+  },
+
+  getNotificationsByBand() {
+    return axios.get(``)
   }
 
 }
