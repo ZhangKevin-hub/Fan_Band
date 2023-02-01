@@ -1,25 +1,29 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Band {
 
     private int bandId;
     private String bandName;
     private String description;
     private String image;
-    private int managerID;
+    @JsonProperty("userId")
+    private int userId;
 
-    public Band(){}
+    public Band() {
+    }
 
-    public Band(int bandId, String bandName, String description, String image, int managerID) {
+    public Band(int bandId, String bandName, String description, String image, int userId) {
         this.bandId = bandId;
         this.bandName = bandName;
         this.description = description;
         this.image = image;
-        this.managerID = managerID;
+        this.userId = userId;
     }
 
     public int getBandId() {
-        return this.bandId;
+        return bandId;
     }
 
     public void setBandId(int bandId) {
@@ -27,7 +31,7 @@ public class Band {
     }
 
     public String getBandName() {
-        return this.bandName;
+        return bandName;
     }
 
     public void setBandName(String bandName) {
@@ -35,7 +39,7 @@ public class Band {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
@@ -43,18 +47,19 @@ public class Band {
     }
 
     public String getImage() {
-        return this.image;
+        return image;
     }
 
     public void setImage(String image) {
         this.image = image;
     }
 
-    public int getManagerID() {
-        return this.managerID;
+    public int getUser_id() {
+        return userId;
     }
 
-    public void setManagerID(int managerID) {
-        this.managerID = managerID;
+    public void setUser_id(int userId) {
+        this.userId = userId;
     }
 }
+

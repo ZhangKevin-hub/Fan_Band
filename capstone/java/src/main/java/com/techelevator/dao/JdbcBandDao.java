@@ -97,9 +97,9 @@ public class JdbcBandDao implements BandDao{
     @Override
     public int create(Band band) {
         String sql = "INSERT INTO band " +
-                "(band_name, description, image, band_manager) " +
+                "(band_name, description, image, user_id) " +
                 "VALUES (?, ?, ?, ?);";
-        return jdbcTemplate.update(sql, band.getBandName(), band.getDescription(), band.getImage(), band.getManagerID());
+        return jdbcTemplate.update(sql, band.getBandName(), band.getDescription(), band.getImage(), band.getUser_id());
     }
 
     private Band mapRowToBand(SqlRowSet rowSet) {
@@ -108,7 +108,7 @@ public class JdbcBandDao implements BandDao{
         band.setBandName(rowSet.getString("band_name"));
         band.setDescription(rowSet.getString("description"));
         band.setImage(rowSet.getString("image"));
-        band.setManagerID(rowSet.getInt("band_manager"));
+        band.setUser_id(rowSet.getInt("user_id"));
         return band;
     }
 }

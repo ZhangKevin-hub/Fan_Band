@@ -41,7 +41,7 @@ export default {
           bandName: "", 
           description: "",
           image: "",
-          managerId: -1
+          userId: -1
       },
       genres: [],
     };
@@ -61,11 +61,13 @@ export default {
           }
       },
       submitForm(){
-          this.band.managerId = this.$store.state.user.id;
+          this.band.userId = this.$store.state.user.id;
+          console.log(this.band.userId)
           authService.createBand(this.band)
             .then( response => {
                 if (response.status == 200){
                     // reroute to band page
+                    //resetForm()
                     console.log(this.band);
                 }
             })
@@ -76,7 +78,8 @@ export default {
             
           });
           // assign genres method
-      }
+      },
+      //resetFrom(){}
   }
 };
 </script>
