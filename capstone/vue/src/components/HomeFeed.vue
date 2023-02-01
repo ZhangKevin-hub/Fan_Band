@@ -27,7 +27,6 @@ export default {
                 }];
         //AuthService.getNotificationsByBand(this.$state.store.band.bandId);
         this.$store.state.notifications = notificationsToSet
-        //this.notifications = this.$store.state.notifications
     }
 }
 </script>
