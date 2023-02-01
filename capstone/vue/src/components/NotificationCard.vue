@@ -1,20 +1,19 @@
 <template>
+<div>
   <div v-if="true"> <!--v-if notification has content -->
-      <router-link v-bind:to="{ name: 'bandPage', params: {bandId: notification.band_id} }"
-      v-on:click="setCurrentBand(notification.bandId)"
-      >
-          <h3>{{ notification.bandName }}</h3>
-      </router-link>
+    <h3 v-on:click="setCurrentBand(notification.bandId)">{{ notification.bandName }}</h3>
+    
       <p>{{ notification.messageDate }}</p>
       <p>{{ notification.message }}</p>
   </div>
   <div v-else>
       <h1>Sorry No Notifications</h1>
   </div>
+</div>
 </template>
 
 <script>
-import AuthService from '../services/AuthService'
+//import AuthService from '../services/AuthService'
 export default {
     name: 'notificationCard',
     props: {
@@ -22,7 +21,16 @@ export default {
         },
     methods: {
         setCurrentBand(id) {
-           this.$store.state.band = AuthService.getBand(id)
+            const band = {
+                bandId: id, 
+                bandName: 'Nirvana',
+                description: 'Band from back in the day',
+                image: '',
+
+
+            }
+           this.$store.commit('SET_CURRENT_BAND', band); // AuthService.getBand(id)
+           this.$router.push({name: 'bandPage'})
         }
     }
 }

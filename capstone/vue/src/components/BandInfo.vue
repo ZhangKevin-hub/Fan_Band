@@ -1,7 +1,7 @@
 <template>
   <div>
-      <h1>Band Name</h1>
-      <p>Description</p>
+      <h1>{{ band.bandName }}</h1>
+      <p>{{ band.description }}</p>
       <img src="" alt="cover image">
       <h5>List of genres</h5>
       <img src="" alt="photo gallergy">
@@ -12,7 +12,15 @@
 <script>
 
 export default {
-    name: 'bandInfo'
+    name: 'bandInfo',
+    data(){
+      return {
+        band: {}
+      }
+    },
+    created(){
+      this.band = this.$store.state.band;
+    }
 }
 </script>
 

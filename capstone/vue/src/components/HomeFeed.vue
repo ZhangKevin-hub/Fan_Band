@@ -1,7 +1,7 @@
 <template>
   <div>
-      
-     <notification-card v-for="notification in notifications" v-bind:key="notification"
+    
+     <notification-card v-for="(notification, index) in notifications" v-bind:key="index"
      v-bind:notification="notification"></notification-card>
       
   </div>
@@ -15,7 +15,8 @@ export default {
     components: {NotificationCard},
     data(){
         return {
-            notifications: this.$store.state.notifications
+            notifications: []
+            //this.$store.state.notifications
             // get from database/store
         }
     },
@@ -23,10 +24,12 @@ export default {
         const notificationsToSet = [{
                     bandName: "Nirvana",
                     messageDate: '1/24/23',
-                    message: 'Blah blah marbles'
+                    message: 'Blah blah marbles',
+                    bandId: 1
                 }];
         //AuthService.getNotificationsByBand(this.$state.store.band.bandId);
-        this.$store.state.notifications = notificationsToSet
+        this.$store.state.notifications = notificationsToSet;
+        this.notifications = this.$store.state.notifications;
     }
 }
 </script>
