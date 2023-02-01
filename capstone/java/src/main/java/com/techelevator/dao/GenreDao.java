@@ -8,7 +8,7 @@ import java.util.List;
 public interface GenreDao {
 
     List<Genre> findAll();
-
+    List<Genre> findGenresByBandId(int bandId);
     Genre findGenreById(int genreId);
 
     void addGenre(Genre genre);
