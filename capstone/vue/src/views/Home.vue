@@ -1,12 +1,15 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <router-link v-bind:to="{ name: 'createBand'}">Create New Band</router-link>
+    <home-feed></home-feed>
   </div>
 </template>
 
 <script>
+import HomeFeed from '../components/HomeFeed.vue';
 export default {
-  name: "home"
+  name: "home",
+  components: { HomeFeed}
 };
 </script>

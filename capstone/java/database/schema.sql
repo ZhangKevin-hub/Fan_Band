@@ -26,7 +26,7 @@ CREATE TABLE follower(
 	);
 
 CREATE TABLE photo (
-	photo_ID SERIAL,
+	photo_id SERIAL,
 	img_url varchar(260),
 	band_id int,
 	CONSTRAINT PK_photo PRIMARY KEY (photo_id),

@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class JdbcFollowerDAO implements FollowerDAO {
+public class JdbcFollowerDao implements FollowerDao {
 
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcFollowerDAO(JdbcTemplate jdbcTemplate) {
+    public JdbcFollowerDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     @Override
     public List<Follower> findFollowerWithBandId(int bandId) {
         String sql = "SELECT * FROM follower WHERE band_id = ?";
@@ -26,6 +27,7 @@ public class JdbcFollowerDAO implements FollowerDAO {
         }
         return followers;
     }
+
     @Override
     public List<Follower> findFollowerWithUserId(int userId) {
         String sql = "SELECT * FROM follower WHERE user_id = ?";
@@ -36,6 +38,7 @@ public class JdbcFollowerDAO implements FollowerDAO {
         }
         return followers;
     }
+
     @Override
     public List<Follower> findAll() {
         String sql = "SELECT * FROM follower";
@@ -46,11 +49,13 @@ public class JdbcFollowerDAO implements FollowerDAO {
         }
         return followers;
     }
+
     @Override
     public void addFollower(Follower follower) {
         String sql = "INSERT INTO follower (user_id, band_id) VALUES (?, ?)";
         jdbcTemplate.update(sql, follower.getUserId(), follower.getBandId());
     }
+
     @Override
     public void removeFollower(Follower follower) {
         String sql = "DELETE FROM follower WHERE user_id = ? and band_id = ?";
@@ -64,3 +69,4 @@ public class JdbcFollowerDAO implements FollowerDAO {
         return follower;
     }
 }
+

@@ -4,6 +4,15 @@ public class Follower {
     private int userId;
     private int bandId;
 
+
+    public Follower(int userId, int bandId) {
+        this.userId = userId;
+        this.bandId = bandId;
+    }
+
+    public Follower() {
+    }
+
     public int getUserId() {
         return userId;
     }

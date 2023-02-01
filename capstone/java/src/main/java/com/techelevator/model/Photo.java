@@ -5,6 +5,15 @@ public class Photo {
     private String imgUrl;
     private int bandId;
 
+    public Photo(int photoId, String imgUrl, int bandId) {
+        this.photoId = photoId;
+        this.imgUrl = imgUrl;
+        this.bandId = bandId;
+    }
+
+    public Photo() {
+    }
+
     public int getPhotoId() {
         return photoId;
     }
