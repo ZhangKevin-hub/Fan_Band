@@ -9,7 +9,7 @@ public interface PhotoDao {
     List<Photo> findPhotoByBandId(int bandId);
 
 
-
+    void deletePhoto(Photo photo);
 
     // photo_id could be changed if it's messing things up
 

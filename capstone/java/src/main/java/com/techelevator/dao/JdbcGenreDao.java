@@ -16,7 +16,7 @@ public class JdbcGenreDao implements GenreDao {
     public JdbcGenreDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
+    @Override
     public List<Genre> findGenresByBandId(int bandId) {
         String sql = "SELECT * FROM genre WHERE band_id = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, bandId);
