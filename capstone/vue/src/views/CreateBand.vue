@@ -1,6 +1,6 @@
 <template>
   <div>
-      Create band
+      <h1>New Band Form</h1>
       <new-band-form></new-band-form>
   </div>
 </template>
@@ -15,5 +15,8 @@ export default {
 </script>
 
 <style>
+h1 {
+    text-align: center;
+}
 
 </style>

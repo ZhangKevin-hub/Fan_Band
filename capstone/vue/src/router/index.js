@@ -58,7 +58,8 @@ const router = new Router({
       path: "/new-band",
       name: "createBand",
       component: CreateBand
-    }
+    },
+    
   ]
 })
 
