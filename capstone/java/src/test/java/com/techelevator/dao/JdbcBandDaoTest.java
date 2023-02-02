@@ -1,7 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Band;
-import com.techelevator.model.User;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
