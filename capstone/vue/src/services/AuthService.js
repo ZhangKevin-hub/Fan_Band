@@ -28,6 +28,14 @@ export default {
 
   getFollowersByUser(userId) {
     return axios.get(`/followers/${userId}`)
+  },
+
+  addGenres(genres) {
+    return axios.put('/genre', genres)
+  },
+
+  getGenres() {
+    return axios.get('/genres')
   }
 
 }

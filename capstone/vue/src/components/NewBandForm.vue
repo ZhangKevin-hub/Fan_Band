@@ -15,12 +15,12 @@
       </div>
       <div class="form-element">
         <label for="genres">Genres: </label>
-        <p v-for="(genre, index) in genres" v-bind:key="index"> {{ index }}: {{ genre }}
+        <p v-for="(genre, index) in genres" v-bind:key="index"> {{ index }}: {{ genre.name }}
         </p>
         <ul>
             <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
                 <input type="checkbox" :id="index" :value="genre" v-on:change="editSelectedGenres(genre)">
-                <label :for="index">{{ genre }}</label>
+                <label :for="index">{{ genre.name }}</label>
             </li>
         </ul>
       </div>
@@ -30,13 +30,15 @@
 </template>
 
 <script>
+import AuthService from '../services/AuthService';
 import authService from '../services/AuthService';
 export default {
   data() {
     return {
-      possibleGenres: [
-          'Rock', 'Pop', 'R&B', 'Indie'
-      ],
+      possibleGenres: this.$store.state.genreOptions,
+      // [
+      //     'Rock', 'Pop', 'R&B', 'Indie'
+      // ],
       band: {
           bandName: "", 
           description: "",
@@ -67,7 +69,8 @@ export default {
             .then( response => {
                 if (response.status == 200){
                     // reroute to band page
-                    //resetForm()
+                    this.resetForm();
+                    this.assignGenres();
                     console.log(this.band);
                 }
             })
@@ -77,9 +80,24 @@ export default {
               console.log(this.band);
             
           });
-          // assign genres method
+          
       },
-      //resetFrom(){}
+      resetFrom(){
+        this.band = {
+          bandName: "", 
+          description: "",
+          image: "",
+          userId: -1
+      }
+      },
+      assignGenres(){
+        AuthService.addGenres(this.genres).then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      }
   }
 };
 </script>
