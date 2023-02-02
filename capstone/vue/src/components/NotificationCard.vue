@@ -1,7 +1,7 @@
 <template>
 <div>
   <div v-if="true" id="card-div"> <!--v-if notification has content -->
-    <h3 v-on:click="setCurrentBand(3)">{{ notification.bandName }}</h3>
+    <h3 v-on:click="setCurrentBand(notification.bandId)">{{ notification.bandName }}</h3>
     
       <p>{{ notification.messageDate }}</p>
       <p>{{ notification.message }}</p>
