@@ -34,7 +34,16 @@ export default {
                 return element.bandId;
             })
         })
-        
+        .catch(error => {
+            console.log(error)
+        });
+        AuthService.getGenres().then(response => {
+            const genres = response.data;
+            this.$store.commit('SET_GENRE_OPTIONS', genres)
+        })
+        .catch(error => {
+            console.log(error)
+        });
     }
 }
 </script>

@@ -1,8 +1,10 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.BandDao;
+import com.techelevator.dao.JdbcGenreBandDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Band;
+import com.techelevator.model.BandGenreList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +30,17 @@ public class BandController {
 
     //create band
     @RequestMapping(value = "/band", method = RequestMethod.POST)
+<<<<<<< HEAD
     public int createBand(@RequestBody Band band, @RequestBody List<Integer> genreIds){
+=======
+    public int createBand(@RequestBody BandGenreList bandGenreList){
+        Band band = new Band();
+        band.setUser_id(bandGenreList.getUser_id());
+        band.setBandName(bandGenreList.getBandName());
+        band.setDescription(bandGenreList.getDescription());
+        band.setImage(bandGenreList.getImage());
+        List<Integer> genreIds = bandGenreList.getGenreIds();
+>>>>>>> f57568b73e7946ae9f596b990f1e68344c722d2f
         int bandId = this.bandDao.create(band);
         for (int genreId : genreIds) {
             this.genreBandDao.addGenreBand(genreId, bandId);
