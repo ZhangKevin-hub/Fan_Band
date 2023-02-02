@@ -64,7 +64,15 @@ const router = new Router({
       path: "/band",
       name: "bandPage",
       component: BandPage
-    }
+    },
+    {
+      path: "/search",
+      name: "search",
+      component: Search,
+      meta: {
+        requiresAuth: true
+      } 
+    },
     
   ]
 })
