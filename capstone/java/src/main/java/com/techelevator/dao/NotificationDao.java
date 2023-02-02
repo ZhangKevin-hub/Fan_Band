@@ -10,6 +10,6 @@ public interface NotificationDao {
 
     void addNotification(Notification notification);
 
-    List<Notification> getNotificationsByBandId(int bandId);
+    List<Notification> getNotificationsByUserId(int userId);
 
 }
