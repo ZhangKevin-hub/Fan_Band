@@ -43,9 +43,10 @@ export default {
           bandName: "", 
           description: "",
           image: "",
-          userId: -1
+          userId: -1,
+          genreIds: []
       },
-      genres: [],
+      genres: []
     };
   },
   methods: {
@@ -56,16 +57,20 @@ export default {
           })
           if (filteredList.length === 0){
               this.genres.push(genre);
+              this.band.genreIds.push(genre.id);
           } else {
               this.genres = this.genres.filter( (eachGenre) => {
                   return eachGenre !== genre;
-              } )
+              } );
+              this.band.genreIds = this.band.genreIds.filter( (eachId) => {
+                return eachId !== genre.id
+              })
           }
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;
           console.log(this.band.userId)
-          authService.createBand(this.band)
+          authService.createBand(this.band, this.genreIds)
             .then( response => {
                 if (response.status == 200){
                     // reroute to band page
@@ -76,7 +81,7 @@ export default {
             })
           .catch((error)=> {
               console.log("failed to create band");
-              console.log(error.response.request.response);
+              console.log(error.response);
               console.log(this.band);
             
           });

@@ -10,8 +10,8 @@ export default {
     return axios.post('/register', user)
   },
 
-  createBand(band) {
-    return axios.post('/band', band)
+  createBand(band, genres) {
+    return axios.post('/band', band, genres)
   },
 
   getBand(bandId) {
