@@ -21,6 +21,7 @@ public class JdbcNotificationDao implements NotificationDao{
         String sql = "INSERT INTO notification (band_id, message, message_date) values (?, ?, ?)";
         jdbcTemplate.update(sql, notification.getBandId(), notification.getMessage(), notification.getMessageDate());
     }
+    // hi
     @Override
     public List<Notification> getNotificationsByUserId(int userId) {
         List<Notification> notifications = new ArrayList<Notification>();

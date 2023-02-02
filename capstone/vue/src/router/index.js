@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import CreateBand from '../views/CreateBand.vue'
 import BandPage from '../views/BandPage.vue'
+import Search from '../views/Search.vue'
 
 Vue.use(Router)
 
