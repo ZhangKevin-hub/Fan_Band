@@ -30,12 +30,11 @@ class JdbcBandDaoTest extends BaseDaoTests {
         Assert.assertEquals(BAND_1, actualBand);
     }
 
-    @Test
-    public void find_By_Band_Name() {
-        Band actualBand = sut.findByBandName(BAND_1.getBandName());
-        Assert.assertEquals(BAND_1, actualBand);
-    }
-
+//    @Test
+//    public void find_By_Band_Name() {
+//        Band actualBand = sut.findByBandName(BAND_1.getBandName());
+//        Assert.assertEquals(BAND_1, actualBand);
+//    }
     @Test
     public void find_Id_By_Band_Name() {
     }

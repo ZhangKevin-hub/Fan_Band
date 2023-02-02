@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.techelevator.dao.PhotoDao;
 import com.techelevator.model.Photo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
