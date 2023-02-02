@@ -21,9 +21,13 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     band: {},
-    notifications: []
+    notifications: [],
+    bandsFollowing: []
   },
   mutations: {
+    SET_BANDS_FOLLOWING(state, bands){
+      state.bandsFollowing = bands;
+    },
     SET_CURRENT_NOTIFICATIONS(state, notifications) {
       state.notifications = notifications;
     },
