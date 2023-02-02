@@ -49,6 +49,8 @@ class JdbcBandDaoTest extends BaseDaoTests {
     public void create_Band() {
         Band newBand = new Band(-1, "newBand", "band", "img", 1);
 
-        boolean bandWasCreated = sut.create()
+       int bandWasCreated = sut.create(newBand);
+
+        ;
     }
 }
