@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div v-if="true" id="card-div"> <!--v-if notification has content -->
+  <div v-if="Objects()" id="card-div"> <!--v-if notification has content -->
     <h3 v-on:click="setCurrentBand(notification.bandId)">{{ notification.bandName }}</h3>
     
       <p>{{ notification.messageDate }}</p>

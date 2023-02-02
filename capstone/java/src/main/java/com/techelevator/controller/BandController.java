@@ -37,16 +37,7 @@ public class BandController {
         band.setDescription(bandGenreList.getDescription());
         band.setImage(bandGenreList.getImage());
         List<Integer> genreIds = bandGenreList.getGenreIds();
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> f57568b73e7946ae9f596b990f1e68344c722d2f
-        int bandId = this.bandDao.create(band);
-=======
         int bandId =  this.bandDao.create(band);
->>>>>>> 6ee42d6effbbaa7ed13be7e9c67e6a5bf94c0492
-=======
-        int bandId =  this.bandDao.create(band);
->>>>>>> kevin
         for (int genreId : genreIds) {
             this.genreBandDao.addGenreBand(genreId, bandId);
         }
