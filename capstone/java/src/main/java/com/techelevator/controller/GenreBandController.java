@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/genre-band")
+@CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class GenreBandController {
     @Autowired
     private JdbcGenreBandDao genreBandDao;
