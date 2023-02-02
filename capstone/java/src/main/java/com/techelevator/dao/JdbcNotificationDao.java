@@ -21,6 +21,13 @@ public class JdbcNotificationDao implements NotificationDao{
         String sql = "INSERT INTO notification (band_id, message, message_date) values (?, ?, ?)";
         jdbcTemplate.update(sql, notification.getBandId(), notification.getMessage(), notification.getMessageDate());
     }
+    /* PLEASE TEST THIS METHOD WHEN CREATING NOTIFICATION IF IT DOESNT WORK USE ABOVE
+    @Override
+    public void addNotification(Notification notification) {
+        String sql = "INSERT INTO notification (band_id, message, message_date) values (?, ?, NOW())";
+        jdbcTemplate.update(sql, notification.getBandId(), notification.getMessage());
+    }
+    */
     // Date first
     @Override
     public List<Notification> getNotificationsByUserIdDateSort(int userId) {

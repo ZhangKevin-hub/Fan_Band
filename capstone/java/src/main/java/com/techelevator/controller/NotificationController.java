@@ -28,6 +28,7 @@ public class NotificationController {
         notificationDao.addNotification(notification);
     }
 
+    // Sort notifs by Date
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public List<NotificationName> getNotificationsByUserIdDateSort(@PathVariable int userId) {
         List<Notification> notifications = notificationDao.getNotificationsByUserIdDateSort(userId);
