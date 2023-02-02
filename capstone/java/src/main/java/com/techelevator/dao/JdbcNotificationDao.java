@@ -22,10 +22,13 @@ public class JdbcNotificationDao implements NotificationDao{
         jdbcTemplate.update(sql, notification.getBandId(), notification.getMessage(), notification.getMessageDate());
     }
     @Override
-    public List<Notification> getNotificationsByBandId(int bandId) {
+    public List<Notification> getNotificationsByUserId(int userId) {
         List<Notification> notifications = new ArrayList<Notification>();
-        String sql = "SELECT * FROM notification WHERE band_id = ?";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, bandId);
+        String sql = "SELECT * " +
+                "FROM notification " +
+                "JOIN follower ON follower.band_id = notification.band_id " +
+                "WHERE user_id = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
         while (rowSet.next()){
             notifications.add(mapRowToNotification(rowSet));
         }

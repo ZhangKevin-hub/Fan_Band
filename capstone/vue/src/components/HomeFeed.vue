@@ -9,25 +9,21 @@
 
 <script>
 import NotificationCard from '../components/NotificationCard.vue';
-//import AuthService from '../services/AuthService';
+import AuthService from '../services/AuthService';
 export default {
     name: 'homeFeed',
     components: {NotificationCard},
     data(){
         return {
             notifications: []
-            //this.$store.state.notifications
-            // get from database/store
         }
     },
     created(){
-        const notificationsToSet = [{
-                    bandName: "Nirvana",
-                    messageDate: '1/24/23',
-                    message: 'Blah blah marbles',
-                    bandId: 1
-                }];
-        //AuthService.getNotificationsByBand(this.$state.store.band.bandId);
+        let notificationsToSet = [];
+        AuthService.getNotificationsByUser(this.$store.state.user.userId).then(response => {
+            notificationsToSet = response.data;
+        });
+        
         this.$store.state.notifications = notificationsToSet;
         this.notifications = this.$store.state.notifications;
     }
