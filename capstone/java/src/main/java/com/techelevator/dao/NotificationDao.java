@@ -10,6 +10,9 @@ public interface NotificationDao {
 
     void addNotification(Notification notification);
 
-    List<Notification> getNotificationsByUserId(int userId);
+    List<Notification> getNotificationsByUserIdDateSort(int userId);
+    
+    List<Notification> getNotificationsByUserIdBNameSort(int userId);
+    
 
 }
