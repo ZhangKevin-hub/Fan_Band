@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 @RequestMapping("/notifications")
 public class NotificationController {
     private NotificationDao notificationDao;

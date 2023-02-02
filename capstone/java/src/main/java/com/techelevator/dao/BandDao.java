@@ -19,4 +19,6 @@ public interface BandDao {
     void addBandToUser(int userId, int bandId);
 
     int create(Band band);
+
+    List<Band> findByBandName(String bandName);
 }

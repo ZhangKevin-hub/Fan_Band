@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
+
 @RequestMapping("/photo")
 public class PhotoController {
     private PhotoDao photoDao;
