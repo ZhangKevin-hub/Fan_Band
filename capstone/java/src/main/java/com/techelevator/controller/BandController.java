@@ -28,7 +28,7 @@ public class BandController {
 
     //create band
     @RequestMapping(value = "/band", method = RequestMethod.POST)
-    public int createBand(@RequestBody Band band, @RequestParam List<Integer> genreIds){
+    public int createBand(@RequestBody Band band, @RequestBody List<Integer> genreIds){
         int bandId = this.bandDao.create(band);
         for (int genreId : genreIds) {
             this.genreBandDao.addGenreBand(genreId, bandId);
