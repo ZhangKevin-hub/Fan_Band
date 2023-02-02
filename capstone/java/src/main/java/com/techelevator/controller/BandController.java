@@ -30,6 +30,9 @@ public class BandController {
 
     //create band
     @RequestMapping(value = "/band", method = RequestMethod.POST)
+<<<<<<< HEAD
+    public int createBand(@RequestBody Band band, @RequestBody List<Integer> genreIds){
+=======
     public int createBand(@RequestBody BandGenreList bandGenreList){
         Band band = new Band();
         band.setUser_id(bandGenreList.getUser_id());
@@ -37,6 +40,7 @@ public class BandController {
         band.setDescription(bandGenreList.getDescription());
         band.setImage(bandGenreList.getImage());
         List<Integer> genreIds = bandGenreList.getGenreIds();
+>>>>>>> f57568b73e7946ae9f596b990f1e68344c722d2f
         int bandId = this.bandDao.create(band);
         for (int genreId : genreIds) {
             this.genreBandDao.addGenreBand(genreId, bandId);
