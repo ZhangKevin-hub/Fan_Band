@@ -113,8 +113,9 @@ public class JdbcBandDao implements BandDao{
     public int create(Band band) {
         String sql = "INSERT INTO band " +
                 "(band_name, description, image, user_id) " +
-                "VALUES (?, ?, ?, ?);";
-        return jdbcTemplate.update(sql, band.getBandName(), band.getDescription(), band.getImage(), band.getUser_id());
+                "VALUES (?, ?, ?, ?)" +
+                "RETURNING band_id;";
+        return jdbcTemplate.queryForObject(sql, Integer.class, band.getBandName(), band.getDescription(), band.getImage(), band.getUser_id());
     }
 
     private Band mapRowToBand(SqlRowSet rowSet) {
