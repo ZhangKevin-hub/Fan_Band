@@ -30,9 +30,6 @@ public class BandController {
 
     //create band
     @RequestMapping(value = "/band", method = RequestMethod.POST)
-<<<<<<< HEAD
-    public int createBand(@RequestBody Band band, @RequestBody List<Integer> genreIds){
-=======
     public int createBand(@RequestBody BandGenreList bandGenreList){
         Band band = new Band();
         band.setUser_id(bandGenreList.getUser_id());
@@ -41,11 +38,15 @@ public class BandController {
         band.setImage(bandGenreList.getImage());
         List<Integer> genreIds = bandGenreList.getGenreIds();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f57568b73e7946ae9f596b990f1e68344c722d2f
         int bandId = this.bandDao.create(band);
 =======
         int bandId =  this.bandDao.create(band);
 >>>>>>> 6ee42d6effbbaa7ed13be7e9c67e6a5bf94c0492
+=======
+        int bandId =  this.bandDao.create(band);
+>>>>>>> kevin
         for (int genreId : genreIds) {
             this.genreBandDao.addGenreBand(genreId, bandId);
         }
@@ -70,8 +71,16 @@ public class BandController {
     public Band getBand(@PathVariable int id){
         return this.bandDao.getBandById(id);
     }
-    
-
+    // get specific band by name
+    @RequestMapping(value = "/band/{bandName}/specific", method = RequestMethod.GET)
+    public List<Band> getBandByName(@PathVariable String bandName){
+        return this.bandDao.findIdByBandName(bandName);
+    }
+    // get similar band by name
+    @RequestMapping(value = "/band/{bandName}/similar", method = RequestMethod.GET)
+    public List<Band> getBandByName(@PathVariable String bandName){
+        return this.bandDao.findByBandName(bandName);
+    }
     //get all bands
     @RequestMapping(value = "/band", method = RequestMethod.GET)
     public List<Band> getAllBands(){
