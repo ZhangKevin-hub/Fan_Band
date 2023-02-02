@@ -22,9 +22,13 @@ export default new Vuex.Store({
     user: currentUser || {},
     band: {},
     notifications: [],
-    bandsFollowing: []
+    bandsFollowing: [],
+    genreOptions: []
   },
   mutations: {
+    SET_GENRE_OPTIONS(state, genres){
+      state.genreOptions = genres;
+    },
     SET_BANDS_FOLLOWING(state, bands){
       state.bandsFollowing = bands;
     },
