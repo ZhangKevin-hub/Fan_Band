@@ -18,6 +18,8 @@ public class BandController {
     private BandDao bandDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private JdbcGenreBandDao genreBandDao;
 
     public BandController(BandDao bandDao, UserDao userDao) {
         this.bandDao = bandDao;
@@ -26,9 +28,12 @@ public class BandController {
 
     //create band
     @RequestMapping(value = "/band", method = RequestMethod.POST)
-    public int createBand(@RequestBody Band band){
-
-        return this.bandDao.create(band);
+    public int createBand(@RequestBody Band band, @RequestParam List<Integer> genreIds){
+        int bandId = this.bandDao.create(band);
+        for (int genreId : genreIds) {
+            this.genreBandDao.addGenreBand(genreId, bandId);
+        }
+        return bandId;
     }
 
     //update band
