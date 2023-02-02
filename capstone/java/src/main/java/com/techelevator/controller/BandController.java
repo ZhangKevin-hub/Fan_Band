@@ -37,7 +37,7 @@ public class BandController {
         band.setDescription(bandGenreList.getDescription());
         band.setImage(bandGenreList.getImage());
         List<Integer> genreIds = bandGenreList.getGenreIds();
-        int bandId = this.bandDao.create(band);
+        int bandId =  this.bandDao.create(band);
         for (int genreId : genreIds) {
             this.genreBandDao.addGenreBand(genreId, bandId);
         }
