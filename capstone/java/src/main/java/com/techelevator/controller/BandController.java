@@ -64,7 +64,7 @@ public class BandController {
     }
     // get specific band by name
     @RequestMapping(value = "/band/{bandName}/specific", method = RequestMethod.GET)
-    public List<Band> getBandByName(@PathVariable String bandName){
+    public int getBandByName(@PathVariable String bandName){
         return this.bandDao.findIdByBandName(bandName);
     }
     // get similar band by name
