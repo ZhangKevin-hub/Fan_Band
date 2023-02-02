@@ -7,6 +7,7 @@ public class Notification {
     private int bandId;
     private String message;
     private Date messageDate;
+    //
     public Notification(int notifId, int bandId, String message, Date messageDate) {
         this.notifId = notifId;
         this.bandId = bandId;

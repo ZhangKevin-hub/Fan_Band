@@ -21,8 +21,9 @@ public class NotificationController {
         notificationDao.addNotification(notification);
     }
 
-    @RequestMapping(value = "/{bandId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public List<Notification> getNotificationsByBandId(@PathVariable int bandId) {
         return notificationDao.getNotificationsByBandId(bandId);
     }
+
 }
