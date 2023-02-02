@@ -1,3 +1,5 @@
+package com.techelevator.dao;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,6 +8,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.techelevator.model.GenreBand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -17,7 +20,7 @@ public class JdbcGenreBandDao implements GenreBandDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcGenreBandDao(JdbcTemplate jdbcTemplate {
+    public JdbcGenreBandDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 

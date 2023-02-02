@@ -1,7 +1,9 @@
+package com.techelevator.dao;
+
+import com.techelevator.model.GenreBand;
 
 import java.util.List;
 
-import javax.sql.DataSource;
 
 
 public interface GenreBandDao {

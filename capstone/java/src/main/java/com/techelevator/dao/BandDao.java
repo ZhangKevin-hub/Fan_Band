@@ -10,7 +10,6 @@ public interface BandDao {
 
     Band getBandById(int bandId);
 
-    Band findByBandName(String bandName);
 
     int findIdByBandName(String bandName);
 
