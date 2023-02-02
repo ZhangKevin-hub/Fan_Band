@@ -20,4 +20,11 @@ public interface BandDao {
     int create(Band band);
 
     List<Band> findByBandName(String bandName);
+
+    int update(Band band);
+
+
+    void delete(int bandId);
+
+
 }

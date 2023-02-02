@@ -60,7 +60,22 @@ public class JdbcBandDao implements BandDao{
         }
         return bands;
     }
-    
+
+    @Override
+    public int update(Band band) {
+        String sql = "UPDATE band " +
+                "SET band_name = ?, description = ?, image = ? " +
+                "WHERE band_id = ?;";
+        return jdbcTemplate.update(sql, band.getBandName(), band.getDescription(), band.getImage(), band.getBandId());
+    }
+
+    @Override
+    public void delete(int bandId) {
+        String sql = "DELETE FROM band " +
+                "WHERE band_id = ?;";
+        jdbcTemplate.update(sql, bandId);
+    }
+
     @Override
     public int findIdByBandName(String bandName) {
         if (bandName == null) throw new IllegalArgumentException("Band name cannot be null");
