@@ -51,7 +51,6 @@ export default {
   },
   methods: {
       editSelectedGenres(genre){
-          console.log(genre)
           const filteredList = this.genres.filter( (eachGenre)=> {
               return eachGenre === genre;
           })
@@ -66,6 +65,7 @@ export default {
                 return eachId !== genre.id
               })
           }
+          console.log(this.band.genreIds)
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;
