@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div v-if="true"> <!--v-if notification has content -->
-    <h3 v-on:click="setCurrentBand(notification.bandId)">{{ notification.bandName }}</h3>
+  <div v-if="true" id="card-div"> <!--v-if notification has content -->
+    <h3 v-on:click="setCurrentBand(3)">{{ notification.bandName }}</h3>
     
       <p>{{ notification.messageDate }}</p>
       <p>{{ notification.message }}</p>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-//import AuthService from '../services/AuthService'
+import AuthService from '../services/AuthService'
 export default {
     name: 'notificationCard',
     props: {
@@ -21,16 +21,13 @@ export default {
         },
     methods: {
         setCurrentBand(id) {
-            const band = {
-                bandId: id, 
-                bandName: 'Nirvana',
-                description: 'Band from back in the day',
-                image: '',
-
-
-            }
-           this.$store.commit('SET_CURRENT_BAND', band); // AuthService.getBand(id)
-           this.$router.push({name: 'bandPage'})
+            AuthService.getBand(id)
+            .then(response => {
+                const band = response.data;
+                this.$store.commit('SET_CURRENT_BAND', band);
+                this.$router.push({name: 'bandPage'})
+            });
+           
         }
     }
 }
