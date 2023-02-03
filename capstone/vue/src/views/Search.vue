@@ -8,7 +8,7 @@
     import SearchList from '../components/SearchList.vue'
     
       export default {
-        name: 'search',
+        name: 'Searh',
       components: {
         SearchList
       }

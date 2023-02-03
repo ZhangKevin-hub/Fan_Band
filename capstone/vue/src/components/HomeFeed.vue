@@ -29,10 +29,10 @@ export default {
         AuthService.getFollowersByUser(this.$store.state.user.id)
         .then(response => {
             let followers = [];
+            console.log("followers")
             
-            console.log(response.data)
-            followers = response;
-            this.$store.state.bandsFollowing = followers.forEach( element => {
+            followers = response.data;
+            this.$store.state.bandsFollowing = followers.map( element => {
                 return element.bandId;
             })
         })

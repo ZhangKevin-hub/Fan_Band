@@ -22,6 +22,10 @@ export default {
     return axios.get('/band')
   },
 
+  getBandsByGenre(ids) {
+    return axios.get('/band/genre', ids)
+  },
+
   getNotificationsByUser(userId) {
     return axios.get(`/notifications/${userId}`)
   },
@@ -31,7 +35,9 @@ export default {
   },
 
   unfollowBand(follower) {
-    return axios.delete('/followers', follower)
+    return axios.delete('/followers',  {
+      data: follower
+  })
   },
 
   getFollowersByUser(userId) {
