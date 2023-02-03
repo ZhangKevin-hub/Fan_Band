@@ -1,35 +1,46 @@
 <template>
-    <div>
-      <input type="text" v-model="searchInput" @input="search"/>
-      <ul>
-<<<<<<< HEAD
-        <li v-for="band in filteredBands" :key="band.id">{{ band.name }}</li>
-=======
-        <li v-for="item in filteredBands" :key="item.id">{{ item.name }}</li>
->>>>>>> 660099f522753e83fa02d67af78005eb60f24376
-      </ul>
-    </div>
-  </template>
-<script>
-<<<<<<< HEAD
+  <div>
+    <input type="text" v-model="searchInput" @input="search" />
+      <div v-for="band in filteredBands" :key="band.bandId">
+        <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
+        <p>{{ band.description }}</p>
+        </div>
 
-</script>
-=======
+  </div>
+</template>
+<script>
+import AuthService from '../services/AuthService';
 export default {
+  name: "Search",
   computed: {
     filteredBands() {
-      return this.bands.filter(band => {
-        return band.name.toLowerCase().includes(this.searchInput.toLowerCase());
+      return this.bands.filter((band) => {
+        return band.bandName.toLowerCase().includes(this.searchInput.toLowerCase());
       });
-    }
+    },
   },
   data() {
     return {
-      searchInput: ''
+      searchInput: "",
+      bands: []
+    };
+  },
+  methods: {
+    loadBand(band) {
+      this.$store.commit('SET_CURRENT_BAND', band);
+      this.$router.push({ name: 'bandPage'});
+      console.log("clicked");
     }
   },
-  props: ['bands']
+  created(){
+    AuthService.getAllBands().then(response => {
+      this.bands = response.data;
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
 };
 </script>
+
   
->>>>>>> 660099f522753e83fa02d67af78005eb60f24376

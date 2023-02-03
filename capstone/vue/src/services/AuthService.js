@@ -18,6 +18,10 @@ export default {
     return axios.get(`/band/${bandId}`)
   },
 
+  getAllBands() {
+    return axios.get('/band')
+  },
+
   getNotificationsByUser(userId) {
     return axios.get(`/notifications/${userId}`)
   },

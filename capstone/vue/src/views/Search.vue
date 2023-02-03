@@ -3,8 +3,10 @@
       <search-list></search-list>
     </div>
   </template>
+
   <script>
     import SearchList from '../components/SearchList.vue'
+    
       export default {
         name: 'search',
       components: {
