@@ -83,7 +83,7 @@ public class BandController {
 
     //GetBands via genreId
     @RequestMapping(value = "/band/genre/{genreIds}", method = RequestMethod.GET)
-    public List<Band> getBandsByGenreIds(@PathVariable List<Integer> genreIds) {
+    public List<Band> getBandsByGenreIds(@RequestBody List<Integer> genreIds) {
         return this.bandDao.getBandsByGenreIds(genreIds);
     }
 
