@@ -3,10 +3,14 @@
       <h1>{{ band.bandName }}</h1>
       <button v-on:click="followBand()" v-if="followingBand">Follow Band</button>
       <button v-on:click="unfollowBand()" v-if="!followingBand">Unfollow Band</button>
-      <p>{{ band.description }}</p>
+      <button v-on:click="editBand()">Edit Band</button>
+      <div v-if="!edit" >
+        <p>{{ band.description }}</p>
       <img src="" alt="cover image">
       <h5>List of genres</h5>
       <img src="" alt="photo gallergy">
+      </div>
+      
       
 
   </div>
@@ -21,7 +25,8 @@ export default {
       return {
         band: {},
         userId: -1,
-        bandId: -1
+        bandId: -1,
+        edit: false
       }
     },
     computed: {
@@ -34,6 +39,9 @@ export default {
       }
     },
     methods: {
+      editBand(){
+
+      },
       followBand(){
         this.$store.state.bandsFollowing.push(this.bandId);
         const follower = {

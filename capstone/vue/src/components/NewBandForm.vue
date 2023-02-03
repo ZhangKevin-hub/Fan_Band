@@ -46,6 +46,9 @@ export default {
       genres: []
     };
   },
+  props: {
+    editing: Boolean
+  },
   methods: {
       editSelectedGenres(genre){
           const filteredList = this.genres.filter( (eachGenre)=> {

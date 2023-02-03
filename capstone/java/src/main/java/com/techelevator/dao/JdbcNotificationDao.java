@@ -14,18 +14,18 @@ public class JdbcNotificationDao implements NotificationDao{
     public JdbcNotificationDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    @Override
-    public void addNotification(Notification notification) {
-        String sql = "INSERT INTO notification (band_id, message, message_date) values (?, ?, ?)";
-        jdbcTemplate.update(sql, notification.getBandId(), notification.getMessage(), notification.getMessageDate());
-    }
-    /* PLEASE TEST THIS METHOD WHEN CREATING NOTIFICATION IF IT DOESNT WORK USE ABOVE
+//    @Override
+//    public void addNotification(Notification notification) {
+//        String sql = "INSERT INTO notification (band_id, message, message_date) values (?, ?, ?)";
+//        jdbcTemplate.update(sql, notification.getBandId(), notification.getMessage(), notification.getMessageDate());
+//    }
+//    PLEASE TEST THIS METHOD WHEN CREATING NOTIFICATION IF IT DOESNT WORK USE ABOVE
     @Override
     public void addNotification(Notification notification) {
         String sql = "INSERT INTO notification (band_id, message, message_date) values (?, ?, NOW())";
         jdbcTemplate.update(sql, notification.getBandId(), notification.getMessage());
     }
-    */
+
     // Sort Date Recent
     @Override
     public List<Notification> getNotificationsByUserIdDateSortRecent(int userId) {

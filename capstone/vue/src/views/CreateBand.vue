@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1>New Band Form</h1>
-      <new-band-form></new-band-form>
+      <new-band-form v-bind:editing="false"></new-band-form>
   </div>
 </template>
 
