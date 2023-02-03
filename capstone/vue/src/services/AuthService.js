@@ -10,8 +10,8 @@ export default {
     return axios.post('/register', user)
   },
 
-  createBand(band) {
-    return axios.post('/band', band)
+  createBand(band, genres) {
+    return axios.post('/band', band, genres)
   },
 
   getBand(bandId) {
@@ -20,6 +20,22 @@ export default {
 
   getNotificationsByUser(userId) {
     return axios.get(`/notifications/${userId}`)
+  },
+
+  followBand(follower) {
+    return axios.post('/followers', follower)
+  },
+
+  getFollowersByUser(userId) {
+    return axios.get(`/followers/${userId}`)
+  },
+
+  addGenres(genres) {
+    return axios.put('/genre', genres)
+  },
+
+  getGenres() {
+    return axios.get('/genres')
   }
 
 }

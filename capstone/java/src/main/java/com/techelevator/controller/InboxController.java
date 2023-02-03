@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.techelevator.dao.InboxDao;
 import com.techelevator.model.Inbox;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 @RequestMapping("/inbox")
 public class InboxController {
     private InboxDao inboxDao;

@@ -10,7 +10,6 @@ public interface BandDao {
 
     Band getBandById(int bandId);
 
-    Band findByBandName(String bandName);
 
     int findIdByBandName(String bandName);
 
@@ -19,4 +18,13 @@ public interface BandDao {
     void addBandToUser(int userId, int bandId);
 
     int create(Band band);
+
+    List<Band> findByBandName(String bandName);
+
+    int update(Band band);
+
+
+    void delete(int bandId);
+
+
 }

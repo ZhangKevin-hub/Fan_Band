@@ -45,8 +45,8 @@ public class JdbcGenreDao implements GenreDao {
     // Below should ONLY be accessible to ADMIN ACCOUNTS
     @Override
     public void addGenre(Genre genre) {
-        String sql = "INSERT INTO genre (genre_id, genre_name) VALUES (?, ?)";
-        jdbcTemplate.update(sql, genre.getId(), genre.getName());
+        String sql = "INSERT INTO genre (genre_name) VALUES ( ?)";
+        jdbcTemplate.update(sql, genre.getName());
     }
 
 

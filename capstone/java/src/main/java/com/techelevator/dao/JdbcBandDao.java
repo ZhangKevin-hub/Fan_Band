@@ -48,17 +48,32 @@ public class JdbcBandDao implements BandDao{
     }
 
     @Override
-    public Band findByBandName(String bandName) {
+    public List<Band> findByBandName(String bandName) {
+        List<Band> bands = new ArrayList<>();
         String sql = "SELECT * " +
                 "FROM band " +
-                "WHERE band_name = ?;";
-
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, bandName);
-        if (results.next()){
-            return mapRowToBand(results);
-        } else {
-            return null;
+                "WHERE band_name LIKE ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "%" + bandName + "%");
+        while (results.next()){
+            Band band = mapRowToBand(results);
+            bands.add(band);
         }
+        return bands;
+    }
+
+    @Override
+    public int update(Band band) {
+        String sql = "UPDATE band " +
+                "SET band_name = ?, description = ?, image = ? " +
+                "WHERE band_id = ?;";
+        return jdbcTemplate.update(sql, band.getBandName(), band.getDescription(), band.getImage(), band.getBandId());
+    }
+
+    @Override
+    public void delete(int bandId) {
+        String sql = "DELETE FROM band " +
+                "WHERE band_id = ?;";
+        jdbcTemplate.update(sql, bandId);
     }
 
     @Override
@@ -98,8 +113,9 @@ public class JdbcBandDao implements BandDao{
     public int create(Band band) {
         String sql = "INSERT INTO band " +
                 "(band_name, description, image, user_id) " +
-                "VALUES (?, ?, ?, ?);";
-        return jdbcTemplate.update(sql, band.getBandName(), band.getDescription(), band.getImage(), band.getUser_id());
+                "VALUES (?, ?, ?, ?)" +
+                "RETURNING band_id;";
+        return jdbcTemplate.queryForObject(sql, Integer.class, band.getBandName(), band.getDescription(), band.getImage(), band.getUser_id());
     }
 
     private Band mapRowToBand(SqlRowSet rowSet) {

@@ -12,6 +12,8 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/genres")
+@PreAuthorize("isAuthenticated()")
+
 public class GenreController {
     private GenreDao genreDao;
 

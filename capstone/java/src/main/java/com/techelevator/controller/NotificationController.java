@@ -7,10 +7,12 @@ import com.techelevator.dao.BandDao;
 import com.techelevator.dao.NotificationDao;
 import com.techelevator.model.Notification;
 import com.techelevator.model.NotificationName;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 @RequestMapping("/notifications")
 public class NotificationController {
     private NotificationDao notificationDao;
@@ -26,9 +28,10 @@ public class NotificationController {
         notificationDao.addNotification(notification);
     }
 
+    // Sort notifs by Date
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public List<NotificationName> getNotificationsByUserId(@PathVariable int userId) {
-        List<Notification> notifications = notificationDao.getNotificationsByUserId(userId);
+    public List<NotificationName> getNotificationsByUserIdDateSort(@PathVariable int userId) {
+        List<Notification> notifications = notificationDao.getNotificationsByUserIdDateSort(userId);
         List<NotificationName> listOfNotificationsWithName = new ArrayList<>();
         for (Notification notification : notifications){
             NotificationName notificationName = new NotificationName();
@@ -43,4 +46,20 @@ public class NotificationController {
         return listOfNotificationsWithName;
     }
 
+    @RequestMapping(value = "/{userId}/band-name-sort", method = RequestMethod.GET)
+    public List<NotificationName> getNotificationsByUserIdBNameSort(@PathVariable int userId) {
+        List<Notification> notifications = notificationDao.getNotificationsByUserIdBNameSort(userId);
+        List<NotificationName> listOfNotificationsWithName = new ArrayList<>();
+        for (Notification notification : notifications){
+            NotificationName notificationName = new NotificationName();
+            notificationName.setBandId(notification.getBandId());
+            notificationName.setMessage(notification.getMessage());
+            notificationName.setMessageDate(notification.getMessageDate());
+            notificationName.setNotifId(notification.getNotifId());
+            String bandName = this.bandDao.getBandById(notification.getBandId()).getBandName();
+            notificationName.setBandName(bandName);
+            listOfNotificationsWithName.add(notificationName);
+        }
+        return listOfNotificationsWithName;
+    }
 }

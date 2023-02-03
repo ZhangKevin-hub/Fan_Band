@@ -1,7 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Band;
-import com.techelevator.model.User;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -25,13 +25,16 @@ class JdbcBandDaoTest extends BaseDaoTests {
     }
 
     @Test
-    public void get_Band_ById() {
-
+    public void get_Band_By_Id() {
+        Band actualBand = sut.getBandById(BAND_1.getBandId());
+        Assert.assertEquals(BAND_1, actualBand);
     }
 
-    @Test
-    public void find_By_Band_Name() {
-    }
+//    @Test
+//    public void find_By_Band_Name() {
+//        Band actualBand = sut.findByBandName(BAND_1.getBandName());
+//        Assert.assertEquals(BAND_1, actualBand);
+//    }
 
     @Test
     public void find_Id_By_Band_Name() {
@@ -45,10 +48,12 @@ class JdbcBandDaoTest extends BaseDaoTests {
     public void add_Band_To_User() {
     }
 
-    @Test
-    public void create_Band() {
-        Band newBand = new Band(-1, "newBand", "band", "img", 1);
-
-        boolean bandWasCreated = sut.create()
-    }
+//    @Test
+//    public void create_Band() {
+//        Band newBand = new Band(-1, "newBand", "band", "img", 1);
+//
+//       int bandWasCreated = sut.create(newBand);
+//
+//
+//    }
 }
