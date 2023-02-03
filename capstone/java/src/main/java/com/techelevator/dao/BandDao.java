@@ -23,6 +23,7 @@ public interface BandDao {
 
     int update(Band band);
 
+    List<Band> getBandsByGenreIds(List<Integer> genreIds);
 
     void delete(int bandId);
 
