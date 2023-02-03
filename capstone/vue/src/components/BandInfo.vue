@@ -40,11 +40,13 @@ export default {
           userId: this.userId,
           bandId: this.bandId,
         }
+        console.log(follower);
         AuthService.followBand(follower).then(response => {
           console.log(response)
         })
         .catch(error => {
           console.log(error)
+          console.log("didn't follow")
         })
       },
       unfollowBand(){
@@ -59,7 +61,7 @@ export default {
         }
         )
         .catch(error => {
-          console.log(error)
+          console.log(error.message)
           console.log("didnt unfollow")
         })
       }

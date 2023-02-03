@@ -35,7 +35,9 @@ export default {
   },
 
   unfollowBand(follower) {
-    return axios.delete('/followers', follower)
+    return axios.delete('/followers',  {
+      data: follower
+  })
   },
 
   getFollowersByUser(userId) {
