@@ -81,6 +81,12 @@ public class BandController {
         return this.bandDao.findAll();
     }
 
+    //GetBands via genreId
+    @RequestMapping(value = "/band/genre/{genreIds}", method = RequestMethod.GET)
+    public List<Band> getBandsByGenreIds(@RequestBody List<Integer> genreIds) {
+        return this.bandDao.getBandsByGenreIds(genreIds);
+    }
+
     //follow band
     @RequestMapping(value = "/band/{id}", method = RequestMethod.POST)
     public void addBandToUser(Principal principal, @PathVariable int id){
