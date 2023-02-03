@@ -40,13 +40,7 @@ export default {
   data() {
     return {
       possibleGenres: this.$store.state.genreOptions,
-      band: {
-          bandName: "", 
-          description: "",
-          image: "",
-          userId: -1,
-          genreIds: []
-      },
+      band: {},
       genres: []
     };
   },
@@ -102,17 +96,26 @@ export default {
           console.log(error)
         })
       },
+      setBand(){
+        if (this.editing){
+      this.band = this.$store.state.band;
+      console.log(this.band);
+    }else{
+      this.band = {
+          bandName: "", 
+          description: "",
+          image: "",
+          userId: -1,
+          genreIds: []
+      };
+      console.log(this.band);
+    }
+      }
   },
   //tried to set band based on new band or being edited, didnt work
-//   created() {
-//     if (this.editing){
-//       this.band = this.$store.state.band;
-//       console.log(this.band);
-//     }else{
-//       this.band = ;
-//       console.log(this.band);
-//     }
-//   }
+  created() {
+    this.setBand();
+  }
 };
 </script>
 
