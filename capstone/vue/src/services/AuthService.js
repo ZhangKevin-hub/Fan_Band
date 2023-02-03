@@ -26,8 +26,12 @@ export default {
     return axios.post('/followers', follower)
   },
 
+  unfollowBand(follower) {
+    return axios.delete('/followers', follower)
+  },
+
   getFollowersByUser(userId) {
-    return axios.get(`/followers/${userId}`)
+    return axios.get(`/followers/users/${userId}`)
   },
 
   addGenres(genres) {

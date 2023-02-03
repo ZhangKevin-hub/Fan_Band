@@ -36,9 +36,6 @@ export default {
   data() {
     return {
       possibleGenres: this.$store.state.genreOptions,
-      // [
-      //     'Rock', 'Pop', 'R&B', 'Indie'
-      // ],
       band: {
           bandName: "", 
           description: "",
@@ -65,7 +62,6 @@ export default {
                 return eachId !== genre.id
               })
           }
-          console.log(this.band.genreIds)
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;
@@ -73,17 +69,13 @@ export default {
           authService.createBand(this.band, this.genreIds)
             .then( response => {
                 if (response.status == 200){
-                    // reroute to band page
                     this.resetForm();
                     this.assignGenres();
-                    console.log(this.band);
                 }
             })
           .catch((error)=> {
               console.log("failed to create band");
               console.log(error.response);
-              console.log(this.band);
-            
           });
           
       },

@@ -63,13 +63,13 @@ public class BandController {
         return this.bandDao.getBandById(id);
     }
     // get specific band by name
-    @RequestMapping(value = "/band/{bandName}/specific", method = RequestMethod.GET)
-    public int getBandByName(@PathVariable String bandName){
+    @RequestMapping(value = "/band/specific{bandName}", method = RequestMethod.GET)
+    public int findIdByBandName(@PathVariable String bandName){
         return this.bandDao.findIdByBandName(bandName);
     }
     // get similar band by name
     @RequestMapping(value = "/band/{bandName}/similar", method = RequestMethod.GET)
-    public List<Band> getBandByName(@PathVariable String bandName){
+    public List<Band> findBYBandName(@PathVariable String bandName){
         return this.bandDao.findByBandName(bandName);
     }
     //get all bands

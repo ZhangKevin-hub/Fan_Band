@@ -38,6 +38,11 @@ export default new Vuex.Store({
     SET_CURRENT_BAND(state, band) {
       state.band= band;
     } ,
+    REMOVE_BAND_FOLLOWING(state, bandToDelete) {
+      state.bandsFollowing = state.bandsFollowing.filter(band => {
+        return band !== bandToDelete
+      })
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+
      <notification-card v-for="notification in notifications" v-bind:key="notification.notifId"
      v-bind:notification="notification"></notification-card>
       
@@ -30,7 +30,10 @@ export default {
         });
         AuthService.getFollowersByUser(this.$store.state.user.id)
         .then(response => {
-            this.$store.state.bandsFollowing = response.forEach( element => {
+            let following =[];
+            following = response.data;
+            console.log(following);
+            this.$store.state.bandsFollowing = following.map( element => {
                 return element.bandId;
             })
         })

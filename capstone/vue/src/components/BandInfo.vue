@@ -48,7 +48,19 @@ export default {
         })
       },
       unfollowBand(){
-        
+        //remove from store list
+        this.$store.commit('REMOVE_BAND_FOLLOWING', this.bandId)
+        const follower= {
+          userId: this.userId,
+          bandId: this.bandId
+        }
+        AuthService.unfollowBand(follower).then(response => {
+          console.log(response)
+        }
+        )
+        .catch(error => {
+          console.log(error)
+        })
       }
     },
     created(){
