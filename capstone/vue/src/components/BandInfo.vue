@@ -10,6 +10,9 @@
       <h5>List of genres</h5>
       <img src="" alt="photo gallergy">
       </div>
+      <div v-else> 
+        <new-band-form v-bind:editing="true" ></new-band-form>
+      </div>
       
       
 
@@ -18,8 +21,10 @@
 
 <script>
 import AuthService from '../services/AuthService'
+import NewBandForm from './NewBandForm.vue';
 
 export default {
+  components: { NewBandForm },
     name: 'bandInfo',
     data(){
       return {
@@ -40,7 +45,7 @@ export default {
     },
     methods: {
       editBand(){
-
+        this.edit = true;
       },
       followBand(){
         this.$store.state.bandsFollowing.push(this.bandId);

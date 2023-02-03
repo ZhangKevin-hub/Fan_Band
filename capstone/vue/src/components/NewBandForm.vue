@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>{{ editing }}</p>
     <form id="newBandForm">
       <div class="form-element">
         <label for="bandName">Band Name: </label>
@@ -23,6 +24,9 @@
                 <label :for="index">{{ genre.name }}</label>
             </li>
         </ul>
+      </div>
+      <div v-if="editing">
+        <label for="">Photo Gallery: </label>
       </div>
       <button type="submit" v-on:click.prevent="submitForm()">Create Band</button>
     </form>
@@ -97,8 +101,18 @@ export default {
         .catch(error => {
           console.log(error)
         })
-      }
-  }
+      },
+  },
+  //tried to set band based on new band or being edited, didnt work
+//   created() {
+//     if (this.editing){
+//       this.band = this.$store.state.band;
+//       console.log(this.band);
+//     }else{
+//       this.band = ;
+//       console.log(this.band);
+//     }
+//   }
 };
 </script>
 
