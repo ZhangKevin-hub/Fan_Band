@@ -28,10 +28,10 @@ public class NotificationController {
         notificationDao.addNotification(notification);
     }
 
-    // Sort notifs by Date
+    // Sort via Date Recent DEFAULT
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public List<NotificationName> getNotificationsByUserIdDateSort(@PathVariable int userId) {
-        List<Notification> notifications = notificationDao.getNotificationsByUserIdDateSort(userId);
+        List<Notification> notifications = notificationDao.getNotificationsByUserIdDateSortRecent(userId);
         List<NotificationName> listOfNotificationsWithName = new ArrayList<>();
         for (Notification notification : notifications){
             NotificationName notificationName = new NotificationName();
@@ -46,9 +46,10 @@ public class NotificationController {
         return listOfNotificationsWithName;
     }
 
-    @RequestMapping(value = "/{userId}/band-name-sort", method = RequestMethod.GET)
-    public List<NotificationName> getNotificationsByUserIdBNameSort(@PathVariable int userId) {
-        List<Notification> notifications = notificationDao.getNotificationsByUserIdBNameSort(userId);
+    // Sort via Date Oldest
+    @RequestMapping(value = "/{userId}/sort-old", method = RequestMethod.GET)
+    public List<NotificationName> getNotificationsByUserIdBDateSortOld(@PathVariable int userId) {
+        List<Notification> notifications = notificationDao.getNotificationsByUserIdDateSortOld(userId);
         List<NotificationName> listOfNotificationsWithName = new ArrayList<>();
         for (Notification notification : notifications){
             NotificationName notificationName = new NotificationName();
@@ -62,4 +63,41 @@ public class NotificationController {
         }
         return listOfNotificationsWithName;
     }
+
+    // Sort via Band Name A-Z
+    @RequestMapping(value = "/{userId}/sort-band-name-AZ", method = RequestMethod.GET)
+    public List<NotificationName> getNotificationsByUserIdBNameSort(@PathVariable int userId) {
+        List<Notification> notifications = notificationDao.getNotificationsByUserIdBNameSortAZ(userId);
+        List<NotificationName> listOfNotificationsWithName = new ArrayList<>();
+        for (Notification notification : notifications){
+            NotificationName notificationName = new NotificationName();
+            notificationName.setBandId(notification.getBandId());
+            notificationName.setMessage(notification.getMessage());
+            notificationName.setMessageDate(notification.getMessageDate());
+            notificationName.setNotifId(notification.getNotifId());
+            String bandName = this.bandDao.getBandById(notification.getBandId()).getBandName();
+            notificationName.setBandName(bandName);
+            listOfNotificationsWithName.add(notificationName);
+        }
+        return listOfNotificationsWithName;
+    }
+
+    // Sort via Band Name Z-A
+    @RequestMapping(value = "/{userId}/sort-band-name-ZA", method = RequestMethod.GET)
+    public List<NotificationName> getNotificationsByUserIdBNameSortZA(@PathVariable int userId) {
+        List<Notification> notifications = notificationDao.getNotificationsByUserIdBNameSortZA(userId);
+        List<NotificationName> listOfNotificationsWithName = new ArrayList<>();
+        for (Notification notification : notifications){
+            NotificationName notificationName = new NotificationName();
+            notificationName.setBandId(notification.getBandId());
+            notificationName.setMessage(notification.getMessage());
+            notificationName.setMessageDate(notification.getMessageDate());
+            notificationName.setNotifId(notification.getNotifId());
+            String bandName = this.bandDao.getBandById(notification.getBandId()).getBandName();
+            notificationName.setBandName(bandName);
+            listOfNotificationsWithName.add(notificationName);
+        }
+        return listOfNotificationsWithName;
+    }
+
 }
