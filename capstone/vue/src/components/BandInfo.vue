@@ -2,7 +2,7 @@
   <div>
       <h1>{{ band.bandName }}</h1>
       <button v-on:click="followBand()" v-if="followingBand">Follow Band</button>
-      <button v-on:click="unfollowBand()" v-else>Unfollow Band</button>
+      <button v-on:click="unfollowBand()" v-if="!followingBand">Unfollow Band</button>
       <p>{{ band.description }}</p>
       <img src="" alt="cover image">
       <h5>List of genres</h5>
@@ -27,9 +27,9 @@ export default {
     computed: {
       followingBand() {
         if (this.$store.state.bandsFollowing.includes(this.bandId)){
-          return true;
-        }else {
           return false;
+        }else {
+          return true;
         }
       }
     },
@@ -66,7 +66,7 @@ export default {
     },
     created(){
       this.band = this.$store.state.band;
-      this.bandId = this.$store.state.band.id;
+      this.bandId = this.$store.state.band.bandId;
       this.userId = this.$store.state.user.id;
     }
 }

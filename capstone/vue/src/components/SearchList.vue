@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="searchBar">Enter Band Name to Search For: </label>
-    <input type="text" id="searchBar" v-model="searchInput" @input="search" />
+    <input type="text" id="searchBar" v-model="searchInput" />
     <ul>
       <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
         <input
