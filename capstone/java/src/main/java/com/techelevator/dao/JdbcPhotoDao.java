@@ -41,6 +41,17 @@ public class JdbcPhotoDao implements PhotoDao{
         jdbcTemplate.update(sql, photo.getPhotoId());
     }
 
+    @Override
+    public void updatePhotos(List<Photo> photos) {
+        String deleteSql = "DELETE FROM photo WHERE band_id = ?";
+        jdbcTemplate.update(deleteSql, photo.getBandId());
+
+        String insertSql = "INSERT INTO photo (band_id, img_url) VALUES (?, ?)";
+        for (Photo photo : photos) {
+            jdbcTemplate.update(insertSql, photo.getBandId(), photo.getImgUrl());
+        }
+    }
+
     private Photo mapRowToPhoto(SqlRowSet rowSet) {
         Photo photo = new Photo();
         photo.setPhotoId(rowSet.getInt("photo_id"));

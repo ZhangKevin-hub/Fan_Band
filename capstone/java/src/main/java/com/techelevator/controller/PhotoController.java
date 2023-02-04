@@ -35,4 +35,9 @@ public class PhotoController {
         photo.setPhotoId(photoId);
         photoDao.deletePhoto(photo);
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public void updatePhotoGallery(@RequestBody List<Photo> photos){
+        photoDao.updatePhotos(photos);
+    }
 }
