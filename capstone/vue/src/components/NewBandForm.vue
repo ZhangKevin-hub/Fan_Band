@@ -26,7 +26,10 @@
         </ul>
       </div>
       <div v-if="editing">
-        <label for="">Photo Gallery: </label>
+        <label for="galleryImageLink">Photo Gallery: </label>
+        <p v-for="(photo, index) in photoGallery" v-bind:key="index">{{ index+1}}: {{ photo }}</p>
+        <input id="galleryImageLink" type="text" v-model="photoLink">
+        <button v-on:click.prevent="addLinkToGallery()">Add Image to Gallery</button>
       </div>
       <button type="submit" v-on:click.prevent="submitForm()">Create Band</button>
     </form>
@@ -41,7 +44,9 @@ export default {
     return {
       possibleGenres: this.$store.state.genreOptions,
       band: {},
-      genres: []
+      genres: [],
+      photoGallery: [],
+      photoLink: ""
     };
   },
   props: {
@@ -63,6 +68,11 @@ export default {
                 return eachId !== genre.id
               })
           }
+      },
+      addLinkToGallery(){
+        this.photoGallery.push(this.photoLink);
+        this.photoLink = "";
+        console.log(this.photoGallery);
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;

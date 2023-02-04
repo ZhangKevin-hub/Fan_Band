@@ -48,4 +48,5 @@ public class JdbcPhotoDao implements PhotoDao{
         photo.setBandId(rowSet.getInt("band_id"));
         return photo;
     }
+
 }
