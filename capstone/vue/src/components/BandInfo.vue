@@ -11,7 +11,7 @@
       <img src="" alt="photo gallergy">
       </div>
       <div v-else> 
-        <new-band-form v-bind:editing="true" ></new-band-form>
+        <new-band-form v-bind:editing="true" v-bind:bandId="this.bandId"></new-band-form>
       </div>
       
       

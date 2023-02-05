@@ -16,22 +16,22 @@ public class GenreBandController {
     @Autowired
     private JdbcGenreBandDao genreBandDao;
 
-    @RequestMapping(value = "/genrebands", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void addGenreBand(@RequestBody GenreBand genreBand) {
         genreBandDao.addGenreBand(genreBand.getGenreId(), genreBand.getBandId());
     }
 
-    @RequestMapping(value = "/genrebands/{genreId}/{bandId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{genreId}/{bandId}", method = RequestMethod.DELETE)
     public void removeGenreBand(@PathVariable int genreId, @PathVariable int bandId) {
        genreBandDao.removeGenreBand(genreId, bandId);
     }
 
-    @RequestMapping(value = "/genrebands/genre/{genreId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/genre/{genreId}", method = RequestMethod.GET)
     public List<GenreBand> getGenreBandsByGenreId(@PathVariable int genreId) {
         return genreBandDao.getGenreBandsByGenreId(genreId);
     }
 
-    @RequestMapping(value = "/genrebands/band/{bandId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/band/{bandId}", method = RequestMethod.GET)
     public List<GenreBand> getGenreBandsByBandId(@PathVariable int bandId) {
         return genreBandDao.getGenreBandsByBandId(bandId);
     }

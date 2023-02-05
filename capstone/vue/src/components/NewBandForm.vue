@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>{{ editing }}</p>
     <form id="newBandForm">
       <div class="form-element">
         <label for="bandName">Band Name: </label>
@@ -27,7 +26,10 @@
       </div>
       <div v-if="editing">
         <label for="galleryImageLink">Photo Gallery: </label>
-        <p v-for="(photo, index) in photoGallery" v-bind:key="index">{{ index+1}}: {{ photo }}</p>
+        <div v-for="(photo, index) in photoGallery" v-bind:key="index">
+        <span>{{ index+1}}: {{ photo }}</span>
+        <input type="checkbox"> <!--call method with index as param, add/remove to new list of links? -->
+        </div>
         <input id="galleryImageLink" type="text" v-model="photoLink">
         <button v-on:click.prevent="addLinkToGallery()">Add Image to Gallery</button>
       </div>
@@ -50,7 +52,8 @@ export default {
     };
   },
   props: {
-    editing: Boolean
+    editing: Boolean,
+    bandId: Number //may be null, unsure if matters
   },
   methods: {
       editSelectedGenres(genre){
@@ -72,11 +75,9 @@ export default {
       addLinkToGallery(){
         this.photoGallery.push(this.photoLink);
         this.photoLink = "";
-        console.log(this.photoGallery);
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;
-          console.log(this.band.userId)
           authService.createBand(this.band, this.genreIds)
             .then( response => {
                 if (response.status == 200){
@@ -88,7 +89,7 @@ export default {
               console.log("failed to create band");
               console.log(error.response);
           });
-          
+          //dont call update photos if empty
       },
       resetFrom(){
         this.band = {
@@ -109,7 +110,6 @@ export default {
       setBand(){
         if (this.editing){
       this.band = this.$store.state.band;
-      console.log(this.band);
     }else{
       this.band = {
           bandName: "", 
@@ -122,9 +122,20 @@ export default {
     }
       }
   },
-  //tried to set band based on new band or being edited, didnt work
   created() {
     this.setBand();
+    AuthService.getGenresByBandId(this.bandId).then(response => {
+     response.data.forEach(genreBand => {
+       console.log(genreBand.genreId)
+       //need to loop through getting genre name from this list of ids
+       //.getGenreByGenreId()
+     })
+    })
+    .catch(error => {
+      console.log(error)
+    } )
+    //get photo gallery for band
+
   }
 };
 </script>
