@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-  // lo
+  // Users
   login(user) {
     return axios.post('/login', user)
   },
@@ -9,7 +9,7 @@ export default {
   register(user) {
     return axios.post('/register', user)
   },
-
+  // Band
   createBand(band, genres) {
     return axios.post('/band', band, genres)
   },
@@ -30,24 +30,29 @@ export default {
     return axios.get('/band/genre', ids)
   },
 
+  // Notifications
+  addNotifs(notification){
+    return axios.post('/notifications',notification)
+  },
   getNotificationsByUser(userId) {
     return axios.get(`/notifications/${userId}`)
   },
-
+  
+  // Following
   followBand(follower) {
     return axios.post('/followers', follower)
   },
-
   unfollowBand(follower) {
     return axios.delete('/followers',  {
       data: follower
-  })
+    })
   },
 
   getFollowersByUser(userId) {
     return axios.get(`/followers/users/${userId}`)
   },
 
+  // Genres
   addGenres(genres) {
     return axios.put('/genre', genres)
   },
