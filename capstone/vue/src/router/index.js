@@ -8,6 +8,8 @@ import store from '../store/index'
 import CreateBand from '../views/CreateBand.vue'
 import BandPage from '../views/BandPage.vue'
 import Search from '../views/Search.vue'
+import AdminPage from '../views/AdminPage.vue'
+
 
 Vue.use(Router)
 
@@ -73,6 +75,11 @@ const router = new Router({
       meta: {
         requiresAuth: false
       } 
+    },
+    {
+      path:"/admin",
+      name:"adminPage",
+      component:AdminPage,
     }
   ]
 })

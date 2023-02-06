@@ -23,12 +23,14 @@ export default new Vuex.Store({
     band: {},
     notifications: [],
     bandsFollowing: [],
-    genreOptions: []
+    genreOptions: [],
+    
   },
   mutations: {
     SET_GENRE_OPTIONS(state, genres){
       state.genreOptions = genres;
     },
+    
     SET_BANDS_FOLLOWING(state, bands){
       state.bandsFollowing = bands;
     },
