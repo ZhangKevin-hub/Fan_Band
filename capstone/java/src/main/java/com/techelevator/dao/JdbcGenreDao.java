@@ -18,7 +18,10 @@ public class JdbcGenreDao implements GenreDao {
     }
     @Override
     public List<Genre> findGenresByBandId(int bandId) {
-        String sql = "SELECT * FROM genre WHERE band_id = ?";
+        String sql = "SELECT * " +
+                "FROM genre " +
+                "JOIN genre_band ON genre_band.genre_id = genre.genre_id " +
+               "WHERE band_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, bandId);
         List<Genre> genres = new ArrayList<>();
         while (rowSet.next()) {
@@ -39,6 +42,10 @@ public class JdbcGenreDao implements GenreDao {
 
     @Override
     public Genre findGenreById(int genreId) {
+//        String sql = "SELECT * " +
+//                "FROM genre " +
+//                "WHERE genre_id =?;";
+//        SqlRowSet rowSet = jdbcTemplate.queryFo(sql, genreId);
         return null;
     }
 

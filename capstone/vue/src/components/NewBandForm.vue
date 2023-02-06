@@ -27,8 +27,8 @@
       <div v-if="editing">
         <label for="galleryImageLink">Photo Gallery: </label>
         <div v-for="(photo, index) in photoGallery" v-bind:key="index">
-        <span>{{ index+1}}: {{ photo }}</span>
-        <input type="checkbox"> <!--call method with index as param, add/remove to new list of links? -->
+          <span>{{ index+1}}: {{ photo.imgUrl }}</span>
+          <input type="checkbox" v-bind:checked="true" v-on:change="editSelectedPhotos(photo)"> <!--call method with index as param, add/remove to new list of links? -->
         </div>
         <input id="galleryImageLink" type="text" v-model="photoLink">
         <button v-on:click.prevent="addLinkToGallery()">Add Image to Gallery</button>
@@ -56,6 +56,19 @@ export default {
     bandId: Number //may be null, unsure if matters
   },
   methods: {
+    editSelectedPhotos(photo){
+      const filteredPhotos = this.photoGallery.filter( (eachPhoto) => {
+        return eachPhoto.imgUrl === photo.imgUrl;
+      } )
+      if (filteredPhotos.length === 0){
+        this.photoGallery.push(photo);
+      } else {
+        this.photoGallery = this.photoGallery.filter( (eachPhoto) => {
+          return eachPhoto.imgUrl !== photo.imgUrl;
+        })
+
+      }
+    },
       editSelectedGenres(genre){
           const filteredList = this.genres.filter( (eachGenre)=> {
               return eachGenre === genre;
@@ -73,7 +86,11 @@ export default {
           }
       },
       addLinkToGallery(){
-        this.photoGallery.push(this.photoLink);
+        const photo = {
+          imgUrl: this.photoLink,
+          bandId: this.$store.state.band.bandId
+        }
+        this.photoGallery.push(photo);
         this.photoLink = "";
       },
       submitForm(){
@@ -125,15 +142,14 @@ export default {
   created() {
     this.setBand();
     AuthService.getGenresByBandId(this.bandId).then(response => {
-     response.data.forEach(genreBand => {
-       console.log(genreBand.genreId)
-       //need to loop through getting genre name from this list of ids
-       //.getGenreByGenreId()
+     response.data.forEach(genre => {
+       this.genres.push(genre);
      })
     })
     .catch(error => {
       console.log(error)
-    } )
+    } );
+    console.log(this.genres);
     //get photo gallery for band
 
   }

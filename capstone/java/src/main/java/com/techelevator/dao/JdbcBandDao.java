@@ -94,10 +94,15 @@ public class JdbcBandDao implements BandDao{
 
     @Override
     public String findGenreForBand(Band band) {
-        String sql = "SELECT genre_name " +
-                "FROM genre " +
-                "JOIN genre_band ON genre_band.genre_id = genre.genre_id " +
-                "WHERE band_id = ?;";
+//        List<String> genres = new ArrayList<>();
+//        String sql = "SELECT genre_name " +
+//                "FROM genre " +
+//                "JOIN genre_band ON genre_band.genre_id = genre.genre_id " +
+//                "WHERE band_id = ?;";
+//        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, bandId);
+//        while(rowSet.next()){
+//            genres.add(rowSet);
+//        }
         return null;
     }
 
@@ -144,4 +149,5 @@ public class JdbcBandDao implements BandDao{
         band.setUser_id(rowSet.getInt("user_id"));
         return band;
     }
+
 }
