@@ -1,96 +1,207 @@
 <template>
-  <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-      <div
-        class="alert alert-danger"
-        role="alert"
-        v-if="invalidCredentials"
-      >Invalid username and password!</div>
-      <div
-        class="alert alert-success"
-        role="alert"
-        v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
-      <div>
-      <label for="username" class="sr-only">Username:</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
+  <div>
+    <form id="newBandForm">
+      <div class="form-element">
+        <label for="bandName">Band Name: </label>
+        <input type="text" id="bandName" v-model="band.bandName" />
       </div>
-      <div>
-      <label for="password" class="sr-only">Password:</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
+      <div class="form-element">
+        <label for="description">Description: </label>
+        <input type="text" id="description"  v-model="band.description"/>
       </div>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <div class="form-element">
+        <label for="coverImage">Cover Image Link: </label>
+        <input type="text" id="coverImage" v-model="band.image" />
+      </div>
+      <div class="form-element">
+        <label for="genres">Genres: </label>
+        <p v-for="(genre, index) in genres" v-bind:key="index"> {{ index }}: {{ genre.name }}
+        </p>
+        <ul>
+            <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
+                <input type="checkbox" :id="index" :value="genre" v-on:change="editSelectedGenres(genre)">
+                <label :for="index">{{ genre.name }}</label>
+            </li>
+        </ul>
+      </div>
+      <div v-if="editing">
+        <label for="galleryImageLink">Photo Gallery: </label>
+        <div v-for="(photo, index) in photoGallery" v-bind:key="index">
+          <span>{{ index+1}}: {{ photo.imgUrl }}</span>
+          <input type="checkbox" v-bind:checked="true" v-on:change="editSelectedPhotos(photo)"> <!--call method with index as param, add/remove to new list of links? -->
+        </div>
+        <input id="galleryImageLink" type="text" v-model="photoLink">
+        <button v-on:click.prevent="addLinkToGallery()">Add Image to Gallery</button>
+      </div>
+      <button class="MakeBand" type="submit" v-on:click.prevent="submitForm()">Create Band</button>
     </form>
   </div>
 </template>
+
 <script>
-import authService from "../services/AuthService";
+import AuthService from '../services/AuthService';
+import authService from '../services/AuthService';
 export default {
-  name: "login",
-  components: {},
   data() {
     return {
-      user: {
-        username: "",
-        password: ""
-      },
-      invalidCredentials: false
+      possibleGenres: this.$store.state.genreOptions,
+      band: {},
+      genres: [],
+      photoGallery: [],
+      photoLink: ""
     };
   },
+  props: {
+    editing: Boolean,
+    bandId: Number //may be null, unsure if matters
+  },
   methods: {
-    login() {
-      authService
-        .login(this.user)
-        .then(response => {
-          if (response.status == 200) {
-            this.$store.commit("SET_AUTH_TOKEN", response.data.token);
-            this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+    editSelectedPhotos(photo){
+      const filteredPhotos = this.photoGallery.filter( (eachPhoto) => {
+        return eachPhoto.imgUrl === photo.imgUrl;
+      } )
+      if (filteredPhotos.length === 0){
+        this.photoGallery.push(photo);
+      } else {
+        this.photoGallery = this.photoGallery.filter( (eachPhoto) => {
+          return eachPhoto.imgUrl !== photo.imgUrl;
+        })
+
+      }
+    },
+      editSelectedGenres(genre){
+          const filteredList = this.genres.filter( (eachGenre)=> {
+              return eachGenre === genre;
+          })
+          if (filteredList.length === 0){
+              this.genres.push(genre);
+              this.band.genreIds.push(genre.id);
+          } else {
+              this.genres = this.genres.filter( (eachGenre) => {
+                  return eachGenre !== genre;
+              } );
+              this.band.genreIds = this.band.genreIds.filter( (eachId) => {
+                return eachId !== genre.id
+              })
           }
+      },
+      addLinkToGallery(){
+        const photo = {
+          imgUrl: this.photoLink,
+          bandId: this.$store.state.band.bandId
+        }
+        this.photoGallery.push(photo);
+        this.photoLink = "";
+      },
+      submitForm(){
+          this.band.userId = this.$store.state.user.id;
+          authService.createBand(this.band, this.genreIds)
+            .then( response => {
+                if (response.status == 200){
+                    this.resetForm();
+                    this.assignGenres();
+                }
+            })
+          .catch((error)=> {
+              console.log("failed to create band");
+              console.log(error.response);
+          });
+          //dont call update photos if empty
+      },
+      resetFrom(){
+        this.band = {
+          bandName: "", 
+          description: "",
+          image: "",
+          userId: -1
+      }
+      },
+      assignGenres(){
+        AuthService.addGenres(this.genres).then(response => {
+          console.log(response)
         })
         .catch(error => {
-          const response = error.response;
-          if (response.status === 401) {
-            this.invalidCredentials = true;
-          }
-        });
+          console.log(error)
+        })
+      },
+      setBand(){
+        if (this.editing){
+      this.band = this.$store.state.band;
+    }else{
+      this.band = {
+          bandName: "", 
+          description: "",
+          image: "",
+          userId: -1,
+          genreIds: []
+      };
+      console.log(this.band);
     }
+      }
+  },
+  created() {
+    this.setBand();
+    AuthService.getGenresByBandId(this.bandId).then(response => {
+     response.data.forEach(genre => {
+       this.genres.push(genre);
+     })
+    })
+    .catch(error => {
+      console.log(error)
+    } );
+    console.log(this.genres);
+    //get photo gallery for band
+
   }
 };
 </script>
-<style scoped>
-#login {
-  text-align: center;
-  border: 5px solid;
-  border-radius: 25%;
-  width:33%;
-  margin: auto;
-  margin-top: 10%;
+
+<style>
+#newBandForm {
+    text-align: center;
 }
-.form-signin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 20px;
+ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-.form-signin * {
-  padding: 10px;
+
+li {
+    list-style: none;
 }
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+.MakeBand {
+  --color: #ffa260;
+  --hover: #(197, 77%, 58%);
+  color: var(--color);
+  transition: 0.25s;
+  background-color: black;
+}
+
+.MakeBand:hover,
+.MakeBand:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+  border-color: var(--hover);
+  color: #fff;
+}
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
 </style>

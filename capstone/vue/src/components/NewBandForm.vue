@@ -181,9 +181,10 @@ button {
 
 .MakeBand {
   --color: #ffa260;
-  --hover: #{adjust-hue(#ffa260, 45deg)};
+  --hover: #(197, 77%, 58%);
   color: var(--color);
   transition: 0.25s;
+  background-color: black;
 }
 
 .MakeBand:hover,
@@ -201,16 +202,6 @@ button {
   line-height: 1;
   margin: 0.5em;
   padding: 1em 2em;
-}
-
-body {
-  color: #fff;
-  background: hsl(227, 10%, 10%);
-  font: 300 1em 'Fira Sans', sans-serif;
-}
-
-h1 {
-  font-weight: 400;
 }
 
 </style>
