@@ -56,8 +56,18 @@ export default {
   },
 
   // Genres
-  addGenres(genres) {
+  addGenre(genres) {
     return axios.put('/genre', genres)
+  },
+
+  addOneGenre(genre) {
+    return axios.post('/genres/add', genre)
+  },
+
+  deleteGenre(genre) {
+    return axios.delete('/genres/delete',  {
+      data: genre
+    })
   },
 
   getGenres() {
