@@ -19,6 +19,7 @@
     </div>
   </div>
   <div v-else>
+    No bands
   </div>
 </template>
 <script>
