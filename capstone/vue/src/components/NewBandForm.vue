@@ -181,7 +181,8 @@ button {
 
 .MakeBand {
   --color: #ffa260;
-  /*--hover: #{adjust-hue(#ffa260, 45deg)};*/
+  --hover: hsl(197, 77%, 58%);
+  background-color: black;
   color: var(--color);
   transition: 0.25s;
 }

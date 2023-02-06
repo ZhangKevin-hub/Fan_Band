@@ -15,7 +15,7 @@
       </li>
       <button v-on:click="applyGenreFilter()">Add Genre Filter</button>
     </ul>
-    <div v-for="band in filteredBands" :key="band.bandId">
+    <div v-for="band in filteredBands" v-bind:key="band.bandId">
       <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
       <p>{{ band.description }}</p>
     </div>
@@ -50,16 +50,17 @@ export default {
     },
     editSelectedGenres(genre) {
       const filteredList = this.genres.filter((eachGenre) => {
-        return eachGenre === genre;
+        return eachGenre === genre.id;
       });
       //filter possible genres to get Ids
       if (filteredList.length === 0) {
         this.genres.push(genre.id);
       } else {
         this.genres = this.genres.filter((eachGenre) => {
-          return eachGenre !== genre;
+          return eachGenre !== genre.id;
         });
       }
+      console.log(this.genres)
     },
     applyGenreFilter() {
       console.log("ANDY DEBUG");
@@ -73,20 +74,9 @@ export default {
             console.log(error);
           });
       } else {
-        let genreIdsList = [];
-        let genresWithId = [];
-        this.possibleGenres.forEach((eachElement) => {
-          this.genres.forEach((genre) => {
-            if (eachElement.name === genre.name) {
-              genresWithId.push(eachElement);
-            }
-          });
-        });
-        genresWithId.forEach((eachGenre) => {
-          genreIdsList.push(eachGenre.id);
-        });
-        console.log(genreIdsList);
-        AuthService.getBandsByGenre(genreIdsList)
+        console.log("genres");
+        console.log(this.genres);
+        AuthService.getBandsByGenre(this.genres)
           .then((response) => {
             this.bands = response.data;
           })
