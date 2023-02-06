@@ -10,9 +10,16 @@ public interface NotificationDao {
 
     void addNotification(Notification notification);
 
-    List<Notification> getNotificationsByUserIdDateSort(int userId);
-    
-    List<Notification> getNotificationsByUserIdBNameSort(int userId);
-    
+    // Sort via Date Recent
+    List<Notification> getNotificationsByUserIdDateSortRecent(int userId);
 
+    //Sort via Date Oldest
+    List<Notification> getNotificationsByUserIdDateSortOld(int userId);
+
+    // Sort Via A-Z BandName(default)
+    List<Notification> getNotificationsByUserIdBNameSortAZ(int userId);
+
+
+    // Sort Z-A BandName
+    List<Notification> getNotificationsByUserIdBNameSortZA(int userId);
 }

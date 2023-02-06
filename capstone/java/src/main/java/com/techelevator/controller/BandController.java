@@ -5,6 +5,7 @@ import com.techelevator.dao.JdbcGenreBandDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Band;
 import com.techelevator.model.BandGenreList;
+import com.techelevator.model.GenreDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +38,7 @@ public class BandController {
         band.setDescription(bandGenreList.getDescription());
         band.setImage(bandGenreList.getImage());
         List<Integer> genreIds = bandGenreList.getGenreIds();
-
-        int bandId = this.bandDao.create(band);
-
         int bandId =  this.bandDao.create(band);
-
-        int bandId =  this.bandDao.create(band);
-
         for (int genreId : genreIds) {
             this.genreBandDao.addGenreBand(genreId, bandId);
         }
@@ -69,19 +64,31 @@ public class BandController {
         return this.bandDao.getBandById(id);
     }
     // get specific band by name
-    @RequestMapping(value = "/band/{bandName}/specific", method = RequestMethod.GET)
-    public int getBandByName(@PathVariable String bandName){
+
+    @RequestMapping(value = "/band/specific/{bandName}", method = RequestMethod.GET)
+    public int findIdByBandName(@PathVariable String bandName){
         return this.bandDao.findIdByBandName(bandName);
     }
     // get similar band by name
-    @RequestMapping(value = "/band/{bandName}/similar", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/band/similar/{bandName}", method = RequestMethod.GET)
     public List<Band> getBandByName(@PathVariable String bandName){
+
         return this.bandDao.findByBandName(bandName);
     }
     //get all bands
     @RequestMapping(value = "/band", method = RequestMethod.GET)
     public List<Band> getAllBands(){
         return this.bandDao.findAll();
+    }
+
+    //GetBands via genreId
+    @RequestMapping(value = "/band/genre", method = RequestMethod.POST) //"/{genreIds}"
+    public List<Band> getBandsByGenreIds(@RequestBody GenreDTO genreIds) {
+
+//        System.out.println(genreIds.getGenreIds());
+//        return null;
+        return this.bandDao.getBandsByGenreIds(genreIds.getGenreIds());
     }
 
     //follow band

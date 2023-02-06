@@ -94,10 +94,15 @@ public class JdbcBandDao implements BandDao{
 
     @Override
     public String findGenreForBand(Band band) {
-        String sql = "SELECT genre_name " +
-                "FROM genre " +
-                "JOIN genre_band ON genre_band.genre_id = genre.genre_id " +
-                "WHERE band_id = ?;";
+//        List<String> genres = new ArrayList<>();
+//        String sql = "SELECT genre_name " +
+//                "FROM genre " +
+//                "JOIN genre_band ON genre_band.genre_id = genre.genre_id " +
+//                "WHERE band_id = ?;";
+//        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, bandId);
+//        while(rowSet.next()){
+//            genres.add(rowSet);
+//        }
         return null;
     }
 
@@ -117,6 +122,23 @@ public class JdbcBandDao implements BandDao{
                 "RETURNING band_id;";
         return jdbcTemplate.queryForObject(sql, Integer.class, band.getBandName(), band.getDescription(), band.getImage(), band.getUser_id());
     }
+    @Override
+    public List<Band> getBandsByGenreIds(List<Integer> genreIds) {
+        List<Band> bands = new ArrayList<>();
+        String sql = "SELECT * " +
+                "FROM band " +
+                "JOIN genre_band ON band.band_id = genre_band.band_id " +
+                "WHERE genre_band.genre_id = ? " +
+                "ORDER BY band.band_name";
+        for(Integer genreId : genreIds){
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genreId);
+            while (results.next()) {
+                Band band = mapRowToBand(results);
+                bands.add(band);
+            }
+        }
+        return bands;
+    }
 
     private Band mapRowToBand(SqlRowSet rowSet) {
         Band band = new Band();
@@ -127,4 +149,5 @@ public class JdbcBandDao implements BandDao{
         band.setUser_id(rowSet.getInt("user_id"));
         return band;
     }
+
 }

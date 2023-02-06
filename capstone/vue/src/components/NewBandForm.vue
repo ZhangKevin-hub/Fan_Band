@@ -24,7 +24,16 @@
             </li>
         </ul>
       </div>
-      <button type="submit" v-on:click.prevent="submitForm()">Create Band</button>
+      <div v-if="editing">
+        <label for="galleryImageLink">Photo Gallery: </label>
+        <div v-for="(photo, index) in photoGallery" v-bind:key="index">
+          <span>{{ index+1}}: {{ photo.imgUrl }}</span>
+          <input type="checkbox" v-bind:checked="true" v-on:change="editSelectedPhotos(photo)"> <!--call method with index as param, add/remove to new list of links? -->
+        </div>
+        <input id="galleryImageLink" type="text" v-model="photoLink">
+        <button v-on:click.prevent="addLinkToGallery()">Add Image to Gallery</button>
+      </div>
+      <button class="MakeBand" type="submit" v-on:click.prevent="submitForm()">Create Band</button>
     </form>
   </div>
 </template>
@@ -36,20 +45,30 @@ export default {
   data() {
     return {
       possibleGenres: this.$store.state.genreOptions,
-      // [
-      //     'Rock', 'Pop', 'R&B', 'Indie'
-      // ],
-      band: {
-          bandName: "", 
-          description: "",
-          image: "",
-          userId: -1,
-          genreIds: []
-      },
-      genres: []
+      band: {},
+      genres: [],
+      photoGallery: [],
+      photoLink: ""
     };
   },
+  props: {
+    editing: Boolean,
+    bandId: Number //may be null, unsure if matters
+  },
   methods: {
+    editSelectedPhotos(photo){
+      const filteredPhotos = this.photoGallery.filter( (eachPhoto) => {
+        return eachPhoto.imgUrl === photo.imgUrl;
+      } )
+      if (filteredPhotos.length === 0){
+        this.photoGallery.push(photo);
+      } else {
+        this.photoGallery = this.photoGallery.filter( (eachPhoto) => {
+          return eachPhoto.imgUrl !== photo.imgUrl;
+        })
+
+      }
+    },
       editSelectedGenres(genre){
           const filteredList = this.genres.filter( (eachGenre)=> {
               return eachGenre === genre;
@@ -65,27 +84,29 @@ export default {
                 return eachId !== genre.id
               })
           }
-          console.log(this.band.genreIds)
+      },
+      addLinkToGallery(){
+        const photo = {
+          imgUrl: this.photoLink,
+          bandId: this.$store.state.band.bandId
+        }
+        this.photoGallery.push(photo);
+        this.photoLink = "";
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;
-          console.log(this.band.userId)
           authService.createBand(this.band, this.genreIds)
             .then( response => {
                 if (response.status == 200){
-                    // reroute to band page
                     this.resetForm();
                     this.assignGenres();
-                    console.log(this.band);
                 }
             })
           .catch((error)=> {
               console.log("failed to create band");
               console.log(error.response);
-              console.log(this.band);
-            
           });
-          
+          //dont call update photos if empty
       },
       resetFrom(){
         this.band = {
@@ -102,12 +123,41 @@ export default {
         .catch(error => {
           console.log(error)
         })
+      },
+      setBand(){
+        if (this.editing){
+      this.band = this.$store.state.band;
+    }else{
+      this.band = {
+          bandName: "", 
+          description: "",
+          image: "",
+          userId: -1,
+          genreIds: []
+      };
+      console.log(this.band);
+    }
       }
+  },
+  created() {
+    this.setBand();
+    AuthService.getGenresByBandId(this.bandId).then(response => {
+     response.data.forEach(genre => {
+       this.genres.push(genre);
+     })
+    })
+    .catch(error => {
+      console.log(error)
+    } );
+    console.log(this.genres);
+    //get photo gallery for band
+
   }
 };
 </script>
 
 <style>
+
 #newBandForm {
     text-align: center;
 }
@@ -120,5 +170,38 @@ ul {
 
 li {
     list-style: none;
+}
+
+.MakeBand {
+<<<<<<< HEAD
+  --color: #ffa260;
+  --hover: hsl(197, 77%, 58%);
+  background-color: black;
+  color: var(--color);
+  transition: 0.25s;
+=======
+--color: #ffa260;
+--hover: hsl(197, 77%, 58%);
+color: var(--color);
+transition: 0.25s;
+border: 2px solid var(--color);
+>>>>>>> kevin
+}
+
+.MakeBand:hover,
+.MakeBand:focus {
+box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+transform: translateY(-0.25em);
+border-color: var(--hover);
+color: #fff;
+}
+
+button {
+background: none;
+border: 2px solid;
+font: inherit;
+line-height: 1;
+margin: 0.5em;
+padding: 1em 2em;
 }
 </style>
