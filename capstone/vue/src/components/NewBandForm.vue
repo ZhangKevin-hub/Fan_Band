@@ -156,7 +156,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #newBandForm {
     text-align: center;
 }
@@ -181,7 +181,7 @@ button {
 
 .MakeBand {
   --color: #ffa260;
-  --hover: #{adjust-hue(#ffa260, 45deg)};
+  /*--hover: #{adjust-hue(#ffa260, 45deg)};*/
   color: var(--color);
   transition: 0.25s;
 }

@@ -6,13 +6,12 @@
       <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
         <input
           type="checkbox"
-          :id="index"
           :value="genre"
           v-on:change="editSelectedGenres(genre)"
         />
         <label :for="index">{{ genre.name }}</label>
       </li>
-      <button v-on:click="applyGenreFilter">Add Genre Filter</button>
+      <button v-on:click="applyGenreFilter()">Add Genre Filter</button>
     </ul>
     <div v-for="band in filteredBands" :key="band.bandId">
       <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
@@ -51,6 +50,7 @@ export default {
       const filteredList = this.genres.filter((eachGenre) => {
         return eachGenre === genre;
       });
+      //filter possible genres to get Ids
       if (filteredList.length === 0) {
         this.genres.push(genre.id);
       } else {
@@ -69,7 +69,21 @@ export default {
         console.log(error);
       });
       } else {
-        AuthService.getBandsByGenre(this.genres).then(response => {
+        let genreIdsList =  [];
+        let genresWithId = [];
+        this.possibleGenres.forEach( eachElement => {
+          this.genres.forEach( genre =>{
+            if (eachElement.name === genre.name){
+              genresWithId.push(eachElement)
+            }
+          });
+          
+        })
+        genresWithId.forEach( (eachGenre) => {
+          genreIdsList.push(eachGenre.id);
+        } );
+        console.log(genreIdsList);
+        AuthService.getBandsByGenre(genreIdsList).then(response => {
           this.bands = response.data;
         })
         .catch((error) => {

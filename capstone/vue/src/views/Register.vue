@@ -43,6 +43,10 @@
       />
       
       </div>
+      <div>
+        <span>What is your vibe?</span>
+        <input type="text">
+      </div>
       
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">

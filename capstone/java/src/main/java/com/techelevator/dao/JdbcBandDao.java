@@ -124,8 +124,8 @@ public class JdbcBandDao implements BandDao{
     }
     @Override
     public List<Band> getBandsByGenreIds(List<Integer> genreIds) {
-        List<Band> bands = new ArrayList<Band>();
-        String sql = "SELECT band.* " +
+        List<Band> bands = new ArrayList<>();
+        String sql = "SELECT * " +
                 "FROM band " +
                 "JOIN genre_band ON band.band_id = genre_band.band_id " +
                 "WHERE genre_band.genre_id = ? " +
