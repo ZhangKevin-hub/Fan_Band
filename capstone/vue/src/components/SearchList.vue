@@ -1,7 +1,5 @@
 <template>
-  <div>
-    {{bands}}
-    {{filteredBands}}
+  <div v-if="this.bands.length !== 0">
     <label for="searchBar">Enter Band Name to Search For: </label>
     <input type="text" id="searchBar" v-model="searchInput" />
     <ul>
@@ -19,6 +17,8 @@
       <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
       <p>{{ band.description }}</p>
     </div>
+  </div>
+  <div v-else>
   </div>
 </template>
 <script>
