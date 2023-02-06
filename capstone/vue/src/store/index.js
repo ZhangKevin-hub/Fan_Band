@@ -30,6 +30,14 @@ export default new Vuex.Store({
     SET_GENRE_OPTIONS(state, genres){
       state.genreOptions = genres;
     },
+    ADD_GENRE_OPTION(state, genre){
+      state.genreOptions.push(genre)
+    },
+    REMOVE_GENRE_OPTION(state, genreToDelete){
+      state.genreOptions = state.genreOptions.filter(genre => {
+        return genre !== genreToDelete;
+      })
+    },
     
     SET_BANDS_FOLLOWING(state, bands){
       state.bandsFollowing = bands;
