@@ -156,7 +156,11 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
 <style>
+=======
+<style scoped>
+>>>>>>> 274a80ba15663c244149c1d266610029646e98fa
 #newBandForm {
     text-align: center;
 }
@@ -170,6 +174,7 @@ ul {
 li {
     list-style: none;
 }
+<<<<<<< HEAD
 
 .MakeBand {
 --color: #ffa260;
@@ -177,10 +182,27 @@ li {
 color: var(--color);
 transition: 0.25s;
 border: 2px solid var(--color);
+=======
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+.MakeBand {
+  --color: #ffa260;
+  /*--hover: #{adjust-hue(#ffa260, 45deg)};*/
+  color: var(--color);
+  transition: 0.25s;
+>>>>>>> 274a80ba15663c244149c1d266610029646e98fa
 }
 
 .MakeBand:hover,
 .MakeBand:focus {
+<<<<<<< HEAD
 box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
 transform: translateY(-0.25em);
 border-color: var(--hover);
@@ -195,4 +217,31 @@ line-height: 1;
 margin: 0.5em;
 padding: 1em 2em;
 }
+=======
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+  border-color: var(--hover);
+  color: #fff;
+}
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+body {
+  color: #fff;
+  background: hsl(227, 10%, 10%);
+  font: 300 1em 'Fira Sans', sans-serif;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+>>>>>>> 274a80ba15663c244149c1d266610029646e98fa
 </style>

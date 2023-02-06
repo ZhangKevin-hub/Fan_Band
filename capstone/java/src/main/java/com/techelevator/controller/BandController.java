@@ -5,6 +5,7 @@ import com.techelevator.dao.JdbcGenreBandDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Band;
 import com.techelevator.model.BandGenreList;
+import com.techelevator.model.GenreDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -82,9 +83,12 @@ public class BandController {
     }
 
     //GetBands via genreId
-    @RequestMapping(value = "/band/genre/{genreIds}", method = RequestMethod.GET)
-    public List<Band> getBandsByGenreIds(@RequestBody List<Integer> genreIds) {
-        return this.bandDao.getBandsByGenreIds(genreIds);
+    @RequestMapping(value = "/band/genre", method = RequestMethod.POST) //"/{genreIds}"
+    public List<Band> getBandsByGenreIds(@RequestBody GenreDTO genreIds) {
+
+//        System.out.println(genreIds.getGenreIds());
+//        return null;
+        return this.bandDao.getBandsByGenreIds(genreIds.getGenreIds());
     }
 
     //follow band

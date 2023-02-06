@@ -1,18 +1,19 @@
 <template>
   <div>
+    {{bands}}
+    {{filteredBands}}
     <label for="searchBar">Enter Band Name to Search For: </label>
     <input type="text" id="searchBar" v-model="searchInput" />
     <ul>
       <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
         <input
           type="checkbox"
-          :id="index"
           :value="genre"
           v-on:change="editSelectedGenres(genre)"
         />
         <label :for="index">{{ genre.name }}</label>
       </li>
-      <button v-on:click="applyGenreFilter">Add Genre Filter</button>
+      <button v-on:click="applyGenreFilter()">Add Genre Filter</button>
     </ul>
     <div v-for="band in filteredBands" :key="band.bandId">
       <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
@@ -51,6 +52,7 @@ export default {
       const filteredList = this.genres.filter((eachGenre) => {
         return eachGenre === genre;
       });
+      //filter possible genres to get Ids
       if (filteredList.length === 0) {
         this.genres.push(genre.id);
       } else {
@@ -60,23 +62,39 @@ export default {
       }
     },
     applyGenreFilter() {
-      if (this.genres.length === 0){
+      console.log("ANDY DEBUG");
+      console.log(this.genres.length);
+      if (this.genres.length === 0) {
         AuthService.getAllBands()
-      .then((response) => {
-        this.bands = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+          .then((response) => {
+            this.bands = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
-        AuthService.getBandsByGenre(this.genres).then(response => {
-          this.bands = response.data;
-        })
-        .catch((error) => {
-        console.log(error);
-      });
+        let genreIdsList = [];
+        let genresWithId = [];
+        this.possibleGenres.forEach((eachElement) => {
+          this.genres.forEach((genre) => {
+            if (eachElement.name === genre.name) {
+              genresWithId.push(eachElement);
+            }
+          });
+        });
+        genresWithId.forEach((eachGenre) => {
+          genreIdsList.push(eachGenre.id);
+        });
+        console.log(genreIdsList);
+        AuthService.getBandsByGenre(genreIdsList)
+          .then((response) => {
+            this.bands = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
-    }
+    },
   },
   created() {
     AuthService.getAllBands()
