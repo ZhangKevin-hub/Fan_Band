@@ -156,7 +156,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+
 #newBandForm {
     text-align: center;
 }
@@ -170,48 +171,37 @@ ul {
 li {
     list-style: none;
 }
-button {
-  background: none;
-  border: 2px solid;
-  font: inherit;
-  line-height: 1;
-  margin: 0.5em;
-  padding: 1em 2em;
-}
 
 .MakeBand {
+<<<<<<< HEAD
   --color: #ffa260;
   --hover: hsl(197, 77%, 58%);
   background-color: black;
   color: var(--color);
   transition: 0.25s;
+=======
+--color: #ffa260;
+--hover: hsl(197, 77%, 58%);
+color: var(--color);
+transition: 0.25s;
+border: 2px solid var(--color);
+>>>>>>> kevin
 }
 
 .MakeBand:hover,
 .MakeBand:focus {
-  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-  transform: translateY(-0.25em);
-  border-color: var(--hover);
-  color: #fff;
+box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+transform: translateY(-0.25em);
+border-color: var(--hover);
+color: #fff;
 }
 
 button {
-  background: none;
-  border: 2px solid;
-  font: inherit;
-  line-height: 1;
-  margin: 0.5em;
-  padding: 1em 2em;
+background: none;
+border: 2px solid;
+font: inherit;
+line-height: 1;
+margin: 0.5em;
+padding: 1em 2em;
 }
-
-body {
-  color: #fff;
-  background: hsl(227, 10%, 10%);
-  font: 300 1em 'Fira Sans', sans-serif;
-}
-
-h1 {
-  font-weight: 400;
-}
-
 </style>

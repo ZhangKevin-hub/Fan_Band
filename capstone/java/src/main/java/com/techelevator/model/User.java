@@ -15,6 +15,8 @@ public class User {
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
+   private boolean darkMode ;
+
 
    public User() { }
 
@@ -24,6 +26,14 @@ public class User {
       this.password = password;
       if(authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+   }
+
+   public boolean isDarkMode() {
+      return darkMode;
+   }
+
+   public void setDarkMode(boolean darkMode) {
+      this.darkMode = darkMode;
    }
 
    public int getId() {
