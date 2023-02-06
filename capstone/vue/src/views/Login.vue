@@ -40,8 +40,10 @@
     </form>
   </div>
 </template>
+
 <script>
 import authService from "../services/AuthService";
+
 export default {
   name: "login",
   components: {},
@@ -67,6 +69,7 @@ export default {
         })
         .catch(error => {
           const response = error.response;
+
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
@@ -75,6 +78,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 #login {
   text-align: center;
@@ -84,12 +88,14 @@ export default {
   margin: auto;
   margin-top: 10%;
 }
+
 .form-signin {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 20px;
 }
+
 .form-signin * {
   padding: 10px;
 }
