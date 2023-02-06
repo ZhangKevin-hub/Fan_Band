@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-
+  // lo
   login(user) {
     return axios.post('/login', user)
   },
@@ -13,7 +13,11 @@ export default {
   createBand(band, genres) {
     return axios.post('/band', band, genres)
   },
-
+  
+  updateBand(bandId, updatedBand) {
+    return axios.put(`/band/${bandId}`, updatedBand)
+  },
+  
   getBand(bandId) {
     return axios.get(`/band/${bandId}`)
   },
