@@ -27,7 +27,10 @@ export default {
   },
 
   getBandsByGenre(ids) {
-    return axios.get('/band/genre', ids)
+    let postObject = {
+      genreIds: ids
+    };
+    return axios.post('/band/genre', postObject)
   },
 
   // Notifications

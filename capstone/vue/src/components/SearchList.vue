@@ -1,5 +1,7 @@
 <template>
   <div>
+    {{bands}}
+    {{filteredBands}}
     <label for="searchBar">Enter Band Name to Search For: </label>
     <input type="text" id="searchBar" v-model="searchInput" />
     <ul>
@@ -60,37 +62,39 @@ export default {
       }
     },
     applyGenreFilter() {
-      if (this.genres.length === 0){
+      console.log("ANDY DEBUG");
+      console.log(this.genres.length);
+      if (this.genres.length === 0) {
         AuthService.getAllBands()
-      .then((response) => {
-        this.bands = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+          .then((response) => {
+            this.bands = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
-        let genreIdsList =  [];
+        let genreIdsList = [];
         let genresWithId = [];
-        this.possibleGenres.forEach( eachElement => {
-          this.genres.forEach( genre =>{
-            if (eachElement.name === genre.name){
-              genresWithId.push(eachElement)
+        this.possibleGenres.forEach((eachElement) => {
+          this.genres.forEach((genre) => {
+            if (eachElement.name === genre.name) {
+              genresWithId.push(eachElement);
             }
           });
-          
-        })
-        genresWithId.forEach( (eachGenre) => {
+        });
+        genresWithId.forEach((eachGenre) => {
           genreIdsList.push(eachGenre.id);
-        } );
+        });
         console.log(genreIdsList);
-        AuthService.getBandsByGenre(genreIdsList).then(response => {
-          this.bands = response.data;
-        })
-        .catch((error) => {
-        console.log(error);
-      });
+        AuthService.getBandsByGenre(genreIdsList)
+          .then((response) => {
+            this.bands = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
-    }
+    },
   },
   created() {
     AuthService.getAllBands()
