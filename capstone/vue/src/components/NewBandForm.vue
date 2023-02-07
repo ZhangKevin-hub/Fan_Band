@@ -40,7 +40,6 @@
 
 <script>
 import AuthService from '../services/AuthService';
-import authService from '../services/AuthService';
 export default {
   data() {
     return {
@@ -71,7 +70,7 @@ export default {
     },
       editSelectedGenres(genre){
           const filteredList = this.genres.filter( (eachGenre)=> {
-              return eachGenre === genre;
+              return eachGenre == genre;
           })
           if (filteredList.length === 0){
               this.genres.push(genre);
@@ -84,6 +83,7 @@ export default {
                 return eachId !== genre.id
               })
           }
+          console.log(this.genres);
       },
       addLinkToGallery(){
         const photo = {
@@ -95,16 +95,20 @@ export default {
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;
-          authService.createBand(this.band, this.genreIds)
+          console.log(this.band)
+          AuthService.createBand(this.band)
             .then( response => {
                 if (response.status == 200){
-                    this.resetForm();
-                    this.assignGenres();
+                    //this.resetForm();
+                    
+                    this.bandID = response.data;
+                    alert(this.bandId)
+                    //this.assignGenres();
                 }
             })
           .catch((error)=> {
               console.log("failed to create band");
-              console.log(error.response);
+              console.log(error);
           });
           //dont call update photos if empty
       },
@@ -116,17 +120,36 @@ export default {
           userId: -1
       }
       },
-      assignGenres(){
-        AuthService.addGenres(this.genres).then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      },
+      // assignGenres(){
+      //   this.band.genreIds.forEach( genreId => {
+      //     const genreBand = {
+      //       genreId: genreId,
+      //       bandId: this.bandId
+      //     }
+      //     alert(genreBand.bandId);
+      //     AuthService.addGenreBand(genreBand).then(response => {
+      //     console.log(response)
+      //   })
+      //   .catch(error => {
+      //     console.log(error)
+      //   })
+      //   })
+        
+      // },
       setBand(){
         if (this.editing){
       this.band = this.$store.state.band;
+      this.band.genreIds =[];
+      AuthService.getGenresByBandId(this.bandId).then(response => {
+     response.data.forEach(genre => {
+       this.genres.push(genre);
+       this.band.genreIds.push(genre.id)
+     })
+    })
+    .catch(error => {
+      console.log(error)
+    } );
+    console.log(this.genres);
     }else{
       this.band = {
           bandName: "", 
@@ -141,15 +164,6 @@ export default {
   },
   created() {
     this.setBand();
-    AuthService.getGenresByBandId(this.bandId).then(response => {
-     response.data.forEach(genre => {
-       this.genres.push(genre);
-     })
-    })
-    .catch(error => {
-      console.log(error)
-    } );
-    console.log(this.genres);
     //get photo gallery for band
 
   }
