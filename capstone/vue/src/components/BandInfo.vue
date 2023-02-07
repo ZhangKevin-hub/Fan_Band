@@ -8,7 +8,10 @@
         <p>{{ band.description }}</p>
       <img src="" alt="cover image">
       <h5>List of genres</h5>
-      <img src="" alt="photo gallergy">
+      <ul>
+        <li v-for="genre in genres" v-bind:key="genre.id">{{ genre.name }}</li>
+      </ul>
+      <img src="" alt="photo gallergy image" v-for="photo in photoGallery" v-bind:key="photo.id">
       </div>
       <div v-else> 
         <new-band-form v-bind:editing="true" v-bind:bandId="this.bandId"></new-band-form>
@@ -31,7 +34,9 @@ export default {
         band: {},
         userId: -1,
         bandId: -1,
-        edit: false
+        edit: false,
+        photoGallery: [],
+        genres: []
       }
     },
     computed: {
@@ -83,6 +88,18 @@ export default {
       this.band = this.$store.state.band;
       this.bandId = this.$store.state.band.bandId;
       this.userId = this.$store.state.user.id;
+      AuthService.getPhotos(this.bandId).then(response => {
+        this.photoGallery = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      AuthService.getGenresByBandId(this.bandId).then(response => {
+        this.genres = response.data
+      })
+      .catch(error => {
+        console.log(error);
+      });
     }
 }
 </script>
