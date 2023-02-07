@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center">
+<div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1  class="heading">Please Sign In</h1>
       <div
@@ -59,7 +59,7 @@ export default {
   },
   mounted() {
     anime({
-      targets: '.form-signin',
+      targets: '.login',
       translateY: [10, -150],
       direction: 'alternate',
       loop: false,
@@ -67,6 +67,7 @@ export default {
         return (l - i) * 100;
       }
     });
+  
   },
   methods: {
     login() {
