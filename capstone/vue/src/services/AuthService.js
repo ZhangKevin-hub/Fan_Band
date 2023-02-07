@@ -10,8 +10,8 @@ export default {
     return axios.post('/register', user)
   },
   // Band
-  createBand(band, genres) {
-    return axios.post('/band', band, genres)
+  createBand(band) {
+    return axios.post('/band', band)
   },
   
   updateBand(bandId, updatedBand) {
@@ -56,8 +56,8 @@ export default {
   },
 
   // Genres
-  addGenre(genres) {
-    return axios.put('/genre', genres)
+  addGenreBand(genreBand) {
+    return axios.post('/genre-band', genreBand)
   },
 
   addOneGenre(genre) {

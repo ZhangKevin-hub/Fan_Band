@@ -16,7 +16,7 @@ public class GenreBandController {
     @Autowired
     private JdbcGenreBandDao genreBandDao;
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping( method = RequestMethod.POST)
     public void addGenreBand(@RequestBody GenreBand genreBand) {
         genreBandDao.addGenreBand(genreBand.getGenreId(), genreBand.getBandId());
     }
