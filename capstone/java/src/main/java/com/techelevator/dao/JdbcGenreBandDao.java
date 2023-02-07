@@ -37,6 +37,14 @@ public class JdbcGenreBandDao implements GenreBandDao {
     }
 
     @Override
+    public void deleteGenreBandByBandId(int bandId) {
+        String sql = "DELETE " +
+                "FROM genre_band " +
+                "WHERE band_id =?;";
+        jdbcTemplate.update(sql, bandId);
+    }
+
+    @Override
     public List<GenreBand> getGenreBandsByGenreId(int genreId) {
         List<GenreBand> genreBands = new ArrayList<GenreBand>();
         String sql = "SELECT * FROM genre_band WHERE genre_id=?";

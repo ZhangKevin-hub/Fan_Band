@@ -47,9 +47,20 @@ public class BandController {
 
     //update band
     @RequestMapping(value = "/band/{id}", method = RequestMethod.PUT)
-    public void updateBand(@PathVariable int id, @RequestBody Band band){
+    public void updateBand(@PathVariable int id, @RequestBody BandGenreList bandGenreList){
+        Band band = new Band();
+        band.setUser_id(bandGenreList.getUser_id());
+        band.setBandName(bandGenreList.getBandName());
+        band.setDescription(bandGenreList.getDescription());
+        band.setImage(bandGenreList.getImage());
+        List<Integer> genreIds = bandGenreList.getGenreIds();
         band.setBandId(id);
         this.bandDao.update(band);
+        this.genreBandDao.deleteGenreBandByBandId(id);
+        for (int genreId : genreIds) {
+            this.genreBandDao.addGenreBand(genreId, id);
+        }
+
     }
 
     //delete band

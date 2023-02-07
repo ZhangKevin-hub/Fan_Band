@@ -21,9 +21,9 @@ public class GenreBandController {
         genreBandDao.addGenreBand(genreBand.getGenreId(), genreBand.getBandId());
     }
 
-    @RequestMapping(value = "/{genreId}/{bandId}", method = RequestMethod.DELETE)
-    public void removeGenreBand(@PathVariable int genreId, @PathVariable int bandId) {
-       genreBandDao.removeGenreBand(genreId, bandId);
+    @RequestMapping(value = "/{bandId}", method = RequestMethod.DELETE)
+    public void removeGenreBand( @PathVariable int bandId) {
+       genreBandDao.removeGenreBand( bandId);
     }
 
     @RequestMapping(value = "/genre/{genreId}", method = RequestMethod.GET)
