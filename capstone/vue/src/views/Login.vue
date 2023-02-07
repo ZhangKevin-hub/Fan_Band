@@ -80,7 +80,7 @@
       <button type="submit">Sign in</button>
     </form>
   </div>
-
+</div>
 </template>
 
 <script>
