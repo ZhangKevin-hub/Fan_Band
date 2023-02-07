@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-    <h1 class="heading" >Home</h1>
-    <router-link v-bind:to="{ name: 'createBand'}">Create New Band</router-link>
+    <div id="home-heading" class="heading">
+       <h1>Home</h1>
+    </div>
+   
+    <router-link class="heading" v-bind:to="{ name: 'createBand'}">Create New Band</router-link>
     <home-feed></home-feed>
   </div>
 </template>
@@ -22,6 +25,16 @@ export default {
   height: 100vh;
   width: 100vw;
 }
+
+/* #home-heading{
+  background-image: linear-gradient(rgb(156, 170, 233), rgb(176, 79, 196));
+  width: 35%;
+  margin: auto;
+  margin-top: auto ;
+  border-style: ridge;
+  
+  
+} */
 
 
 </style>

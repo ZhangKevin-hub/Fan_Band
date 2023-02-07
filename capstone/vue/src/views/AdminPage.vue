@@ -1,7 +1,7 @@
 <template>
 
   <div>
-      <h1>Admin Page</h1>
+      <h1 class="heading">Admin Page</h1>
     <EditGenre></EditGenre>
   </div>
 </template>

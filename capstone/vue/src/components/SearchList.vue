@@ -11,7 +11,7 @@
         />
         <label :for="index">{{ genre.name }}</label>
       </li>
-      <button v-on:click="applyGenreFilter()">Add Genre Filter</button>
+      <button class ="heading" v-on:click="applyGenreFilter()">Add Genre Filter</button>
     </ul>
     <div v-for="band in filteredBands" v-bind:key="band.bandId">
       <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>

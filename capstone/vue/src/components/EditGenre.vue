@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Edit Genres</h2>
+    <h2 class="heading">Edit Genres</h2>
     <ul>
       <li>Current Genre:</li>
       <li v-for="(genre, index) in genres" :key="index">

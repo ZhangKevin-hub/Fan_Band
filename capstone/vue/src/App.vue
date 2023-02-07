@@ -30,8 +30,10 @@
   background-image: linear-gradient(to bottom right, rgb(156, 170, 233), rgb(176, 79, 196));
   height: 100vh;
 }
-#div{
+.heading{
   font-family: 'Sedgwick Ave Display', cursive;
+   font-size: 36px;
+
 }
 /* body {
   background-color: linear-gradient
@@ -41,5 +43,17 @@
   text-align: right;
   border: 5px solid;
   padding: 10px;
+}
+
+.heading{
+  background-image: linear-gradient(rgb(156, 170, 233), rgb(176, 79, 196));
+  width: 35%;
+  margin: auto;
+  margin-top: auto ;
+  border-style: ridge;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  
+  
 }
 </style>
