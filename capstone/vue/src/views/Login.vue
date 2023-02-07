@@ -99,30 +99,19 @@ export default {
       invalidCredentials: false
     };
   },
-  mounted() {
-    anime({
-      targets: '.login',
-      translateY: [10, -150],
-      direction: 'alternate',
-      loop: false,
-      endDelay: function(el, i, l) {
-        return (l - i) * 100;
-      }
-    });
-    
-    anime({
-      targets: '#dust-paarticle',
-      translateY: [10, -150],
-      direction: 'alternate',
-      loop: false,
-        delay: function(el, i, l) {
-    return i * 100;
+ mounted() {
+   anime({
+  targets: '#dust-paarticle path',
+  translateY: [10, -150],
+  direction: 'alternate',
+  loop: false,
+  endDelay: function(el, i, l) {
+    return (l - i) * 100;
+  }
+});
+
   },
-      endDelay: function(el, i, l) {
-        return (l - i) * 100;
-      }
-    });
-  },
+
   methods: {
     login() {
       authService
@@ -148,6 +137,7 @@ export default {
 
 <style scoped>
 #login {
+  display: absolute;
   text-align: center;
   border: 5px solid;
   border-radius: 25%;
