@@ -134,16 +134,22 @@ export default {
       }
       },
       updatePhotoGallery(){
-        let postObject = {
+        let postObject= [];
+        if (this.photoGallery.length !==0){
+          postObject = {
           photos: this.photoGallery
         };
-        console.log(postObject);
+        } else {
+          postObject = {
+            photos: []
+          }
+        }
       AuthService.updatePhotos(postObject).then( response => {
         console.log(response)
       })
       .catch(error => {
         console.log(error)
-      })
+      });
 
       },
       setBand(){

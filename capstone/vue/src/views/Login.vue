@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center">
+<div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1  class="heading">Please Sign In</h1>
       <div
