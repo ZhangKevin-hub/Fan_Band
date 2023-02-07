@@ -1,6 +1,6 @@
 <template>
 <div id = "login-container">
-<div class="dust-particle">
+<div class="dust-paarticle">
   
 <svg width="100%" id="dust-paarticle" height="100%" viewBox="0 0 885 455" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M678.1 394.1C679.923 394.1 681.4 392.622 681.4 390.8C681.4 388.977 679.923 387.5 678.1 387.5C676.277 387.5 674.8 388.977 674.8 390.8C674.8 392.622 676.277 394.1 678.1 394.1Z" stroke="#F4CD39" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -80,7 +80,7 @@
       <button type="submit">Sign in</button>
     </form>
   </div>
-<div>
+</div>
 </template>
 
 <script>
@@ -111,7 +111,7 @@ export default {
     });
     
     anime({
-      targets: '#dust-particle',
+      targets: '#dust-paarticle',
       translateY: [10, -150],
       direction: 'alternate',
       loop: false,
