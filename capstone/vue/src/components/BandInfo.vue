@@ -4,6 +4,10 @@
       <button v-on:click="followBand()" v-if="followingBand">Follow Band</button>
       <button v-on:click="unfollowBand()" v-if="!followingBand">Unfollow Band</button>
       <button v-on:click="editBand()">Edit Band</button>
+      <button v-on:click="messageFollowers = true">Message Followers</button>
+      <div v-if="messageFollowers">
+        <notification-form></notification-form>
+      </div>
       <div v-if="!edit" >
         <p>{{ band.description }}</p>
       <img src="" alt="cover image">
@@ -25,9 +29,10 @@
 <script>
 import AuthService from '../services/AuthService'
 import NewBandForm from './NewBandForm.vue';
+import NotificationForm from './NotificationForm.vue';
 
 export default {
-  components: { NewBandForm },
+  components: { NewBandForm, NotificationForm },
     name: 'bandInfo',
     data(){
       return {
@@ -36,7 +41,8 @@ export default {
         bandId: -1,
         edit: false,
         photoGallery: [],
-        genres: []
+        genres: [],
+        messageFollowers: false
       }
     },
     computed: {

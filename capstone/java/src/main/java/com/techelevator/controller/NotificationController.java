@@ -23,7 +23,7 @@ public class NotificationController {
         this.bandDao = bandDao;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping( method = RequestMethod.POST)
     public void addNotification(@RequestBody Notification notification) {
         notificationDao.addNotification(notification);
     }
