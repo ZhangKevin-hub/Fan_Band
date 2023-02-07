@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import java.util.List;
 
+import com.techelevator.dao.PhotoDTO;
 import com.techelevator.dao.PhotoDao;
 import com.techelevator.model.Photo;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,7 +38,7 @@ public class PhotoController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public void updatePhotoGallery(@RequestBody List<Photo> photos){
-        photoDao.updatePhotos(photos);
+    public void updatePhotoGallery(@RequestBody PhotoDTO photos){
+        photoDao.updatePhotos(photos.getPhotos());
     }
 }

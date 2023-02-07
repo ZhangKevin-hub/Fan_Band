@@ -23,7 +23,7 @@ public class GenreBandController {
 
     @RequestMapping(value = "/{bandId}", method = RequestMethod.DELETE)
     public void removeGenreBand( @PathVariable int bandId) {
-       genreBandDao.removeGenreBand( bandId);
+       genreBandDao.deleteGenreBandByBandId(bandId);
     }
 
     @RequestMapping(value = "/genre/{genreId}", method = RequestMethod.GET)

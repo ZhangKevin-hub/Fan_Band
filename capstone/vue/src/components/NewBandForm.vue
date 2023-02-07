@@ -101,7 +101,15 @@ export default {
       },
       submitForm(){
           this.band.userId = this.$store.state.user.id;
-          console.log(this.band)
+          if (this.editing){
+            AuthService.updateBand(this.bandId, this.band).then( response => {
+              console.log(response);
+              this.updatePhotoGallery();
+            })
+            .catch(error => {
+              console.log(error);
+            })
+          }else{
           AuthService.createBand(this.band)
             .then( response => {
                 if (response.status == 200){
@@ -115,6 +123,7 @@ export default {
               console.log(error);
           });
           //dont call update photos if empty
+          }
       },
       resetFrom(){
         this.band = {
@@ -124,22 +133,19 @@ export default {
           userId: -1
       }
       },
-      // assignGenres(){
-      //   this.band.genreIds.forEach( genreId => {
-      //     const genreBand = {
-      //       genreId: genreId,
-      //       bandId: this.bandId
-      //     }
-      //     alert(genreBand.bandId);
-      //     AuthService.addGenreBand(genreBand).then(response => {
-      //     console.log(response)
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
-      //   })
-        
-      // },
+      updatePhotoGallery(){
+        let postObject = {
+          photos: this.photoGallery
+        };
+        console.log(postObject);
+      AuthService.updatePhotos(postObject).then( response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+      },
       setBand(){
         if (this.editing){
       this.band = this.$store.state.band;

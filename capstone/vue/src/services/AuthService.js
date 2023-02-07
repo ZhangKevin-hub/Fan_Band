@@ -89,5 +89,8 @@ export default {
 
   addPhoto(photo) {
     return axios.post('/photo/add', photo)
+  },
+  updatePhotos(photos) {
+    return axios.put('/photo/update', photos)
   }
 }
