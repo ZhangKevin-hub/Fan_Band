@@ -173,19 +173,11 @@ li {
 }
 
 .MakeBand {
-<<<<<<< HEAD
-  --color: #ffa260;
-  --hover: hsl(197, 77%, 58%);
-  background-color: black;
-  color: var(--color);
-  transition: 0.25s;
-=======
 --color: #ffa260;
 --hover: hsl(197, 77%, 58%);
 color: var(--color);
 transition: 0.25s;
 border: 2px solid var(--color);
->>>>>>> kevin
 }
 
 .MakeBand:hover,

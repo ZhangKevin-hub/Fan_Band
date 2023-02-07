@@ -1,12 +1,16 @@
-<head>
-<link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
-<style>
-body{
+
+#body{
     font-family: 'Sedgwick Ave Display', cursive;
+    background-image: linear-gradient
+    (to the bottom right, rgb(29, 56, 175), rgb(101, 11, 119));
+}
+element.style{
+    background-image: linear-gradient
+    (to the bottom right, rgb(29, 56, 175), rgb(101, 11, 119));
 }
 
-</style>
-</head>
+
+
 
 
 
