@@ -80,6 +80,14 @@ export default {
 
   getGenreByGenreId(genreId) {
     return axios.get(`/genres/${genreId}`)
-  }
+  },
 
+  //Photos 
+  getPhotos(bandId) {
+    return axios.get(`/photo/band/${bandId}`)
+  },
+
+  addPhoto(photo) {
+    return axios.post('/photo/add', photo)
+  }
 }

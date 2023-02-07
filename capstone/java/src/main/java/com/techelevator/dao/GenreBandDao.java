@@ -13,6 +13,8 @@ public interface GenreBandDao {
 
     public void removeGenreBand(int genreId, int bandId);
 
+    public void deleteGenreBandByBandId(int bandId);
+
     public List<GenreBand> getGenreBandsByGenreId(int genreId);
 
     public List<GenreBand> getGenreBandsByBandId(int bandId);

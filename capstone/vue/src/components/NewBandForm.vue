@@ -19,7 +19,7 @@
         </p>
         <ul>
             <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
-                <input type="checkbox" :id="index" :value="genre" v-on:change="editSelectedGenres(genre)">
+                <input type="checkbox" :id="index" :value="genre" v-on:change="editSelectedGenres(genre)" v-bind:checked="boxChecked(genre)">
                 <label :for="index">{{ genre.name }}</label>
             </li>
         </ul>
@@ -55,6 +55,12 @@ export default {
     bandId: Number //may be null, unsure if matters
   },
   methods: {
+    boxChecked(genre){
+      const filtered = this.genres.filter(eachGenre => {
+        return eachGenre.id === genre.id
+      })
+      return filtered.length === 1;
+    },
     editSelectedPhotos(photo){
       const filteredPhotos = this.photoGallery.filter( (eachPhoto) => {
         return eachPhoto.imgUrl === photo.imgUrl;
@@ -70,14 +76,14 @@ export default {
     },
       editSelectedGenres(genre){
           const filteredList = this.genres.filter( (eachGenre)=> {
-              return eachGenre == genre;
+              return eachGenre.id == genre.id;
           })
           if (filteredList.length === 0){
               this.genres.push(genre);
               this.band.genreIds.push(genre.id);
           } else {
               this.genres = this.genres.filter( (eachGenre) => {
-                  return eachGenre !== genre;
+                  return eachGenre.id !== genre.id;
               } );
               this.band.genreIds = this.band.genreIds.filter( (eachId) => {
                 return eachId !== genre.id
@@ -101,8 +107,6 @@ export default {
                 if (response.status == 200){
                     //this.resetForm();
                     
-                    this.bandID = response.data;
-                    alert(this.bandId)
                     //this.assignGenres();
                 }
             })
@@ -149,6 +153,12 @@ export default {
     .catch(error => {
       console.log(error)
     } );
+    AuthService.getPhotos(this.bandId).then(response => {
+      this.photoGallery = response.data;
+    })
+    .catch(error => {
+      console.log(error);
+    })
     console.log(this.genres);
     }else{
       this.band = {
