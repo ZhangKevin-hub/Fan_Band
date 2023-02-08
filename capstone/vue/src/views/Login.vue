@@ -43,7 +43,6 @@
 
 <script>
 import authService from "../services/AuthService";
-import anime from "animejs";
 
 export default {
   name: "login",
@@ -57,19 +56,6 @@ export default {
       invalidCredentials: false
     };
   },
-  mounted() {
-    anime({
-      targets: '.login',
-      translateY: [10, -150],
-      direction: 'alternate',
-      loop: false,
-      endDelay: function(el, i, l) {
-        return (l - i) * 100;
-      }
-    });
-  
-  },
-
   methods: {
     login() {
       authService
@@ -94,24 +80,5 @@ export default {
 </script>
 
 <style scoped>
-#login {
-  display: absolute;
-  text-align: center;
-  border: 5px solid;
-  border-radius: 25%;
-  width:33%;
-  margin: auto;
-  margin-top: 10%;
-}
 
-.form-signin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 20px;
-}
-
-.form-signin * {
-  padding: 10px;
-}
 </style>

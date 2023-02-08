@@ -6,7 +6,8 @@
       <button v-on:click="editBand()">Edit Band</button>
       <button v-on:click="messageFollowers = true">Message Followers</button>
       <div v-if="messageFollowers">
-        <notification-form></notification-form>
+        <notification-form @add-message="swapMessage"></notification-form>
+        <!-- (msg) => messageFollowers = msg -->
       </div>
       <div v-if="!edit" >
         <p>{{ band.description }}</p>
@@ -55,6 +56,10 @@ export default {
       }
     },
     methods: {
+      swapMessage(msg){
+        this.messageFollowers = msg;
+        console.log("it worked");
+      },
       editBand(){
         this.edit = true;
       },

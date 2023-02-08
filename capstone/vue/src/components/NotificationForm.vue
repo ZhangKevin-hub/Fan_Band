@@ -8,6 +8,7 @@
   <script>
   import AuthService from '../services/AuthService.js';
   export default {
+    emits: ['addMessage'],
     data() {
       return {
         message: ''
@@ -24,8 +25,9 @@
         })
         .catch(error => {
           console.log(error)
-        })
-        this.message = ''
+        });
+        this.message = '';
+        this.$emit('add-message', false );
       }
     }
   }

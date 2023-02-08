@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="NewBand">
       <h1 class="heading">New Band Form</h1>
       <new-band-form v-bind:editing="false"></new-band-form>
   </div>
