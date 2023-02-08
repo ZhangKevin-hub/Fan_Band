@@ -23,7 +23,7 @@ export default {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  height: auto;
+  min-height: 100%;
   width: 100vw;
 }
 
