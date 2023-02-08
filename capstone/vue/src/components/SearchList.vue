@@ -1,4 +1,5 @@
 <template>
+
 <div id="seachlist">
   <div v-if="this.bands.length !== 0">
     <label for="searchBar">Enter Band Name to Search For: </label>
@@ -101,9 +102,10 @@ export default {
 };
 </script>
 <style scoped>
-div {
+div{
     text-align: center;
     background-image: url('../assets/images/livecrowd1.jpg'); 
+    height: auto;
   }
   #searchBar{
     height: 40px;
@@ -111,10 +113,11 @@ div {
   #heading{
     height: 10px;
   }
-  #searchlist{
+  /* #searchlist{
     display: flex;
     justify-content: center;
     background-image: url('../assets/images/livecrowd1.jpg'); 
-  }
+    min-height: 100%;
+  } */
 </style>
   
