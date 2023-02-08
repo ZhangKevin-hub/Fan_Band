@@ -67,7 +67,6 @@ img {
   margin-top: auto;
   border-style: ridge;
   margin-bottom: 25px;
-  margin-top: 10px;
 }
 
 #login,
@@ -77,7 +76,7 @@ img {
   border: 7px solid;
   border-radius: 25%;
   width: 33%;
-  margin: auto;
+  min-height: 100%;
 
   /* margin-top: 10%; */
 }
