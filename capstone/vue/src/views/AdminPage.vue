@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div id = "adminPage">
       <h1 class="heading">Admin Page</h1>
     <EditGenre></EditGenre>
   </div>

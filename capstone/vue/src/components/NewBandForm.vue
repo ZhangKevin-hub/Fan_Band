@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id = "newBand">
     <form id="newBandForm">
       <div class="form-element">
         <label for="bandName">Band Name: </label>
@@ -10,7 +10,7 @@
         <input type="text" id="description"  v-model="band.description"/>
       </div>
       <div class="form-element">
-        <label for="coverImage">Cover Image Link: </label>
+        <label for="coverImage">Image Link: </label>
         <input type="text" id="coverImage" v-model="band.image" />
       </div>
       <div class="form-element">
@@ -192,11 +192,16 @@ export default {
 };
 </script>
 
-<style>
+<style >
 
-#newBandForm {
-    text-align: center;
+.form-element {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  
 }
+
+
+
 ul {
     display: flex;
     flex-direction: row;

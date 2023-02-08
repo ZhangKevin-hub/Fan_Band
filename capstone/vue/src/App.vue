@@ -42,6 +42,7 @@
     rgb(176, 79, 196)
   );
   height: 100vh;
+
 }
 .heading {
   font-family: "Sedgwick Ave Display", cursive;
@@ -82,6 +83,8 @@ img {
 
   /* margin-top: 10%; */
 }
+
+
 
 @media (max-width: 768px) {
   #login,
