@@ -8,9 +8,13 @@
     import SearchList from '../components/SearchList.vue'
     
       export default {
-        name: 'Searh',
+        name: 'Search',
       components: {
         SearchList
       }
   }
   </script>
+  <style scoped>
+
+  
+  </style>

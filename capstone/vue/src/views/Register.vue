@@ -1,4 +1,5 @@
 <template>
+<div id="register-page">
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
@@ -53,6 +54,7 @@
         Create Account
       </button>
     </form>
+  </div>
   </div>
 </template>
 
@@ -147,7 +149,7 @@ export default {
   border-radius: 25%;
   width:33%;
   margin: auto;
-  margin-top: 10%;
+  /* margin-top: 10%; */
 }
 
 .form-register {
@@ -156,8 +158,16 @@ export default {
   align-items: center;
   padding-bottom: 20px;
 }
+div {
+  background-color: mediumorchid;
+}
 
 .form-register * {
   padding: 10px;
+}
+#register-page{
+   background-attachment: scroll;
+background-image: url('../assets/images/liveCrowd.jpg');
+height: 90%;
 }
 </style>

@@ -1,10 +1,11 @@
 <template>
+<div id="seachlist">
   <div v-if="this.bands.length !== 0">
     <label for="searchBar">Enter Band Name to Search For: </label>
     <input type="text" id="searchBar" v-model="searchInput" />
     <ul>
       <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
-        <input
+        <input class="checkbox-genre"
           type="checkbox"
           :value="genre"
           v-on:change="editSelectedGenres(genre)"
@@ -20,6 +21,7 @@
   </div>
   <div v-else>
     No bands
+  </div>
   </div>
 </template>
 <script>
@@ -99,5 +101,20 @@ export default {
 };
 </script>
 <style scoped>
+div {
+    text-align: center;
+    background-image: url('../assets/images/livecrowd1.jpg'); 
+  }
+  #searchBar{
+    height: 40px;
+  }
+  #heading{
+    height: 10px;
+  }
+  #searchlist{
+    display: flex;
+    justify-content: center;
+    background-image: url('../assets/images/livecrowd1.jpg'); 
+  }
 </style>
   

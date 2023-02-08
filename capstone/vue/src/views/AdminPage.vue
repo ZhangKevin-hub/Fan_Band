@@ -17,5 +17,10 @@ export default {
 </script>
 
 <style>
-
+#adminPage{
+   background-attachment: fixed;
+background-image: url('../assets/images/90sbackground3.jpg');
+background-size: cover;
+min-height: 100%;
+}
 </style>

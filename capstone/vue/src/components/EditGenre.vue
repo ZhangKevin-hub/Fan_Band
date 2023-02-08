@@ -8,7 +8,7 @@
         <button @click="deleteGenre(index)">Delete</button>
       </li>
     </ul>
-    <form>
+    <form id="genre-bar">
       <label for="name">Genre Name:</label>
       <input v-model="newGenreName" type="text" id="name" name="name">
       <button @click.prevent="addGenre">Add Genre</button>
@@ -57,5 +57,15 @@ export default {
 </script>
 
 <style>
+.heading{
+  text-align: center;
+}
+#genre-bar{
+  text-align: center;
+}
+button{
+  background-color: rgb(204, 123, 197);
+}
+
 
 </style>
