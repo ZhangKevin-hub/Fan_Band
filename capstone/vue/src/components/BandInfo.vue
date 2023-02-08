@@ -3,8 +3,8 @@
       <h1>{{ band.bandName }}</h1>
       <button v-on:click="followBand()" v-if="followingBand">Follow Band</button>
       <button v-on:click="unfollowBand()" v-if="!followingBand">Unfollow Band</button>
-      <button v-on:click="editBand()" v-if="this.$store.state.user.id === this.$store.state.band.userId">Edit Band {{this.$store.state.user.id}}{{ this.$store.state.band.userId }}</button>
-      <button v-on:click="messageFollowers = true">Message Followers</button>
+      <button v-on:click="editBand()" v-if="this.$store.state.user.id === this.$store.state.band.userId">Edit Band</button>
+      <button v-on:click="messageFollowers = true" v-if="this.$store.state.user.id === this.$store.state.band.userId">Message Followers</button>
       <div v-if="messageFollowers">
         <notification-form @add-message="swapMessage"></notification-form>
       </div>
@@ -44,6 +44,7 @@ export default {
     },
     computed: {
       followingBand() {
+        
         if (this.$store.state.bandsFollowing.includes(this.bandId)){
           return false;
         }else {
@@ -107,6 +108,7 @@ export default {
       .catch(error => {
         console.log(error);
       });
+      console.log(this.$store.state.user);
     }
 }
 </script>

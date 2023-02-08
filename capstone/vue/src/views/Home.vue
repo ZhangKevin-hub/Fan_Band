@@ -21,8 +21,9 @@ export default {
   background-image: url(../assets/images/90sbackground3.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center;
-  height: 100vh;
+  /* height: 100vh;*/
   width: 100vw;
 }
 

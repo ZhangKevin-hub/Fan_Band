@@ -5,33 +5,34 @@
       <button>
         <router-link v-bind:to="{ name: 'home' }">Home</router-link>
       </button>
-      <button>
+      <button v-if="$store.state.token != ''">
         <router-link
           v-bind:to="{ name: 'search' }"
-          v-if="$store.state.token != ''"
           >Search</router-link
         >
       </button>
-      <button>
+      <button v-if="$store.state.user.id === 1">
         <router-link
           v-bind:to="{ name: 'adminPage' }"
-          v-if="$store.state.token != ''"
           >Admin</router-link
         >
       </button>
-      <button>
+      <button v-if="$store.state.token != ''">
         <router-link
           v-bind:to="{ name: 'logout' }"
-          v-if="$store.state.token != ''"
           >Logout</router-link
         >
       </button>
     </div>
-    <router-view />
+    <router-view id="view"/>
   </div>
 </template>
 
 <style>
+#view{
+  padding-top: 100px;
+}
+
 #app {
   font-family: "Itim", cursive;
   /* background-image: linear-gradient
@@ -57,6 +58,8 @@
   height: 50px;
   border: 5px solid;
   padding: 10px;
+  position: fixed;
+  width: 200vh;
 }
 img {
   height: 40px;
