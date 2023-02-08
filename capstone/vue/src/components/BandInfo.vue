@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div id="band">
       <h1>{{ band.bandName }}</h1>
       <button v-on:click="followBand()" v-if="followingBand">Follow Band</button>
       <button v-on:click="unfollowBand()" v-if="!followingBand">Unfollow Band</button>
-      <button v-on:click="editBand()">Edit Band</button>
+      <button v-on:click="editBand()" v-if="this.$store.state.user.id === this.$store.state.band.userId">Edit Band {{this.$store.state.user.id}}{{ this.$store.state.band.userId }}</button>
       <button v-on:click="messageFollowers = true">Message Followers</button>
       <div v-if="messageFollowers">
         <notification-form @add-message="swapMessage"></notification-form>
       </div>
-      <div v-if="!edit" >
+      <div id="bandInfo1" v-if="!edit" >
         <p>{{ band.description }}</p>
-      <img src="" alt="cover image">
+      <img src="../assets/images/singer.jpg" alt="cover image">
       <h5>List of genres</h5>
-      <ul>
+      <ul id="genres">
         <li v-for="genre in genres" v-bind:key="genre.id">{{ genre.name }}</li>
       </ul>
       <img src="" alt="photo gallergy image" v-for="photo in photoGallery" v-bind:key="photo.id">
@@ -111,6 +111,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+#bandInfo1 {
+  margin-left: 33%;
+}
+img {
+  height: 150px;
+}
+
+#genres {
+  justify-content: left;
+}
 
 </style>
