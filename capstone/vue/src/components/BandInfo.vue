@@ -1,10 +1,10 @@
 <template>
   <div id="band">
       <h1>{{ band.bandName }}</h1>
-      <button v-on:click="followBand()" v-if="followingBand">Follow Band</button>
-      <button v-on:click="unfollowBand()" v-if="!followingBand">Unfollow Band</button>
-      <button v-on:click="editBand()" v-if="this.$store.state.user.id === this.$store.state.band.userId">Edit Band</button>
-      <button v-on:click="messageFollowers = true" v-if="this.$store.state.user.id === this.$store.state.band.userId">Message Followers</button>
+      <button id ="followButton" v-on:click="followBand()" v-if="followingBand">Follow Band</button>
+      <button id ="unfollowButton" v-on:click="unfollowBand()" v-if="!followingBand">Unfollow Band</button>
+      <button id ="editButton" v-on:click="editBand()" v-if="this.$store.state.user.id === this.$store.state.band.userId">Edit Band</button>
+      <button id="messageButton" v-on:click="messageFollowers = true" v-if="this.$store.state.user.id === this.$store.state.band.userId"><span>Message Followers</span></button>
       <div v-if="messageFollowers">
         <notification-form @add-message="swapMessage"></notification-form>
       </div>
@@ -114,6 +114,66 @@ export default {
 </script>
 
 <style scoped>
+#followButton{
+  --color: hsl(204, 55%, 51%);
+  --hover: hsl(204, 55%, 51%);
+  color: var(--color);
+  transition: 0.25s;
+  border: 2px solid var(--color);
+}
+#followButton:hover,
+#followButton:focus {
+  box-shadow: inset 6.5em 0 0 0 var(--hover);
+}
+#unfollowButton{
+  --color: hsl(19, 88%, 62%);
+  --hover: hsl(19, 88%, 62%);
+  color: var(--color);
+  transition: 0.25s;
+  border: 2px solid var(--color);
+}
+#unfollowButton:hover,
+#unfollowButton:focus {
+  box-shadow: inset -6.5em 0 0 0 var(--hover);
+}
+#editButton{
+  --color: hsl(135, 58%, 57%);
+  --hover: hsl(135, 58%, 57%);
+  color: var(--color);
+  transition: 0.25s;
+  border: 2px solid var(--color);
+}
+#editButton:hover,
+#editButton:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+#messageButton{
+  color:white;
+  background-color: hsl(183, 58%, 66%);
+}
+#messageButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#messageButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#messageButton:hover span {
+  padding-right: 25px;
+}
+#messageButton span:after {
+  opacity: 1;
+  right: 0;
+}
 #bandInfo1 {
   margin-left: 33%;
 }
