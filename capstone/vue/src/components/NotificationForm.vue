@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="card">
       <input type="text" v-model="message"/>
       <button v-on:click="addNotification">Send Notification</button>
     </div>
