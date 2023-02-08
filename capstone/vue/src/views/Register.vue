@@ -28,7 +28,7 @@
         required
          v-on:blur="unBlurCheck()"
       />
-      <p v-if="this.unBlur">Password must contain{{ checkPassword }}.</p>
+      <p v-if="this.unBlur">{{ checkPassword }}</p>
      
       </div>
       <div>
@@ -76,23 +76,32 @@ export default {
   },
   computed: {
     checkPassword(){
-      let passwordMessage = "";
-      //const passwordValidator = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
+      let passwordMessage = "Password must contain:";
+      let show = false;
+      
       
       if (!this.user.password.match(/[a-z]/)){
-        passwordMessage += " a lowercase letter"
+        passwordMessage += " a lowercase letter,"
+        show =true
       }
       
       if (!this.user.password.match(/[A-Z]/)){
-        passwordMessage += " an uppercase letter"
+        passwordMessage += " an uppercase letter,"
+        show =true
       } 
       if (!this.user.password.match(/\d/)){
-        passwordMessage += " a number"
+        passwordMessage += " a number,"
+        show =true
       } 
-      if (!this.user.password.length >= 8){
-        passwordMessage += " 8 or more characters long"
+      if (this.user.password.length <8){
+        passwordMessage += " 8 or more characters in length"
+        show=true
       }
+      if (show){
       return passwordMessage;
+      }else{
+        return '';
+      }
     }
   },
   methods: {
