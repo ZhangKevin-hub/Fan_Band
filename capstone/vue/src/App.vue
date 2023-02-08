@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link
         v-bind:to="{ name: 'search' }"
@@ -29,6 +30,7 @@
     (to the bottom right, rgb(29, 56, 175), rgb(101, 11, 119)); */
   background-image: linear-gradient(to bottom right, rgb(156, 170, 233), rgb(176, 79, 196));
   height: 100vh;
+
 }
 .heading{
   font-family: 'Sedgwick Ave Display', cursive;
@@ -45,6 +47,16 @@
   padding: 10px;
 }
 
+#nav {
+  text-align: right;
+  border: 5px solid;
+  padding: 10px;
+  background-image: url('../src/assets/images/fanband.png');
+  background-size: cover;
+  background-position: center;
+}
+
+
 .heading{
   background-image: linear-gradient(rgb(156, 170, 233), rgb(176, 79, 196));
   width: 35%;
@@ -57,7 +69,7 @@
   
 }
 
-#login, #newBandForm{
+#login{
   text-align: center;
   border: 5px solid;
   border-radius: 25%;
@@ -66,8 +78,22 @@
   margin-top: 10%;
 }
 
+
+
+#newBand {
+  text-align: center;
+  border: 5px solid;
+  border-radius: 25%;
+  width: 33%;
+  margin: auto;
+  margin-top: 10%;
+  
+}
+
+
+
 @media (max-width: 768px) {
-  #login, #newBandForm {
+  #login, #newBand {
     width: 80%;
     margin-top: 5%;
   }
