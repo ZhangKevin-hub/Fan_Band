@@ -46,13 +46,16 @@ export default {
   border: 5px solid;
   margin-right: auto;
   margin-left: auto;
-  padding: 0 15px 0 15px;
+  margin: 0 15px 0 15px;
+  background-color:  rgb(176, 79, 196);
 }
 
 #notificationHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: rgb(156, 170, 233);
+    border-bottom: 1px inset black;
 }
 
 #messageDate {

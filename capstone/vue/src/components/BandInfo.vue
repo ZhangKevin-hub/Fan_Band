@@ -10,12 +10,12 @@
       </div>
       <div id="bandInfo1" v-if="!edit" >
         <p>{{ band.description }}</p>
-      <img src="../assets/images/singer.jpg" alt="cover image">
+      <img :src="band.image" alt="cover image">
       <h5>List of genres</h5>
       <ul id="genres">
         <li v-for="genre in genres" v-bind:key="genre.id">{{ genre.name }}</li>
       </ul>
-      <img src="" alt="photo gallergy image" v-for="photo in photoGallery" v-bind:key="photo.id">
+      <img :src="photo.imgUrl" alt="photo gallergy image" v-for="photo in photoGallery" v-bind:key="photo.id">
       </div>
       <div v-else> 
         <new-band-form v-bind:editing="true" v-bind:bandId="this.bandId"></new-band-form>
