@@ -24,14 +24,11 @@
         >
       </button>
     </div>
-    <router-view id="view"/>
+    <router-view/>
   </div>
 </template>
 
 <style>
-#view{
-  padding-top: 100px;
-}
 
 #app {
   font-family: "Itim", cursive;
@@ -58,8 +55,6 @@
   height: 50px;
   border: 5px solid;
   padding: 10px;
-  position: fixed;
-  width: 200vh;
 }
 img {
   height: 40px;
