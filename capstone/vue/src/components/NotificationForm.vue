@@ -4,8 +4,9 @@
       <button v-on:click="addNotification">Send Notification</button>
     </div>
   </template>
+  
   <script>
-  import AuthService from 'path/to/AuthService.js'
+  import AuthService from '../services/AuthService.js';
   export default {
     data() {
       return {
@@ -15,10 +16,15 @@
     methods: {
       addNotification() {
         const notification = {
-          bandid: this.$store.state.band.bandId,
+          bandId: this.$store.state.band.bandId,
           message: this.message, 
         }
-        AuthService.addNotifs(notification)
+        AuthService.addNotifs(notification).then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
         this.message = ''
       }
     }
