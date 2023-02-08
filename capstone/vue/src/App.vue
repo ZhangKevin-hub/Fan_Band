@@ -56,4 +56,20 @@
   
   
 }
+
+#login, #newBandForm{
+  text-align: center;
+  border: 5px solid;
+  border-radius: 25%;
+  width: 33%;
+  margin: auto;
+  margin-top: 10%;
+}
+
+@media (max-width: 768px) {
+  #login, #newBandForm {
+    width: 80%;
+    margin-top: 5%;
+  }
+}
 </style>
