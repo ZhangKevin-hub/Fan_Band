@@ -7,7 +7,6 @@
       <button v-on:click="messageFollowers = true">Message Followers</button>
       <div v-if="messageFollowers">
         <notification-form @add-message="swapMessage"></notification-form>
-        <!-- (msg) => messageFollowers = msg -->
       </div>
       <div v-if="!edit" >
         <p>{{ band.description }}</p>
@@ -21,9 +20,6 @@
       <div v-else> 
         <new-band-form v-bind:editing="true" v-bind:bandId="this.bandId"></new-band-form>
       </div>
-      
-      
-
   </div>
 </template>
 
