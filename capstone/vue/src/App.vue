@@ -3,8 +3,7 @@
     <div id="nav">
       <div class="spacer2">&nbsp;</div>
       <img id= "logo" src="./assets/images/fanband.png" alt="fanbandlogo" />
-      <div class="spacer">&nbsp;</div>
-    <ul>
+    <ul class="navButtons">
       <li>
       <button>
         <router-link v-bind:to="{ name: 'home' }">Home</router-link>
@@ -55,17 +54,15 @@
 
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 200px 1fr 200px;
-    grid-template-areas:
-        "header header header"
-        "menu-nav main upcoming-events"
-        "footer footer footer"
-    ;
-    height: 100vh;
-    gap: 10px;
+.navButtons{
+  width: 33%;
+  display: flex;
+  font-family: "Sedgwick Ave Display", cursive;
+  font-size: 1.2em;
+  
+
 }
+
 
 
 .heading {
@@ -87,6 +84,7 @@
   /* margin-bottom: 20px; */
   position: fixed;
 
+ background-color: linear-gradient(to bottom right, rgb(29, 56, 175), rgb(101, 11, 119));
 
 }
 #placeholder {
@@ -96,21 +94,26 @@
 
 #nav, ul{
   display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+
+}
+
+ul{
   flex-direction: row;
+  justify-content: flex-end;
 }
 
-.spacer{
-  flex-grow: 1;
 
-}
 
 .spacer2{
-  flex-grow: 2.5;
+  width: 33%;
 }
 
 #nav{
    background-color: linear-gradient(to bottom right, rgb(29, 56, 175), rgb(101, 11, 119));
    padding:20px
+   
 }
 
 #logo {
@@ -181,6 +184,7 @@ button {
   cursor: pointer;
   font-size: 14px;
   margin-left: 10px;
+  
 }
 
 button:hover {
