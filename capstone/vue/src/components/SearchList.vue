@@ -1,7 +1,8 @@
 <template>
   <div id="searchlist">
     <div>
-      <label for="searchBar">Enter Band Name to Search For: </label>
+      <div id="search-bar-div">
+        <label for="searchBar" id="searchMessage">Enter Band Name to Search For:&nbsp;</label>
       <input type="text" id="searchBar" v-model="searchInput" />
       <ul>
         <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
@@ -13,21 +14,22 @@
           />
           <label :for="index">{{ genre.name }}</label>
         </li>
-        <button class="heading" v-on:click="applyGenreFilter()">
+        <button id="genreFilter" v-on:click="applyGenreFilter()">
           Add Genre Filter
         </button>
       </ul>
+      </div>
+      
       <div v-if="this.filteredBands.length !== 0">
-        <div v-for="band in filteredBands" v-bind:key="band.bandId">
-          <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
+        <div v-for="band in filteredBands" v-bind:key="band.bandId" class="band-div">
+          <h4 v-on:click="loadBand(band)" class="band-name">{{ band.bandName }}</h4>
           <p>{{ band.description }}</p>
         </div>
       </div>
       <div v-else id="noBands">
-      <h3>No Bands</h3>
+        <h3>No Bands</h3>
+      </div>
     </div>
-    </div>
-    
   </div>
 </template>
 <script>
@@ -107,6 +109,16 @@ export default {
 };
 </script>
 <style scoped>
+#genreFilter{
+  font-family: "Sedgwick Ave Display", cursive;
+  font-size: 24px;
+}
+#search-bar-div {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+}
 #noBands {
   text-align: center;
   color: white;
@@ -117,17 +129,42 @@ div {
   /* background-image: url("../assets/images/livecrowd1.jpg"); */
   height: auto;
 }
+.band-div{
+   margin: 20px;
+  border: 5px solid;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top:30px;
+  background-color: rgb(176, 79, 196);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  width: 40%;
+}
 #searchBar {
-  height: 40px;
+  height: 20px;
 }
 #heading {
   height: 10px;
 }
-#searchlist{
-    /* display: flex;
+#searchlist {
+  /* display: flex;
     justify-content: center; */
-    background-image: url('../assets/images/livecrowd1.jpg'); 
-    min-height: 100vh;
-  }
+  background-image: url("../assets/images/livecrowd1.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100%;
+  width: 100vw;
+}
+#searchMessage {
+  font-family: "Itim", cursive;
+}
+.checkbox-genre {
+  color: blueviolet;
+}
+.band-name {
+  text-decoration: underline;
+}
 </style>
   
