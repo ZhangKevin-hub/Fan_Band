@@ -199,7 +199,7 @@ export default {
 };
 </script>
 
-<style >
+<style>
 
 .form-element {
   margin-bottom: 5px;
@@ -207,6 +207,16 @@ export default {
   
 }
 
+#newBand {
+  background-image: url('../assets/images/callie-morgan.jpg');
+
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100%;
+  width: 100vw;
+}
 
 
 ul {
