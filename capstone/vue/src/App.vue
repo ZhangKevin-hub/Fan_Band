@@ -104,7 +104,7 @@
 }
 
 .spacer2{
-  flex-grow: 2;
+  flex-grow: 2.5;
 }
 
 #nav{
