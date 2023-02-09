@@ -47,7 +47,9 @@ export default {
   margin-right: auto;
   margin-left: auto;
   margin: 20px 15px 20px 15px;
-  background-color:  rgb(176, 79, 196);
+  background-color: rgb(176, 79, 196);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 #notificationHeader {
@@ -55,8 +57,12 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     background-color: rgb(156, 170, 233);
-    border-bottom: 1px inset black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
+
 
 #messageDate {
     text-align: right;
