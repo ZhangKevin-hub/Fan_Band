@@ -158,8 +158,10 @@ ul {
   
 
 
-  /* margin-top: 10%; */
+  margin-top: 10%;
+  margin-left: 33%;
 }
+
 
 
 
