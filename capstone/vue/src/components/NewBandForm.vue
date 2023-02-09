@@ -33,7 +33,8 @@
         <input id="galleryImageLink" type="text" v-model="photoLink">
         <button v-on:click.prevent="addLinkToGallery()">Add Image to Gallery</button>
       </div>
-      <button class="MakeBand" type="submit" v-on:click.prevent="submitForm()">Create Band</button>
+      <button v-if="!editing" class="MakeBand" type="submit" v-on:click.prevent="submitForm()">Create Band</button>
+      <button v-if="editing" class="MakeBand" type="submit" v-on:click.prevent="submitForm()">Update Band</button>
     </form>
     </div>
   </div>
@@ -106,6 +107,7 @@ export default {
             AuthService.updateBand(this.bandId, this.band).then( response => {
               console.log(response);
               this.updatePhotoGallery();
+              
             })
             .catch(error => {
               console.log(error);
@@ -123,8 +125,9 @@ export default {
               console.log("failed to create band");
               console.log(error);
           });
-          //dont call update photos if empty
+          
           }
+          
       },
       resetFrom(){
         this.band = {
@@ -146,7 +149,10 @@ export default {
           }
         }
       AuthService.updatePhotos(postObject).then( response => {
-        console.log(response)
+        
+          this.$emit('done-edit', false);
+          this.$router.push({name: 'bandPage'});
+          console.log(response);
       })
       .catch(error => {
         console.log(error)

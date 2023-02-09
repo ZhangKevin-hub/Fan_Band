@@ -18,7 +18,7 @@
       <img :src="photo.imgUrl" alt="photo gallergy image" v-for="photo in photoGallery" v-bind:key="photo.id">
       </div>
       <div v-else> 
-        <new-band-form v-bind:editing="true" v-bind:bandId="this.bandId"></new-band-form>
+        <new-band-form v-bind:editing="true" v-bind:bandId="this.bandId" @done-edit="doneEdit"></new-band-form>
       </div>
   </div>
 </template>
@@ -59,6 +59,21 @@ export default {
       },
       editBand(){
         this.edit = true;
+      },
+      doneEdit(){
+        this.edit = false;
+        AuthService.getPhotos(this.bandId).then(response => {
+        this.photoGallery = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      AuthService.getGenresByBandId(this.bandId).then(response => {
+        this.genres = response.data
+      })
+      .catch(error => {
+        console.log(error);
+      });
       },
       followBand(){
         this.$store.state.bandsFollowing.push(this.bandId);
