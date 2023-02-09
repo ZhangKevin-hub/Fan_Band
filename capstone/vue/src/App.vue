@@ -84,7 +84,7 @@
    /* background-color: linear-gradient (to bottom right, rgb(29, 56, 175), rgb(101, 11, 119)); */
   box-shadow: 03px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   /* margin-bottom: 20px; */
-  position: fixed
+  /* position: fixed */
 
 }
 
