@@ -36,6 +36,7 @@
       </li>
     </ul>
     </div>
+    <div id="placeholder"></div>
     <router-view/>
   </div>
 </template>
@@ -86,6 +87,10 @@
   /* margin-bottom: 20px; */
   position: fixed
 
+}
+#placeholder {
+  height: 80px;
+  width: 100%;
 }
 
 #nav, ul{
