@@ -79,12 +79,12 @@
   width: 100%;
   height: 80px;
   box-sizing: border-box;
-   /* background-color: linear-gradient (to bottom right, rgb(29, 56, 175), rgb(101, 11, 119)); */
+  background-color:rgb(101, 11, 119);
   box-shadow: 03px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   /* margin-bottom: 20px; */
   position: fixed;
 
- background-color: linear-gradient(to bottom right, rgb(29, 56, 175), rgb(101, 11, 119));
+ /* background-color: linear-gradient(to bottom right, rgb(29, 56, 175), rgb(101, 11, 119)); */
 
 }
 #placeholder {
@@ -111,14 +111,13 @@ ul{
 }
 
 #nav{
-   background-color: linear-gradient(to bottom right, rgb(29, 56, 175), rgb(101, 11, 119));
    padding:20px
    
 }
 
 #logo {
   
-  width:120px
+  width:105px
  
 }
 
