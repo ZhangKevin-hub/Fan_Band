@@ -1,6 +1,7 @@
 <template>
     <div id="card">
-      <input type="text" v-model="message"/>
+      <h5>Message Content:</h5>
+      <input id="textBox" type="text" v-model="message"/>
       <button id = "sendNotification" v-on:click="addNotification">Send Notification</button>
     </div>
   </template>
@@ -60,5 +61,16 @@
 #sendNotification span:after {
   opacity: 1;
   right: 0;
+}
+#card{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 40%;
+  margin: auto;
+}
+
+#textBox{
+  height: 60px;
 }
   </style>
