@@ -1,28 +1,33 @@
 <template>
-
-<div id="seachlist">
-  <div v-if="this.bands.length !== 0">
-    <label for="searchBar">Enter Band Name to Search For: </label>
-    <input type="text" id="searchBar" v-model="searchInput" />
-    <ul>
-      <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
-        <input class="checkbox-genre"
-          type="checkbox"
-          :value="genre"
-          v-on:change="editSelectedGenres(genre)"
-        />
-        <label :for="index">{{ genre.name }}</label>
-      </li>
-      <button class ="heading" v-on:click="applyGenreFilter()">Add Genre Filter</button>
-    </ul>
-    <div v-for="band in filteredBands" v-bind:key="band.bandId">
-      <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
-      <p>{{ band.description }}</p>
+  <div id="searchlist">
+    <div>
+      <label for="searchBar">Enter Band Name to Search For: </label>
+      <input type="text" id="searchBar" v-model="searchInput" />
+      <ul>
+        <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
+          <input
+            class="checkbox-genre"
+            type="checkbox"
+            :value="genre"
+            v-on:change="editSelectedGenres(genre)"
+          />
+          <label :for="index">{{ genre.name }}</label>
+        </li>
+        <button class="heading" v-on:click="applyGenreFilter()">
+          Add Genre Filter
+        </button>
+      </ul>
+      <div v-if="this.filteredBands.length !== 0">
+        <div v-for="band in filteredBands" v-bind:key="band.bandId">
+          <h4 v-on:click="loadBand(band)">{{ band.bandName }}</h4>
+          <p>{{ band.description }}</p>
+        </div>
+      </div>
+      <div v-else id="noBands">
+      <h3>No Bands</h3>
     </div>
-  </div>
-  <div v-else>
-    No bands
-  </div>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -64,7 +69,7 @@ export default {
           return eachGenre !== genre.id;
         });
       }
-      console.log(this.genres)
+      console.log(this.genres);
     },
     applyGenreFilter() {
       console.log("ANDY DEBUG");
@@ -102,25 +107,27 @@ export default {
 };
 </script>
 <style scoped>
-div{
-    text-align: center;
+#noBands {
+  text-align: center;
+  color: white;
+  font-family: "Itim", cursive;
+}
+div {
+  text-align: center;
+  /* background-image: url("../assets/images/livecrowd1.jpg"); */
+  height: auto;
+}
+#searchBar {
+  height: 40px;
+}
+#heading {
+  height: 10px;
+}
+#searchlist{
+    /* display: flex;
+    justify-content: center; */
     background-image: url('../assets/images/livecrowd1.jpg'); 
-    height: auto;
+    min-height: 100vh;
   }
-  #searchBar{
-    height: 40px;
-  }
-  #heading{
-    height: 10px;
-  }
-  /* #searchlist{
-    display: flex;
-    justify-content: center;
-    background-image: url('../assets/images/livecrowd1.jpg'); 
-    min-height: 100%;
-  } */
-
-
-
 </style>
   
