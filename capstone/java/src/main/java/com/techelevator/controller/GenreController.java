@@ -37,13 +37,13 @@ public class GenreController {
         return genreDao.findGenreById(genreId);
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addGenre(@RequestBody Genre genre) {
         genreDao.addGenre(genre);
     }
 
-   //@PreAuthorize("hasRole('ROLE_ADMIN')")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void deleteGenre(@RequestBody Genre genre) {
         genreDao.deleteGenre(genre);

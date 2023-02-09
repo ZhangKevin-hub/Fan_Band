@@ -55,7 +55,7 @@
 
 }
 
-/* .container {
+.container {
     display: grid;
     grid-template-columns: 200px 1fr 200px;
     grid-template-areas:
@@ -65,7 +65,7 @@
     ;
     height: 100vh;
     gap: 10px;
-} */
+}
 
 
 .heading {
@@ -114,7 +114,7 @@
 
 #logo {
   
-  width:110px
+  width:120px
  
 }
 
@@ -148,15 +148,15 @@ ul {
   margin-bottom: 25px;
 }
 
-.form-container {
+#login,
+#newBandForm {
   padding: 3%;
   text-align: center;
   border: 7px solid;
   border-radius: 25%;
   width: 33%;
-  min-height: auto;
+  min-height:auto;
   margin: auto;
-  
 }
 
 

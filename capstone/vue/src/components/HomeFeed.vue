@@ -1,11 +1,15 @@
 <template>
-  <div id="notifDiv">
+  <div id="notifDiv" v-if="notifications.length !== 0">
       <button v-on:click="sortNew()">Sort Norm</button>
       <button v-on:click="sortOld()">Sort Inverse</button>
       <button v-on:click="sortAZ()">AZ</button>
       <button v-on:click="sortZA()">ZA</button>
      <notification-card v-for="notification in notifications" v-bind:key="notification.notifId"
      v-bind:notification="notification"></notification-card>
+  </div>
+  <div id="noNotif" v-else>
+      <h3>No Notifications To See</h3>
+      <p>Please check back later</p>
   </div>
 </template>
 <script>
@@ -105,5 +109,12 @@ export default {
 #notifDiv{
     margin:0px auto;
     width: 60%;
+}
+
+#noNotif {
+    text-align: center;
+    color: white;
+    font-family: "Itim", cursive;
+
 }
 </style>
