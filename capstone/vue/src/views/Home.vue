@@ -19,7 +19,7 @@ export default {
 <style scoped>
 .home {
   background-image: url(../assets/images/90sbackground3.jpg);
-  background-size: cover;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
