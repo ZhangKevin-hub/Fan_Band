@@ -15,9 +15,8 @@
         <input type="text" id="coverImage" v-model="band.image" />
       </div>
       <div class="form-element">
-        <label for="genres">Genres: </label>
-        <p v-for="(genre, index) in genres" v-bind:key="index"> {{ index }}: {{ genre.name }}
-        </p>
+        <label for="genres">Genres:&nbsp;</label>
+        <span v-for="(genre, index) in genres" v-bind:key="index">&nbsp;{{ genre.name }}&nbsp;</span>
         <ul>
             <li v-for="(genre, index) in possibleGenres" v-bind:key="index">
                 <input type="checkbox" :id="index" :value="genre" v-on:change="editSelectedGenres(genre)" v-bind:checked="boxChecked(genre)">

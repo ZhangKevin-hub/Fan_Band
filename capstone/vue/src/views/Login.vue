@@ -89,7 +89,11 @@ export default {
   
 }
 
-
+.form-container {
+  padding-top: 100px;
+  width: 75%;
+  margin:auto;
+}
 
 #page {
   background-image: url('../assets/images/liveCrowd.jpg');
