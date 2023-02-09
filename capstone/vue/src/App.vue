@@ -36,6 +36,7 @@
       </li>
     </ul>
     </div>
+    <div id="placeholder"></div>
     <router-view/>
   </div>
 </template>
@@ -87,6 +88,10 @@
   /* position: fixed */
 
 }
+#placeholder {
+  height: 80px;
+  width: 100%;
+}
 
 #nav, ul{
   display: flex;
@@ -99,7 +104,7 @@
 }
 
 .spacer2{
-  flex-grow: 2;
+  flex-grow: 2.5;
 }
 
 #nav{

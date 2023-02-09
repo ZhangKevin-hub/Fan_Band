@@ -40,6 +40,16 @@ export default {
   getNotificationsByUser(userId) {
     return axios.get(`/notifications/${userId}`)
   },
+
+  getNotificationsByUserOld(userId) {
+    return axios.get(`/notifications/sort-old/${userId}`)
+  },
+  getNotificationsByUserAZ(userId) {
+    return axios.get(`/notifications/sort-band-name-az/${userId}`)
+  },
+  getNotificationsByUserZA(userId) {
+    return axios.get(`/notifications/sort-band-name-za/${userId}`)
+  },
   
   // Following
   followBand(follower) {
