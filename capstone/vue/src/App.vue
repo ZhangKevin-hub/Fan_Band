@@ -157,8 +157,12 @@ ul {
   width: 33%;
   min-height: 100%;
 
-  /* margin-top: 10%; */
+  margin-top: 10%;
+  margin-left: 33%;
 }
+
+
+
 
 
 

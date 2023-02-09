@@ -1,7 +1,7 @@
 <template>
     <div id="card">
       <input type="text" v-model="message"/>
-      <button v-on:click="addNotification">Send Notification</button>
+      <button id = "sendNotification" v-on:click="addNotification">Send Notification</button>
     </div>
   </template>
   
@@ -32,3 +32,33 @@
     }
   }
   </script>
+<style scoped>
+  
+#sendNotification{
+  color:white;
+  background-color: hsl(98, 75%, 66%);
+}
+#sendNotification span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#sendNotification span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#sendNotification:hover span {
+  padding-right: 25px;
+}
+#sendNotification span:after {
+  opacity: 1;
+  right: 0;
+}
+  </style>
