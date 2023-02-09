@@ -5,13 +5,13 @@
       <li>Current Genre:</li>
       <li v-for="(genre, index) in genres" :key="index">
         {{ genre.name }}
-        <button @click="deleteGenre(index)">Delete</button>
+        <button id = "deleteGenreButton" @click="deleteGenre(index)">Delete</button>
       </li>
     </ul>
     <form id="genre-bar">
       <label for="name">Genre Name:</label>
       <input v-model="newGenreName" type="text" id="name" name="name">
-      <button @click.prevent="addGenre">Add Genre</button>
+      <button id = "addNewGenreButton" @click.prevent="addGenre">Add Genre</button>
     </form>   
   </div>
 </template>
@@ -62,6 +62,33 @@ export default {
 }
 #genre-bar{
   text-align: center;
+}
+#deleteGenreButton{
+  --color: hsl(0, 100%, 64%);
+  --hover: hsl(0, 100%, 64%);
+  color: var(--color);
+  transition: 0.25s;
+  border: 2px solid var(--color);
+}
+#deleteGenreButton:focus {
+  box-shadow: 
+    inset -3.5em 0 0 0 var(--hover),
+    inset 3.5em 0 0 0 var(--hover);  
+  color: white;
+}
+
+#addNewGenreButton{
+  --color: hsl(111, 100%, 74%);
+  --hover: hsl(111, 100%, 74%);
+  color: var(--color);
+  transition: 0.25s;
+  border: 2px solid var(--color);
+}
+#addNewGenreButton :focus {
+  box-shadow: 
+    inset -3.5em 0 0 0 var(--hover),
+    inset 3.5em 0 0 0 var(--hover);  
+  color: white;
 }
 button{
   background-color: rgb(204, 123, 197);
