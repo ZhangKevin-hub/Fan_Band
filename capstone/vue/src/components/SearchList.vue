@@ -119,5 +119,8 @@ div{
     background-image: url('../assets/images/livecrowd1.jpg'); 
     min-height: 100%;
   } */
+
+
+
 </style>
   

@@ -1,5 +1,6 @@
 <template>
 <div id="page">
+  <div class="form-container">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="heading">Please Sign In</h1>
@@ -39,6 +40,7 @@
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
+  </div>
   </div>
   </div>
 </template>
@@ -84,6 +86,7 @@ export default {
 <style scoped>
 div {
   background-color: mediumorchid;
+  
 }
 
 #page{

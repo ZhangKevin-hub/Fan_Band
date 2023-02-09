@@ -1,5 +1,6 @@
 <template>
   <div id = "newBand">
+    <div class="form-container">
     <form id="newBandForm">
       <div class="form-element">
         <label for="bandName">Band Name: </label>
@@ -35,6 +36,7 @@
       </div>
       <button class="MakeBand" type="submit" v-on:click.prevent="submitForm()">Create Band</button>
     </form>
+    </div>
   </div>
 </template>
 

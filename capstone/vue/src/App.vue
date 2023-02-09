@@ -55,7 +55,7 @@
 
 }
 
-.container {
+/* .container {
     display: grid;
     grid-template-columns: 200px 1fr 200px;
     grid-template-areas:
@@ -65,7 +65,7 @@
     ;
     height: 100vh;
     gap: 10px;
-}
+} */
 
 
 .heading {
@@ -85,7 +85,7 @@
    /* background-color: linear-gradient (to bottom right, rgb(29, 56, 175), rgb(101, 11, 119)); */
   box-shadow: 03px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   /* margin-bottom: 20px; */
-  /* position: fixed */
+  position: fixed
 
 }
 #placeholder {
@@ -114,7 +114,7 @@
 
 #logo {
   
-  width:120px
+  width:110px
  
 }
 
@@ -148,17 +148,20 @@ ul {
   margin-bottom: 25px;
 }
 
-#login,
-#newBandForm {
+.form-container {
   padding: 3%;
   text-align: center;
   border: 7px solid;
   border-radius: 25%;
   width: 33%;
-  min-height: 100%;
+  min-height: auto;
+  
+
 
   /* margin-top: 10%; */
 }
+
+
 
 
 
