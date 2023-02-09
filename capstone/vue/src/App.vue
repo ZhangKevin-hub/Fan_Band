@@ -155,10 +155,8 @@ ul {
   border: 7px solid;
   border-radius: 25%;
   width: 33%;
-  min-height: 100%;
-
-  margin-top: 10%;
-  margin-left: 33%;
+  min-height:auto;
+  margin: auto;
 }
 
 
