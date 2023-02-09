@@ -84,14 +84,21 @@ export default {
 </script>
 
 <style scoped>
-div {
+#login {
   background-color: mediumorchid;
   
 }
 
-#page{
-  background-attachment: scroll;
-background-image: url('../assets/images/liveCrowd.jpg');
-height: 90%;
+
+
+#page {
+  background-image: url('../assets/images/liveCrowd.jpg');
+
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100%;
+  width: 100vw;
 }
 </style>
