@@ -116,15 +116,15 @@ export default {
           AuthService.createBand(this.band)
             .then( response => {
                 if (response.status == 200){
-                    //this.resetForm();
-                    
-                    //this.assignGenres();
+                  this.$store.state.band=this.band;
                 }
             })
           .catch((error)=> {
               console.log("failed to create band");
               console.log(error);
           });
+          
+          this.$router.push({name: 'bandPage'});
           
           }
           
