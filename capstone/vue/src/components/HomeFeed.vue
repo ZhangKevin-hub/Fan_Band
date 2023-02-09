@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div id="notifDiv">
+      <button v-on:click="sortNew()">Sort Norm</button>
+      <button v-on:click="sortOld()">Sort Inverse</button>
+      <button v-on:click="sortAZ()">AZ</button>
+      <button v-on:click="sortZA()">ZA</button>
      <notification-card v-for="notification in notifications" v-bind:key="notification.notifId"
      v-bind:notification="notification"></notification-card>
   </div>
@@ -12,12 +16,58 @@ export default {
     components: {NotificationCard},
     data(){
         return {
-            notifications: []
+            notifications: [],
+            userId: this.$store.state.user.id
         }
     },
+    methods: {
+        sortNew(){
+            AuthService.getNotificationsByUser(this.userId).then(response => {
+            const notificationsToSet = response.data;
+            this.$store.commit('SET_CURRENT_NOTIFICATIONS', notificationsToSet);
+            this.notifications = this.$store.state.notifications;
+        })
+        .catch(error => {
+            console.log(error)
+            console.log("notification")
+        });
+        },
+        sortOld(){
+            AuthService.getNotificationsByUserOld(this.userId).then(response => {
+            const notificationsToSet = response.data;
+            this.$store.commit('SET_CURRENT_NOTIFICATIONS', notificationsToSet);
+            this.notifications = this.$store.state.notifications;
+        })
+        .catch(error => {
+            console.log(error)
+            console.log("notification")
+        });
+        },
+        sortAZ(){
+            AuthService.getNotificationsByUserAZ(this.userId).then(response => {
+            const notificationsToSet = response.data;
+            this.$store.commit('SET_CURRENT_NOTIFICATIONS', notificationsToSet);
+            this.notifications = this.$store.state.notifications;
+        })
+        .catch(error => {
+            console.log(error)
+            console.log("notification")
+        });
+        },
+        sortZA(){
+            AuthService.getNotificationsByUserZA(this.userId).then(response => {
+            const notificationsToSet = response.data;
+            this.$store.commit('SET_CURRENT_NOTIFICATIONS', notificationsToSet);
+            this.notifications = this.$store.state.notifications;
+        })
+        .catch(error => {
+            console.log(error)
+            console.log("notification")
+        });
+        },
+    },
     created(){
-        const userId = this.$store.state.user.id;
-        AuthService.getNotificationsByUser(userId).then(response => {
+        AuthService.getNotificationsByUser(this.userId).then(response => {
             const notificationsToSet = response.data;
             this.$store.commit('SET_CURRENT_NOTIFICATIONS', notificationsToSet);
             this.notifications = this.$store.state.notifications;
@@ -52,4 +102,8 @@ export default {
 }
 </script>
 <style>
+#notifDiv{
+    margin:0px auto;
+    width: 60%;
+}
 </style>

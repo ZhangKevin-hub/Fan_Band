@@ -121,9 +121,9 @@ export default {
   transition: 0.25s;
   border: 2px solid var(--color);
 }
-#followButton:hover,
-#followButton:focus {
-  box-shadow: inset 6.5em 0 0 0 var(--hover);
+#followButton:hover {
+  box-shadow: inset 10em 0 0 0 var(--hover);
+  color: white;
 }
 #unfollowButton{
   --color: hsl(19, 88%, 62%);
@@ -132,9 +132,9 @@ export default {
   transition: 0.25s;
   border: 2px solid var(--color);
 }
-#unfollowButton:hover,
-#unfollowButton:focus {
-  box-shadow: inset -6.5em 0 0 0 var(--hover);
+#unfollowButton:hover{
+  box-shadow: inset -11em 0 0 0 var(--hover);
+  color: white;
 }
 #editButton{
   --color: hsl(135, 58%, 57%);
@@ -146,6 +146,7 @@ export default {
 #editButton:hover,
 #editButton:focus {
   box-shadow: inset 0 0 0 2em var(--hover);
+  color: white;
 }
 #messageButton{
   color:white;

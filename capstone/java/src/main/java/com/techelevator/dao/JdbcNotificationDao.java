@@ -34,7 +34,7 @@ public class JdbcNotificationDao implements NotificationDao{
                 "FROM notification " +
                 "JOIN follower ON follower.band_id = notification.band_id " +
                 "WHERE user_id = ?" +
-                "ORDER BY message_date DESC";
+                "ORDER BY message_date DESC, notification.notif_id DESC";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
         while (rowSet.next()){
             notifications.add(mapRowToNotification(rowSet));
@@ -50,7 +50,7 @@ public class JdbcNotificationDao implements NotificationDao{
                 "FROM notification " +
                 "JOIN follower ON follower.band_id = notification.band_id " +
                 "WHERE user_id = ?" +
-                "ORDER BY message_date ASC";
+                "ORDER BY message_date ASC, notification.notif_id ASC";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
         while (rowSet.next()){
             notifications.add(mapRowToNotification(rowSet));
@@ -67,8 +67,8 @@ public class JdbcNotificationDao implements NotificationDao{
                 "FROM notification " +
                 "JOIN band ON band.band_id = notification.band_id " +
                 "JOIN follower ON follower.band_id = notification.band_id " +
-                "WHERE user_id = ?" +
-                "ORDER BY band_name ASC";
+                "WHERE follower.user_id = ?" +
+                "ORDER BY band.band_name ASC";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
         while (rowSet.next()){
             notifications.add(mapRowToNotification(rowSet));
@@ -84,8 +84,8 @@ public class JdbcNotificationDao implements NotificationDao{
                 "FROM notification " +
                 "JOIN band ON band.band_id = notification.band_id " +
                 "JOIN follower ON follower.band_id = notification.band_id " +
-                "WHERE user_id = ?" +
-                "ORDER BY band_name DESC";
+                "WHERE follower.user_id = ?" +
+                "ORDER BY band.band_name DESC";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
         while (rowSet.next()){
             notifications.add(mapRowToNotification(rowSet));

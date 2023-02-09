@@ -41,12 +41,12 @@ export default {
 
 <style>
 #card-div {
-  width: 60%;
+  /* width: 60%; */
   margin: 20px;
   border: 5px solid;
   margin-right: auto;
   margin-left: auto;
-  margin: 0 15px 0 15px;
+  margin: 20px 15px 20px 15px;
   background-color:  rgb(176, 79, 196);
 }
 
