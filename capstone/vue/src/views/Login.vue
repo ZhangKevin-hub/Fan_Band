@@ -47,7 +47,7 @@
 
 <script>
 import authService from "../services/AuthService";
-
+import anime from 'animejs';
 export default {
   name: "login",
   components: {},
@@ -59,6 +59,17 @@ export default {
       },
       invalidCredentials: false,
     };
+  },
+  mounted() {
+    anime({
+      targets: '#page',
+      translateY: [10, -150],
+      direction: 'alternate',
+      loop: false,
+      endDelay: function(el, i, l) {
+        return (l - i) * 100;
+      }
+    });
   },
   methods: {
     login() {
