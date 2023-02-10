@@ -167,13 +167,14 @@ export default {
 </script>
 
 <style scoped>
-#band{
+#bandInfo1{
   background-color: rgba(199, 181, 220, 0.754);
   box-shadow: 10px 10px 5px 0px rgba(30, 28, 28, 0.75);
 }
 #followButton {
   --color: hsl(204, 55%, 51%);
   --hover: hsl(204, 55%, 51%);
+  background-color: black;
   color: var(--color);
   transition: 0.25s;
   border: 2px solid var(--color);
@@ -250,7 +251,8 @@ img {
 }
 
 #photos {
-    border: solid rgba(144, 104, 144, 0.794) 5px;
+    border-top: solid rgba(144, 104, 144, 0.794) 5px;
+    background-color: rgba(144, 104, 144, 0.794);
     border-radius: 5%;
     display: flex;
     flex-direction: row;
@@ -259,7 +261,12 @@ img {
 }
 
 .images{
-  border: solid white;
-  border-radius:7%
+  border: solid black;
+  border-radius:7%;
+  box-shadow: 5px 5px 3px 0px rgba(30, 28, 28, 0.75);
+  margin: 5px;
+}
+#band{
+  margin-top: 0;
 }
 </style>
