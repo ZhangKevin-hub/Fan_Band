@@ -19,6 +19,17 @@ h1 {
     text-align: center;
 }
 
+#NewBand {
+     background-image: url('../assets/images/callie-morgan.jpg');
+
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100%;
+  width: 100vw;
+}
+
 
 
 </style>

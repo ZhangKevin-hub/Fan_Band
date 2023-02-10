@@ -207,7 +207,7 @@ export default {
   
 }
 
-#newBand {
+/* #newBand {
   background-image: url('../assets/images/callie-morgan.jpg');
 
   background-size: 100%;
@@ -216,7 +216,7 @@ export default {
   background-position: center;
   min-height: 100%;
   width: 100vw;
-}
+} */
 
 
 ul {

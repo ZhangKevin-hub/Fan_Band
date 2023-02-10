@@ -4,7 +4,7 @@
        <h1>Home</h1>
     </div>
    
-    <router-link class="heading" v-bind:to="{ name: 'createBand'}">Create New Band</router-link>
+    <router-link class="heading" id="createBand" v-bind:to="{ name: 'createBand'}">Create New Band</router-link>
     <home-feed></home-feed>
   </div>
 </template>
@@ -25,6 +25,10 @@ export default {
   background-position: center;
   min-height: 100%;
   width: 100vw;
+}
+
+#createBand {
+  margin-left: 45px;
 }
 
 /* #home-heading{

@@ -83,12 +83,12 @@
   box-shadow: 03px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   /* margin-bottom: 20px; */
   position: fixed;
-
+  top:0%;
  /* background-color: linear-gradient(to bottom right, rgb(29, 56, 175), rgb(101, 11, 119)); */
 
 }
 #placeholder {
-  height: 80px;
+  height: 71px;
   width: 100%;
 }
 
@@ -111,12 +111,12 @@ ul{
 }
 
 #nav{
-   padding:20px
+   padding-bottom:20px
    
 }
 
 #logo {
-  
+  margin-top: 18px;
   width:105px
  
 }
@@ -157,9 +157,10 @@ ul {
   text-align: center;
   border: 7px solid;
   border-radius: 25%;
-  width: 33%;
+  width: 25%;
   min-height:auto;
   margin: auto;
+  background-color: mediumorchid;
 }
 
 
