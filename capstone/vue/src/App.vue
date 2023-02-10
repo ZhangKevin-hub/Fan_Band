@@ -110,13 +110,9 @@ ul{
   width: 33%;
 }
 
-#nav{
-   padding-bottom:20px
-   
-}
 
 #logo {
-  margin-top: 18px;
+  /* margin-top: 18px; */
   width:105px
  
 }
@@ -152,7 +148,7 @@ ul {
 }
 
 #login,
-#newBandForm {
+#newBandForm{
   padding: 3%;
   text-align: center;
   border: 7px solid;

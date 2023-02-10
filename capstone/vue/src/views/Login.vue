@@ -1,6 +1,6 @@
 <template>
 <div id="page">
-  <div class="form-container">
+  <div class="form-container" id="container">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="heading">Please Sign In</h1>
@@ -62,8 +62,8 @@ export default {
   },
   mounted() {
     anime({
-      targets: '#page',
-      translateY: [10, -150],
+      targets: '#container',
+      translateY: [10, 50],
       direction: 'alternate',
       loop: false,
       endDelay: function(el, i, l) {

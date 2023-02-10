@@ -13,6 +13,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+div{
+  background-attachment: fixed;
+background-image: url('../assets/images/wall.jpg');
+background-size: cover;
+min-height: 100%;
+}
 
 </style>

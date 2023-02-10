@@ -1,6 +1,6 @@
 <template>
   <div id="band">
-    <h1>{{ band.bandName }}</h1>
+    <h1 id="bandTitle">{{ band.bandName }}</h1>
     <button id="followButton" v-on:click="followBand()" v-if="followingBand">
       Follow Band
     </button>
@@ -30,7 +30,7 @@
     </div>
     <div id="bandInfo1" v-if="!edit">
       <p>{{ band.description }}</p>
-      <img :src="band.image" alt="cover image" />
+      <img :src="band.image" alt="cover image" id="bandImage" />
       <div id="genres">
         <h5>Genres</h5>
         <span v-for="genre in genres" v-bind:key="genre.id"
@@ -167,7 +167,7 @@ export default {
 </script>
 
 <style scoped>
-#bandInfo1{
+#bandInfo1 {
   background-color: rgba(199, 181, 220, 0.754);
   box-shadow: 10px 10px 5px 0px rgba(30, 28, 28, 0.75);
 }
@@ -251,22 +251,32 @@ img {
 }
 
 #photos {
-    border-top: solid rgba(144, 104, 144, 0.794) 5px;
-    background-color: rgba(144, 104, 144, 0.794);
-    border-radius: 5%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  border-top: solid rgba(144, 104, 144, 0.794) 5px;
+  background-color: rgba(144, 104, 144, 0.794);
+  border-radius: 5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.images{
+.images {
   border: solid black;
-  border-radius:7%;
+  border-radius: 7%;
   box-shadow: 5px 5px 3px 0px rgba(30, 28, 28, 0.75);
   margin: 5px;
 }
-#band{
-  margin-top: 0;
+#band {
+  padding: 3%;
 }
+#placeholder {
+  height: 51px;
+}
+
+#bandTitle{
+  color: rgb(156, 170, 233);
+  text-shadow: 2px 2px 4px black;
+  font-size: 48px;
+}
+
 </style>
