@@ -167,6 +167,10 @@ export default {
 </script>
 
 <style scoped>
+#band{
+  background-color: rgba(199, 181, 220, 0.754);
+  box-shadow: 10px 10px 5px 0px rgba(30, 28, 28, 0.75);
+}
 #followButton {
   --color: hsl(204, 55%, 51%);
   --hover: hsl(204, 55%, 51%);
@@ -179,6 +183,7 @@ export default {
   color: white;
 }
 #unfollowButton {
+  background-color: black;
   --color: hsl(19, 88%, 62%);
   --hover: hsl(19, 88%, 62%);
   color: var(--color);
@@ -190,6 +195,7 @@ export default {
   color: white;
 }
 #editButton {
+  background-color: black;
   --color: hsl(135, 58%, 57%);
   --hover: hsl(135, 58%, 57%);
   color: var(--color);
@@ -244,7 +250,7 @@ img {
 }
 
 #photos {
-    border: solid purple 5px;
+    border: solid rgba(144, 104, 144, 0.794) 5px;
     border-radius: 5%;
     display: flex;
     flex-direction: row;
