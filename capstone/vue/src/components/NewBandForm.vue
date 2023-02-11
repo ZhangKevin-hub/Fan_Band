@@ -123,7 +123,7 @@ export default {
               console.log("failed to create band");
               console.log(error);
           });
-          
+          this.$store.state.band=this.band;
           this.$router.push({name: 'bandPage'});
           
           }
@@ -149,7 +149,7 @@ export default {
           }
         }
       AuthService.updatePhotos(postObject).then( response => {
-        
+          
           this.$emit('done-edit', false);
           this.$router.push({name: 'bandPage'});
           console.log(response);

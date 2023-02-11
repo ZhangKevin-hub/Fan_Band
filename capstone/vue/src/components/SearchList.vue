@@ -146,17 +146,17 @@ div {
 #heading {
   height: 10px;
 }
-#searchlist {
+/* #searchlist {
   /* display: flex;
     justify-content: center; */
-  background-image: url("../assets/images/livecrowd1.jpg");
+  /* background-image: url("../assets/images/livecrowd1.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   min-height: 100%;
-  width: 100vw;
-}
+  width: 100vw; 
+} */
 #searchMessage {
   font-family: "Itim", cursive;
 }

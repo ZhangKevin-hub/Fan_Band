@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div id="editGenre">
     <h2 class="heading">Edit Genres</h2>
     <ul>
-      <li>Current Genre:</li>
+      <li>Current Genre:&nbsp;</li>
       <li v-for="(genre, index) in genres" :key="index">
         {{ genre.name }}
         <button id = "deleteGenreButton" @click="deleteGenre(index)">Delete</button>
@@ -57,6 +57,9 @@ export default {
 </script>
 
 <style>
+#editGenre {
+  padding-top: 150px;
+}
 .heading{
   text-align: center;
 }
